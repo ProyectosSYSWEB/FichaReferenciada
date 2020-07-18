@@ -1,0 +1,76 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmisionPagoReferenciado", "EmisionPagoReferenciado\EmisionPagoReferenciado.csproj", "{B2A91938-B6F3-4678-BD87-C511BE3FEEE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaEntidad", "CapaEntidad\CapaEntidad.csproj", "{404E477B-9542-48E0-B059-4D4B1B1930ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaDatos", "CapaDatos\CapaDatos.csproj", "{6796B857-F65A-42BA-AE40-C2E658CE8ABA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaNegocio", "CapaNegocio\CapaNegocio.csproj", "{E65444DB-E83E-4F5E-8EF9-FBFF7A486FF7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		OraWinApp|Any CPU = OraWinApp|Any CPU
+		OraWinApp|x86 = OraWinApp|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2A91938-B6F3-4678-BD87-C511BE3FEEE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2A91938-B6F3-4678-BD87-C511BE3FEEE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2A91938-B6F3-4678-BD87-C511BE3FEEE9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B2A91938-B6F3-4678-BD87-C511BE3FEEE9}.Debug|x86.Build.0 = Debug|Any CPU
+		{B2A91938-B6F3-4678-BD87-C511BE3FEEE9}.OraWinApp|Any CPU.ActiveCfg = OraWinApp|Any CPU
+		{B2A91938-B6F3-4678-BD87-C511BE3FEEE9}.OraWinApp|Any CPU.Build.0 = OraWinApp|Any CPU
+		{B2A91938-B6F3-4678-BD87-C511BE3FEEE9}.OraWinApp|x86.ActiveCfg = OraWinApp|x86
+		{B2A91938-B6F3-4678-BD87-C511BE3FEEE9}.OraWinApp|x86.Build.0 = OraWinApp|x86
+		{B2A91938-B6F3-4678-BD87-C511BE3FEEE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2A91938-B6F3-4678-BD87-C511BE3FEEE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2A91938-B6F3-4678-BD87-C511BE3FEEE9}.Release|x86.ActiveCfg = Release|x86
+		{B2A91938-B6F3-4678-BD87-C511BE3FEEE9}.Release|x86.Build.0 = Release|x86
+		{404E477B-9542-48E0-B059-4D4B1B1930ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{404E477B-9542-48E0-B059-4D4B1B1930ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{404E477B-9542-48E0-B059-4D4B1B1930ED}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{404E477B-9542-48E0-B059-4D4B1B1930ED}.Debug|x86.Build.0 = Debug|Any CPU
+		{404E477B-9542-48E0-B059-4D4B1B1930ED}.OraWinApp|Any CPU.ActiveCfg = OraWinApp|Any CPU
+		{404E477B-9542-48E0-B059-4D4B1B1930ED}.OraWinApp|Any CPU.Build.0 = OraWinApp|Any CPU
+		{404E477B-9542-48E0-B059-4D4B1B1930ED}.OraWinApp|x86.ActiveCfg = OraWinApp|x86
+		{404E477B-9542-48E0-B059-4D4B1B1930ED}.OraWinApp|x86.Build.0 = OraWinApp|x86
+		{404E477B-9542-48E0-B059-4D4B1B1930ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{404E477B-9542-48E0-B059-4D4B1B1930ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{404E477B-9542-48E0-B059-4D4B1B1930ED}.Release|x86.ActiveCfg = Release|x86
+		{404E477B-9542-48E0-B059-4D4B1B1930ED}.Release|x86.Build.0 = Release|x86
+		{6796B857-F65A-42BA-AE40-C2E658CE8ABA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6796B857-F65A-42BA-AE40-C2E658CE8ABA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6796B857-F65A-42BA-AE40-C2E658CE8ABA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6796B857-F65A-42BA-AE40-C2E658CE8ABA}.Debug|x86.Build.0 = Debug|Any CPU
+		{6796B857-F65A-42BA-AE40-C2E658CE8ABA}.OraWinApp|Any CPU.ActiveCfg = OraWinApp|Any CPU
+		{6796B857-F65A-42BA-AE40-C2E658CE8ABA}.OraWinApp|Any CPU.Build.0 = OraWinApp|Any CPU
+		{6796B857-F65A-42BA-AE40-C2E658CE8ABA}.OraWinApp|x86.ActiveCfg = OraWinApp|x86
+		{6796B857-F65A-42BA-AE40-C2E658CE8ABA}.OraWinApp|x86.Build.0 = OraWinApp|x86
+		{6796B857-F65A-42BA-AE40-C2E658CE8ABA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6796B857-F65A-42BA-AE40-C2E658CE8ABA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6796B857-F65A-42BA-AE40-C2E658CE8ABA}.Release|x86.ActiveCfg = Release|x86
+		{6796B857-F65A-42BA-AE40-C2E658CE8ABA}.Release|x86.Build.0 = Release|x86
+		{E65444DB-E83E-4F5E-8EF9-FBFF7A486FF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E65444DB-E83E-4F5E-8EF9-FBFF7A486FF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E65444DB-E83E-4F5E-8EF9-FBFF7A486FF7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E65444DB-E83E-4F5E-8EF9-FBFF7A486FF7}.Debug|x86.Build.0 = Debug|Any CPU
+		{E65444DB-E83E-4F5E-8EF9-FBFF7A486FF7}.OraWinApp|Any CPU.ActiveCfg = OraWinApp|Any CPU
+		{E65444DB-E83E-4F5E-8EF9-FBFF7A486FF7}.OraWinApp|Any CPU.Build.0 = OraWinApp|Any CPU
+		{E65444DB-E83E-4F5E-8EF9-FBFF7A486FF7}.OraWinApp|x86.ActiveCfg = OraWinApp|x86
+		{E65444DB-E83E-4F5E-8EF9-FBFF7A486FF7}.OraWinApp|x86.Build.0 = OraWinApp|x86
+		{E65444DB-E83E-4F5E-8EF9-FBFF7A486FF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E65444DB-E83E-4F5E-8EF9-FBFF7A486FF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E65444DB-E83E-4F5E-8EF9-FBFF7A486FF7}.Release|x86.ActiveCfg = Release|x86
+		{E65444DB-E83E-4F5E-8EF9-FBFF7A486FF7}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

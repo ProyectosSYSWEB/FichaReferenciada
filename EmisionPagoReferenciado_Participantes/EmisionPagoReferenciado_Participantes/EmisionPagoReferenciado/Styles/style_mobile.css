@@ -1,0 +1,43 @@
+﻿html,body{
+   background:#EEEEEE;
+   font-size: 16px;
+   color:#333333;
+}
+
+h1,h2,h3{}
+p, blockquote, pre, code, ol, ul{}
+.clearfix{
+	clear:both;
+}
+
+/* Elementos de estructura */
+#wrapper{
+	width: 80%;
+	margin: 0 auto;
+
+	background: #fff;
+	padding: 20px;
+}
+
+#content{
+	width: 54%;
+	float: left;
+	margin-right: 3%;
+}
+
+#sidebar-left{
+	width: 20%;
+	float: left;
+	margin-right: 3%;
+}
+
+#sidebar-right{
+	width: 20%;
+	float: left;
+}
+
+nav ul li
+{
+	list-style-type:none;
+	display: inline;
+}

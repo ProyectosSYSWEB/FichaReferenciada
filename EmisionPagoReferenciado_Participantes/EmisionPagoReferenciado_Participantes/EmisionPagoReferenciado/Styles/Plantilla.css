@@ -1,0 +1,67 @@
+﻿body {
+}
+
+.blog-footer {
+    padding: 2.5rem 0;
+    color: #999;
+    text-align: center;
+    background-color: #18386b;
+    border-top: .05rem solid #e5e5e5;
+}
+#cabecera {
+    background: url(http://lineadecodigo.com/wp-content/uploads/2015/05/header_libros.jpg) no-repeat;
+    height: 149px;
+    border-top: 1px solid #fff;
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+}
+
+.blog-header {
+    line-height: 1;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.topbar {
+    height: 46px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+    overflow: visible;
+}
+
+#menu {
+    width: auto;
+    height: 50px;
+    margin: 0 auto 0 auto;
+    background: #3D3D3D url(//d85wutc1n854v.cloudfront.net/live/imgs/menu_bg_dark.png);
+}
+
+
+
+
+.bg-dark {
+    background-color: #275090 !important;
+}
+
+
+footer.page-footer {
+    bottom: 0;
+    color: #7b6420;
+}
+
+.navbar {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 5px 0 0 0;
+}
