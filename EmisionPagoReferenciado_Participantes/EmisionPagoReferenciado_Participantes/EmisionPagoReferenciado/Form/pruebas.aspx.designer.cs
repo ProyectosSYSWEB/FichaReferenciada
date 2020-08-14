@@ -7,236 +7,191 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace EmisionPagoReferenciado.Form
+namespace PagosEnLinea
 {
 
 
-    public partial class RespuestaPagoenLinea
+    public partial class pagoenlinea
     {
 
         /// <summary>
-        /// Control lblTitulo.
+        /// Control form1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTitulo;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control lblContador.
+        /// Control mp_account.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblContador;
+        protected global::System.Web.UI.WebControls.HiddenField mp_account;
 
         /// <summary>
-        /// Control lblEtFecha.
+        /// Control mp_product.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEtFecha;
+        protected global::System.Web.UI.WebControls.HiddenField mp_product;
 
         /// <summary>
-        /// Control lblFecha.
+        /// Control mp_order.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFecha;
+        protected global::System.Web.UI.WebControls.HiddenField mp_order;
 
         /// <summary>
-        /// Control lblEtReferencia.
+        /// Control mp_reference.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEtReferencia;
+        protected global::System.Web.UI.WebControls.HiddenField mp_reference;
 
         /// <summary>
-        /// Control lblReferencia.
+        /// Control mp_node.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblReferencia;
+        protected global::System.Web.UI.WebControls.HiddenField mp_node;
 
         /// <summary>
-        /// Control lblEtFolio.
+        /// Control mp_concept.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEtFolio;
+        protected global::System.Web.UI.WebControls.HiddenField mp_concept;
 
         /// <summary>
-        /// Control lblFolio.
+        /// Control mp_amount.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFolio;
+        protected global::System.Web.UI.WebControls.HiddenField mp_amount;
 
         /// <summary>
-        /// Control lblEtMedioPago.
+        /// Control mp_customername.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEtMedioPago;
+        protected global::System.Web.UI.WebControls.HiddenField mp_customername;
 
         /// <summary>
-        /// Control lblMedioPago.
+        /// Control mp_currency.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMedioPago;
+        protected global::System.Web.UI.WebControls.HiddenField mp_currency;
 
         /// <summary>
-        /// Control lblEtNumTarjeta.
+        /// Control mp_signature.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEtNumTarjeta;
+        protected global::System.Web.UI.WebControls.HiddenField mp_signature;
 
         /// <summary>
-        /// Control lblNumTarjeta.
+        /// Control mp_urlsuccess.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNumTarjeta;
+        protected global::System.Web.UI.WebControls.HiddenField mp_urlsuccess;
 
         /// <summary>
-        /// Control lblEtAutorizacion.
+        /// Control mp_urlfailure.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEtAutorizacion;
+        protected global::System.Web.UI.WebControls.HiddenField mp_urlfailure;
 
         /// <summary>
-        /// Control lblAutorizacion.
+        /// Control sl_respuesta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAutorizacion;
+        protected global::System.Web.UI.WebControls.HiddenField sl_respuesta;
 
         /// <summary>
-        /// Control lblEtImporte.
+        /// Control sl_referencia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEtImporte;
+        protected global::System.Web.UI.WebControls.HiddenField sl_referencia;
 
         /// <summary>
-        /// Control lblImporte.
+        /// Control sl_folio_bancario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblImporte;
+        protected global::System.Web.UI.WebControls.HiddenField sl_folio_bancario;
 
         /// <summary>
-        /// Control divPagoConf.
+        /// Control sl_correo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPagoConf;
+        protected global::System.Web.UI.WebControls.HiddenField sl_correo;
 
         /// <summary>
-        /// Control divPagoNoConf.
+        /// Control sl_ant_observaciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPagoNoConf;
+        protected global::System.Web.UI.WebControls.HiddenField sl_ant_observaciones;
 
         /// <summary>
-        /// Control lblMsj.
+        /// Control mp_paymentmethodcomplete.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMsj;
+        protected global::System.Web.UI.WebControls.HiddenField mp_paymentmethodcomplete;
 
         /// <summary>
-        /// Control lblmensaje2.
+        /// Control lblMensaje.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmensaje2;
-
-        /// <summary>
-        /// Control UpdatePanel2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
-
-        /// <summary>
-        /// Control btnRecibo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRecibo;
-
-        /// <summary>
-        /// Control UpdateProgress1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdateProgress UpdateProgress1;
-
-        /// <summary>
-        /// Control UpdatePanel1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-
-        /// <summary>
-        /// Control Iframe1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlIframe Iframe1;
+        protected global::System.Web.UI.WebControls.Label lblMensaje;
     }
 }

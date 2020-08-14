@@ -39,97 +39,99 @@ namespace EmisionPagoReferenciado.Form
 
             }
 
-
-            if (Convert.ToString(Request.Form["mp_account"]) != null)
-                SesionMultipago.Account = Convert.ToString(Request.Form["mp_account"]);
-            if (Convert.ToString(Request.Form["mp_order"]) != null)
+            try
             {
-                SesionMultipago.Order = Convert.ToString(Request.Form["mp_order"]);
-                SesionMultipago.IdFichaBancaria = Convert.ToInt32(Request.Form["mp_order"]);// SesionUsu.FichaRefID;
-            }
-            if (Convert.ToString(Request.Form["mp_reference"]) != null)
-                SesionMultipago.Reference = Convert.ToString(Request.Form["mp_reference"]);
-            if (Convert.ToString(Request.Form["mp_node"]) != null)
-                SesionMultipago.Node = Convert.ToString(Request.Form["mp_node"]);
-            if (Convert.ToString(Request.Form["mp_concept"]) != null)
-                SesionMultipago.Concept = Convert.ToString(Request.Form["mp_concept"]);
-            if (Convert.ToString(Request.Form["mp_amount"]) != null)
-                SesionMultipago.Amount = string.Format("{0:0.00}", Convert.ToString(Request.Form["mp_amount"]));
-            if (Convert.ToString(Request.Form["mp_currency"]) != null)
-                SesionMultipago.Currency = Convert.ToString(Request.Form["mp_currency"]);
-            if (Convert.ToString(Request.Form["mp_paymentmethod"]) != null)
-                SesionMultipago.PaymentMethod = Convert.ToString(Request.Form["mp_paymentmethod"]);
-            if (Convert.ToString(Request.Form["mp_paymentmethodcomplete"]) != null)
-                SesionMultipago.PaymentMethodComplete = Convert.ToString(Request.Form["mp_paymentmethodcomplete"]);
-            if (Convert.ToString(Request.Form["mp_response"]) != null)
-                SesionMultipago.Response = Convert.ToString(Request.Form["mp_response"]);
-            if (Convert.ToString(Request.Form["mp_responsecomplete"]) != null)
-                SesionMultipago.ResponseComplete = Convert.ToString(Request.Form["mp_responsecomplete"]);
-            if (Convert.ToString(Request.Form["mp_responsemsg"]) != null)
-                SesionMultipago.Responsemsg = Convert.ToString(Request.Form["mp_responsemsg"]);
-            if (Convert.ToString(Request.Form["mp_responsemsgcomplete"]) != null)
-                SesionMultipago.ResponseMsgComplete = Convert.ToString(Request.Form["mp_responsemsgcomplete"]);
-            if (Convert.ToString(Request.Form["mp_authorization"]) != null)
-                SesionMultipago.Authorization = Convert.ToString(Request.Form["mp_authorization"]);
-            if (Convert.ToString(Request.Form["mp_authorizationcomplete"]) != null)
-                SesionMultipago.AuthorizationComplete = Convert.ToString(Request.Form["mp_authorizationcomplete"]);
-            if (Convert.ToString(Request.Form["mp_pan"]) != null)
-                SesionMultipago.Pan = Convert.ToString(Request.Form["mp_pan"]);
-            if (Convert.ToString(Request.Form["mp_pancomplete"]) != null)
-                SesionMultipago.PanComplete = Convert.ToString(Request.Form["mp_pancomplete"]);
-            if (Convert.ToString(Request.Form["mp_date"]) != null)
-                SesionMultipago.Date = Convert.ToString(Request.Form["mp_date"]);
-            if (Convert.ToString(Request.Form["mp_signature"]) != null)
-                SesionMultipago.Signature = Convert.ToString(Request.Form["mp_signature"]);
-            if (Convert.ToString(Request.Form["mp_customername"]) != null)
-                SesionMultipago.Customername = Convert.ToString(Request.Form["mp_customername"]);
-            if (Convert.ToString(Request.Form["mp_promo_msi"]) != null)
-                SesionMultipago.Promo_Msi = Convert.ToString(Request.Form["mp_promo_msi"]);
-            if (Convert.ToString(Request.Form["mp_bankcode"]) != null)
-                SesionMultipago.Bankcode = Convert.ToString(Request.Form["mp_bankcode"]);
-            if (Convert.ToString(Request.Form["mp_saleid"]) != null)
-                SesionMultipago.Saleid = Convert.ToString(Request.Form["mp_saleid"]);
-            if (Convert.ToString(Request.Form["mp_sale_historyid"]) != null)
-                SesionMultipago.Sale_Historyid = Convert.ToString(Request.Form["mp_sale_historyid"]);
-            if (Convert.ToString(Request.Form["mp_trx_historyid"]) != null)
-                SesionMultipago.Trx_Historyid = Convert.ToString(Request.Form["mp_trx_historyid"]);
-            if (Convert.ToString(Request.Form["mp_trx_historyidcomplete"]) != null)
-                SesionMultipago.Trx_Historyidcomplete = Convert.ToString(Request.Form["mp_trx_historyidcomplete"]);
-            if (Convert.ToString(Request.Form["mp_bankname"]) != null)
-                SesionMultipago.Bankname = Convert.ToString(Request.Form["mp_bankname"]);
-            if (Convert.ToString(Request.Form["mp_folio"]) != null)
-                SesionMultipago.Folio = Convert.ToString(Request.Form["mp_folio"]);
-            if (Convert.ToString(Request.Form["mp_cardholdername"]) != null)
-                SesionMultipago.Cardholdername = Convert.ToString(Request.Form["mp_cardholdername"]);
-            if (Convert.ToString(Request.Form["mp_phone"]) != null)
-                SesionMultipago.Phone = Convert.ToString(Request.Form["mp_phone"]);
-            if (Convert.ToString(Request.Form["mp_email"]) != null)
-                SesionMultipago.Email = Convert.ToString(Request.Form["mp_email"]);
-            if (Convert.ToString(Request.Form["mp_promo"]) != null)
-                SesionMultipago.Promo = Convert.ToString(Request.Form["mp_promo"]);
-            if (Convert.ToString(Request.Form["mp_promo_msi_bank"]) != null)
-                SesionMultipago.Promo_msi_bank = Convert.ToString(Request.Form["mp_promo_msi_bank"]);
-            if (Convert.ToString(Request.Form["mp_securepayment"]) != null)
-                SesionMultipago.Securepayment = Convert.ToString(Request.Form["mp_securepayment"]);
-            if (Convert.ToString(Request.Form["mp_cardtype"]) != null)
-                SesionMultipago.Cardtype = Convert.ToString(Request.Form["mp_cardtype"]);
 
-
-            if (SesionMultipago != null)
-            {
-                lblFolio.Text = SesionMultipago.Order;
-                lblMedioPago.Text = (SesionMultipago.PaymentMethod == "TDX") ? "VISA/MASTERCARD" : "";
-                lblReferencia.Text = SesionMultipago.Reference;
-                lblImporte.Text = string.Format("{0:c2}", Convert.ToDouble(SesionMultipago.Amount));
-                lblAutorizacion.Text = SesionMultipago.Authorization;
-                lblNumTarjeta.Text = SesionMultipago.PanComplete;
-                lblFecha.Text = string.Format("{0:dd/MM/yyyy}", SesionMultipago.Date);
-                if (SesionMultipago.Id_Fact == 0)
+                if (Convert.ToString(Request.Form["mp_account"]) != null)
+                    SesionMultipago.Account = Convert.ToString(Request.Form["mp_account"]);
+                if (Convert.ToString(Request.Form["mp_order"]) != null)
                 {
-                    Verificador = string.Empty;
-                    string Msj = string.Empty;
-                    try
+                    SesionMultipago.Order = Convert.ToString(Request.Form["mp_order"]);
+                    SesionMultipago.IdFichaBancaria = Convert.ToInt32(Request.Form["mp_order"]);// SesionUsu.FichaRefID;
+                }
+                if (Convert.ToString(Request.Form["mp_reference"]) != null)
+                    SesionMultipago.Reference = Convert.ToString(Request.Form["mp_reference"]);
+                if (Convert.ToString(Request.Form["mp_node"]) != null)
+                    SesionMultipago.Node = Convert.ToString(Request.Form["mp_node"]);
+                if (Convert.ToString(Request.Form["mp_concept"]) != null)
+                    SesionMultipago.Concept = Convert.ToString(Request.Form["mp_concept"]);
+                if (Convert.ToString(Request.Form["mp_amount"]) != null)
+                    SesionMultipago.Amount = string.Format("{0:0.00}", Convert.ToString(Request.Form["mp_amount"]));
+                if (Convert.ToString(Request.Form["mp_currency"]) != null)
+                    SesionMultipago.Currency = Convert.ToString(Request.Form["mp_currency"]);
+                if (Convert.ToString(Request.Form["mp_paymentmethod"]) != null)
+                    SesionMultipago.PaymentMethod = Convert.ToString(Request.Form["mp_paymentmethod"]);
+                if (Convert.ToString(Request.Form["mp_paymentmethodcomplete"]) != null)
+                    SesionMultipago.PaymentMethodComplete = Convert.ToString(Request.Form["mp_paymentmethodcomplete"]);
+                if (Convert.ToString(Request.Form["mp_response"]) != null)
+                    SesionMultipago.Response = Convert.ToString(Request.Form["mp_response"]);
+                if (Convert.ToString(Request.Form["mp_responsecomplete"]) != null)
+                    SesionMultipago.ResponseComplete = Convert.ToString(Request.Form["mp_responsecomplete"]);
+                if (Convert.ToString(Request.Form["mp_responsemsg"]) != null)
+                    SesionMultipago.Responsemsg = Convert.ToString(Request.Form["mp_responsemsg"]);
+                if (Convert.ToString(Request.Form["mp_responsemsgcomplete"]) != null)
+                    SesionMultipago.ResponseMsgComplete = Convert.ToString(Request.Form["mp_responsemsgcomplete"]);
+                if (Convert.ToString(Request.Form["mp_authorization"]) != null)
+                    SesionMultipago.Authorization = Convert.ToString(Request.Form["mp_authorization"]);
+                if (Convert.ToString(Request.Form["mp_authorizationcomplete"]) != null)
+                    SesionMultipago.AuthorizationComplete = Convert.ToString(Request.Form["mp_authorizationcomplete"]);
+                if (Convert.ToString(Request.Form["mp_pan"]) != null)
+                    SesionMultipago.Pan = Convert.ToString(Request.Form["mp_pan"]);
+                if (Convert.ToString(Request.Form["mp_pancomplete"]) != null)
+                    SesionMultipago.PanComplete = Convert.ToString(Request.Form["mp_pancomplete"]);
+                if (Convert.ToString(Request.Form["mp_date"]) != null)
+                    SesionMultipago.Date = Convert.ToString(Request.Form["mp_date"]);
+                if (Convert.ToString(Request.Form["mp_signature"]) != null)
+                    SesionMultipago.Signature = Convert.ToString(Request.Form["mp_signature"]);
+                if (Convert.ToString(Request.Form["mp_customername"]) != null)
+                    SesionMultipago.Customername = Convert.ToString(Request.Form["mp_customername"]);
+                if (Convert.ToString(Request.Form["mp_promo_msi"]) != null)
+                    SesionMultipago.Promo_Msi = Convert.ToString(Request.Form["mp_promo_msi"]);
+                if (Convert.ToString(Request.Form["mp_bankcode"]) != null)
+                    SesionMultipago.Bankcode = Convert.ToString(Request.Form["mp_bankcode"]);
+                if (Convert.ToString(Request.Form["mp_saleid"]) != null)
+                    SesionMultipago.Saleid = Convert.ToString(Request.Form["mp_saleid"]);
+                if (Convert.ToString(Request.Form["mp_sale_historyid"]) != null)
+                    SesionMultipago.Sale_Historyid = Convert.ToString(Request.Form["mp_sale_historyid"]);
+                if (Convert.ToString(Request.Form["mp_trx_historyid"]) != null)
+                    SesionMultipago.Trx_Historyid = Convert.ToString(Request.Form["mp_trx_historyid"]);
+                if (Convert.ToString(Request.Form["mp_trx_historyidcomplete"]) != null)
+                    SesionMultipago.Trx_Historyidcomplete = Convert.ToString(Request.Form["mp_trx_historyidcomplete"]);
+                if (Convert.ToString(Request.Form["mp_bankname"]) != null)
+                    SesionMultipago.Bankname = Convert.ToString(Request.Form["mp_bankname"]);
+                if (Convert.ToString(Request.Form["mp_folio"]) != null)
+                    SesionMultipago.Folio = Convert.ToString(Request.Form["mp_folio"]);
+                if (Convert.ToString(Request.Form["mp_cardholdername"]) != null)
+                    SesionMultipago.Cardholdername = Convert.ToString(Request.Form["mp_cardholdername"]);
+                if (Convert.ToString(Request.Form["mp_phone"]) != null)
+                    SesionMultipago.Phone = Convert.ToString(Request.Form["mp_phone"]);
+                if (Convert.ToString(Request.Form["mp_email"]) != null)
+                    SesionMultipago.Email = Convert.ToString(Request.Form["mp_email"]);
+                if (Convert.ToString(Request.Form["mp_promo"]) != null)
+                    SesionMultipago.Promo = Convert.ToString(Request.Form["mp_promo"]);
+                if (Convert.ToString(Request.Form["mp_promo_msi_bank"]) != null)
+                    SesionMultipago.Promo_msi_bank = Convert.ToString(Request.Form["mp_promo_msi_bank"]);
+                if (Convert.ToString(Request.Form["mp_securepayment"]) != null)
+                    SesionMultipago.Securepayment = Convert.ToString(Request.Form["mp_securepayment"]);
+                if (Convert.ToString(Request.Form["mp_cardtype"]) != null)
+                    SesionMultipago.Cardtype = Convert.ToString(Request.Form["mp_cardtype"]);
+
+
+                if (SesionMultipago != null)
+                {
+                    lblFolio.Text = SesionMultipago.Order;
+                    lblMedioPago.Text = (SesionMultipago.PaymentMethod == "TDX") ? "VISA/MASTERCARD" : "";
+                    lblReferencia.Text = SesionMultipago.Reference;
+                    lblImporte.Text = string.Format("{0:c2}", Convert.ToDouble(SesionMultipago.Amount));
+                    lblAutorizacion.Text = SesionMultipago.Authorization;
+                    lblNumTarjeta.Text = SesionMultipago.PanComplete;
+                    lblFecha.Text = string.Format("{0:dd/MM/yyyy}", SesionMultipago.Date);
+                    if (SesionMultipago.Id_Fact == 0)
                     {
+                        Verificador = string.Empty;
+                        string Msj = string.Empty;
+                        //try
+                        //{
                         SesionMultipago.Carrera = "";// SesionUsu.UsuCarrera;
                         SesionMultipago.Origen = "SYSWEB";
                         Session["Multipago"] = SesionMultipago;
@@ -143,13 +145,15 @@ namespace EmisionPagoReferenciado.Form
                                 {
                                     if (SesionMultipago.Authorization != "000000")
                                     {
-                                        Msj = "!PAGO REALIZADO CON ÉXITO¡";
+                                        //Msj = "!PAGO REALIZADO CON ÉXITO¡";
+                                        divPagoConf.Visible = true;
                                         lblmensaje2.Text = "Si desea descargar nuevamente su recibo oficial puede hacerlo accediendo al <BR/> Sistema de Recaudación de Ingresos (https://sysweb.unach.mx/ingresos)";
                                     }
 
                                     else
+                                    {
                                         Msj = "Su pago de encuentra en proceso, en dos días hábiles podrá consultar su estatus accediendo al <BR/> Sistema de Recaudación de Ingresos (https://sysweb.unach.mx/ingresos)";  //"PAGO EN PROCESO DE VALIDACIÓN";
-
+                                    }
 
 
                                     SesionMultipago.Id_Fact = -1;
@@ -164,12 +168,21 @@ namespace EmisionPagoReferenciado.Form
                                         {
                                             SesionMultipago.Id_Fact = SesionMultipago.Id_Fact;
                                             lblMsj.Text = "*" + Msj + "*";
-                                            ScriptManager.RegisterStartupScript(this, this.GetType(), UniqueID, "VerRecibo(3," + SesionMultipago.Id_Fact + ");", true);
+                                            string ruta = "../Reportes/VisualizadorCrystal.aspx?cverep=3&idFact=" + SesionMultipago.Id_Fact;
+                                            string _open = "window.open('" + ruta + "', 'miniContenedor', 'toolbar=yes', 'location=no', 'menubar=yes', 'resizable=yes');";
+                                            ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), _open, true);
+
+                                            //ScriptManager.RegisterStartupScript(this, this.GetType(), UniqueID, "VerRecibo(3," + SesionMultipago.Id_Fact + ");", true);
                                             Session["Multipago"] = null;
                                             SesionUsu.FichaReferencia = string.Empty;
                                             SesionUsu.FichaRefID = 0;
                                         }
                                     }
+                                }
+                                else
+                                {
+                                    divPagoConf.Visible = false;
+                                    divPagoNoConf.Visible = true;
                                 }
                             }
 
@@ -179,16 +192,21 @@ namespace EmisionPagoReferenciado.Form
                         {
                             lblMsj.Text = "ERROR 256";
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        lblMsj.Text = lblMsj.Text + ex.Message;
-                    }
+                        //}
+                        //catch (Exception ex)
+                        //{
+                        //    lblMsj.Text = lblMsj.Text + ex.Message;
+                        //}
 
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                lblMsj.Text = lblMsj.Text + ex.Message;
+            }
+        
         }
-
         #region <Funciones y Sub>
         protected void DatosBancomer()
         {

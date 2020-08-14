@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace EmisionPagoReferenciado.Form
 {
-    public partial class PagoenLinea : System.Web.UI.Page
+    public partial class PagoenLineaExt : System.Web.UI.Page
     {
         #region <Variables>
         CN_Comun CNComun = new CN_Comun();
@@ -25,21 +25,23 @@ namespace EmisionPagoReferenciado.Form
                 mp_urlsuccess.Value = "https://sysweb.unach.mx/FichaReferenciada/Form/RespuestaPagoenLinea.aspx"; //"Registro_Participantes_P7.aspx";
                 mp_urlfailure.Value = "https://sysweb.unach.mx/FichaReferenciada/Form/RespuestaPagoenLinea.aspx"; // "Registro_Participantes_P7.aspx";
 
-                if (Request.QueryString["order_m"] != null)
-                    mp_order.Value = Request.QueryString["order_m"];
-                if (Request.QueryString["reference_m"] != null)
-                    mp_reference.Value = Request.QueryString["reference_m"];
-                if (Request.QueryString["amount_m"] != null)
-                    mp_amount.Value = Request.QueryString["amount_m"];
-                if (Request.QueryString["customername_m"] != null)
-                    mp_customername.Value = Request.QueryString["customername_m"];
-                if (Request.QueryString["service_m"] != null)
+
+
+                if (Request.Form["order_m"] != null)
+                    mp_order.Value = Request.Form["order_m"];
+                if (Request.Form["reference_m"] != null)
+                    mp_reference.Value = Request.Form["reference_m"];
+                if (Request.Form["amount_m"] != null)
+                    mp_amount.Value = Request.Form["amount_m"];
+                if (Request.Form["customername_m"] != null)
+                    mp_customername.Value = Request.Form["customername_m"];
+                if (Request.Form["service_m"] != null)
                 {
                     MultiPago objMultipago = new MultiPago();
                     Verificador = string.Empty;
-                    if (Request.QueryString["service_m"] != "0")
+                    if (Request.Form["service_m"] != "0")
                     {
-                        objMultipago.Id_Service = Convert.ToInt32(Request.QueryString["service_m"]);
+                        objMultipago.Id_Service = Convert.ToInt32(Request.Form["service_m"]);
                         CNMultipago.ObtenerServicio(ref objMultipago, ref Verificador);
                         if (Verificador == "0")
                         {

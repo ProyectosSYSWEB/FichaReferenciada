@@ -93,5 +93,33 @@ namespace CapaDatos
                 CDDatos.LimpiarOracleCommand(ref Cmd);
             }
         }
+        public void ObtenerServicio(ref MultiPago ObjMultipago, ref string Verificador)
+        {
+            CD_Datos CDDatos = new CD_Datos();
+            OracleCommand Cmd = null;
+            try
+            {
+
+
+                string[] ParametrosIn = { "P_ID_SERVICIO" };
+                object[] Valores = { ObjMultipago.Id_Service };
+                string[] ParametrosOut ={
+                                          "P_RUTA_RESP_OK", "P_BANDERA"
+                };
+
+                Cmd = CDDatos.GenerarOracleCommand("OBT_SERVICIO_EXTERNO", ref Verificador, ParametrosIn, Valores, ParametrosOut);
+                ObjMultipago.UrlResp = Convert.ToString(Cmd.Parameters["P_RUTA_RESP_OK"].Value);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                CDDatos.LimpiarOracleCommand(ref Cmd);
+            }
+        }
+
     }
 }

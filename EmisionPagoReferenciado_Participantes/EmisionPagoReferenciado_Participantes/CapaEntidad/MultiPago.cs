@@ -21,11 +21,25 @@ namespace CapaEntidad
             set { _Id_Fact = value; }
         }
 
+        private int _Id_Service = 0;
+        public int Id_Service
+        {
+            get { return _Id_Service; }
+            set { _Id_Service = value; }
+        }
+
         private int _IdFichaBancaria=0;
         public int IdFichaBancaria
         {
             get { return _IdFichaBancaria; }
             set { _IdFichaBancaria = value; }
+        }
+
+        private string _UrlResp = string.Empty;
+        public string UrlResp
+        {
+            get { return _UrlResp; }
+            set { _UrlResp = value; }
         }
 
         private string _Carrera= string.Empty;

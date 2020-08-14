@@ -264,7 +264,7 @@ namespace EmisionPagoReferenciado.Form
                 else
                     Response.Redirect("Registro_Participantes_P8.aspx");
             }
-            SesionUsu.FichaRefIDPagoTC = SesionUsu.FichaRefID;
+            //SesionUsu.FichaRefIDPagoTC = SesionUsu.FichaRefID;
             SesionUsu.FichaReferencia = string.Empty;
             SesionUsu.FichaRefID = 0;
 

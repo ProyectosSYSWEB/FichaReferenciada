@@ -7,11 +7,13 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace EmisionPagoReferenciado.Form {
-    
-    
-    public partial class Registro_Participantes_P6 {
-        
+namespace EmisionPagoReferenciado.Form
+{
+
+
+    public partial class Registro_Participantes_P6
+    {
+
         /// <summary>
         /// Control lblTitulo.
         /// </summary>
@@ -20,7 +22,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTitulo;
-        
+
         /// <summary>
         /// Control lblContador.
         /// </summary>
@@ -29,7 +31,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblContador;
-        
+
         /// <summary>
         /// Control lblEtFecha.
         /// </summary>
@@ -38,7 +40,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblEtFecha;
-        
+
         /// <summary>
         /// Control lblFecha.
         /// </summary>
@@ -47,7 +49,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblFecha;
-        
+
         /// <summary>
         /// Control lblEtReferencia.
         /// </summary>
@@ -56,7 +58,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblEtReferencia;
-        
+
         /// <summary>
         /// Control lblReferencia.
         /// </summary>
@@ -65,7 +67,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblReferencia;
-        
+
         /// <summary>
         /// Control lblEtFolio.
         /// </summary>
@@ -74,7 +76,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblEtFolio;
-        
+
         /// <summary>
         /// Control lblFolio.
         /// </summary>
@@ -83,7 +85,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblFolio;
-        
+
         /// <summary>
         /// Control lblEtMedioPago.
         /// </summary>
@@ -92,7 +94,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblEtMedioPago;
-        
+
         /// <summary>
         /// Control lblMedioPago.
         /// </summary>
@@ -101,7 +103,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMedioPago;
-        
+
         /// <summary>
         /// Control lblEtNumTarjeta.
         /// </summary>
@@ -110,7 +112,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblEtNumTarjeta;
-        
+
         /// <summary>
         /// Control lblNumTarjeta.
         /// </summary>
@@ -119,7 +121,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblNumTarjeta;
-        
+
         /// <summary>
         /// Control lblEtAutorizacion.
         /// </summary>
@@ -128,7 +130,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblEtAutorizacion;
-        
+
         /// <summary>
         /// Control lblAutorizacion.
         /// </summary>
@@ -137,7 +139,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblAutorizacion;
-        
+
         /// <summary>
         /// Control lblEtImporte.
         /// </summary>
@@ -146,7 +148,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblEtImporte;
-        
+
         /// <summary>
         /// Control lblImporte.
         /// </summary>
@@ -155,7 +157,25 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblImporte;
-        
+
+        /// <summary>
+        /// Control divPagoConf.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPagoConf;
+
+        /// <summary>
+        /// Control divPagoNoConf.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPagoNoConf;
+
         /// <summary>
         /// Control lblMsj.
         /// </summary>
@@ -164,7 +184,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMsj;
-        
+
         /// <summary>
         /// Control lblmensaje2.
         /// </summary>
@@ -173,7 +193,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblmensaje2;
-        
+
         /// <summary>
         /// Control UpdatePanel2.
         /// </summary>
@@ -182,7 +202,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
-        
+
         /// <summary>
         /// Control btnRecibo.
         /// </summary>
@@ -191,7 +211,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRecibo;
-        
+
         /// <summary>
         /// Control btnPago.
         /// </summary>
@@ -200,7 +220,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnPago;
-        
+
         /// <summary>
         /// Control UpdateProgress1.
         /// </summary>
@@ -209,7 +229,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdateProgress UpdateProgress1;
-        
+
         /// <summary>
         /// Control UpdatePanel1.
         /// </summary>
@@ -218,7 +238,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
+
         /// <summary>
         /// Control Iframe1.
         /// </summary>
@@ -226,6 +246,6 @@ namespace EmisionPagoReferenciado.Form {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Iframe1;
+        protected global::System.Web.UI.HtmlControls.HtmlIframe Iframe1;
     }
 }

@@ -62,6 +62,12 @@ namespace EmisionPagoReferenciado
                 object[] v1 = { idFicha, Observaciones };
                 rptPDF_Ingresos(Reporte, v1, "Ficha Referenciada");
             }
+            else if (cverep == "REP_SIAE")
+            {
+                Reporte = "Reportes\\Ficha_Referenciada_SIAE.rpt";
+                object[] v1 = { idFicha };
+                rptPDF_Ingresos(Reporte, v1, "Ficha Referenciada");
+            }
         }
         private void rptPDF_Ingresos(String Reporte, object[] Parametros, string NombreReporte)
         {

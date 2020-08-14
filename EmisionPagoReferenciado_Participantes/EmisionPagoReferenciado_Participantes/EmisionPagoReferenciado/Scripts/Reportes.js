@@ -24,7 +24,7 @@ function VerReporteIN(cverep, Matricula, Evento) {
 
 function VerRecibo(cverep, idFact) {
     //alert("PASO " + cverep + " : " + idFact);
-    window.open('../ReportesFicha/VisualizadorCrystal.aspx?cverep=' + cverep + '&idFact=' + idFact, 'miniContenedor', 'toolbar=yes', 'location=no', 'menubar=yes', 'resizable=yes');
+    window.open('../Reportes/VisualizadorCrystal.aspx?cverep=' + cverep + '&idFact=' + idFact, 'miniContenedor', 'toolbar=yes', 'location=no', 'menubar=yes', 'resizable=yes');
     return false;
 }
 

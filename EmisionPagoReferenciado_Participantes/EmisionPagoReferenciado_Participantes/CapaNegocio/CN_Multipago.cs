@@ -21,5 +21,18 @@ namespace CapaNegocio
                 throw new Exception(ex.Message);
             }
         }
+        public void ObtenerServicio(ref MultiPago MultiPago, ref string Verificador)
+        {
+            try
+            {
+                CD_Multipago CDMultiPago = new CD_Multipago();
+                CDMultiPago.ObtenerServicio(ref MultiPago, ref Verificador);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }

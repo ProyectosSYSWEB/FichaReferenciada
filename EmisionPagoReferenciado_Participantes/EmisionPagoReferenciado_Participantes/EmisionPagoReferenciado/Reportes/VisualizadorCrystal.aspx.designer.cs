@@ -7,11 +7,13 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace EmisionPagoReferenciado {
-    
-    
-    public partial class VisualizadorCrystal {
-        
+namespace EmisionPagoReferenciado
+{
+
+
+    public partial class VisualizadorCrystal
+    {
+
         /// <summary>
         /// Control Head1.
         /// </summary>
@@ -20,7 +22,7 @@ namespace EmisionPagoReferenciado {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
-        
+
         /// <summary>
         /// Control Scriptmanager1.
         /// </summary>
@@ -29,7 +31,7 @@ namespace EmisionPagoReferenciado {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager Scriptmanager1;
-        
+
         /// <summary>
         /// Control CR_Reportes.
         /// </summary>

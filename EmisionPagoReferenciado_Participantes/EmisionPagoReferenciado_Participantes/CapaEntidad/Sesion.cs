@@ -171,7 +171,7 @@ namespace CapaEntidad
             set { _TipoPersonaStr = value; }
         }
 
-        private int _FichaRefID;
+        private int _FichaRefID=0;
         public int FichaRefID
         {
             get { return _FichaRefID; }
@@ -192,7 +192,7 @@ namespace CapaEntidad
             set { _FichaOpcion = value; }
         }
 
-        private string _FichaReferencia;
+        private string _FichaReferencia=string.Empty;
         public string FichaReferencia
         {
             get { return _FichaReferencia.Trim(); }
