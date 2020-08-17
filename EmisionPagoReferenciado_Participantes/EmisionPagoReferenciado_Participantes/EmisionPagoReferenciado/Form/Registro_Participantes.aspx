@@ -61,7 +61,14 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <!-- Vertical Steppers -->
-    <div class="container">
+    <div class="container d-md-none">
+            <div class="row">                
+                <div class="col">
+                    <img src="../Images/MovilPaso1.png" class="img-responsive" alt="Responsive image" />
+                </div>
+            </div>
+        </div>
+    <div class="container d-none d-sm-none d-md-block">
         <div class="row">
             <div class="col text-center">
                 <img src="https://sysweb.unach.mx/resources/imagenes/paso1.PNG" class="img-responsive" alt="Responsive image" />

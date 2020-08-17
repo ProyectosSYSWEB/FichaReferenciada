@@ -83,32 +83,36 @@ namespace EmisionPagoReferenciado.Form
 
         }
         protected void btnPago_Click(object sender, EventArgs e)
-        {           
-            string var = SesionUsu.UsuEvento;
-            string OrigenArchivo= Server.MapPath("~") + "/ArchivoReferencia/Referencia - " + lblReferencia_l.Text + ".PDF";
-
-            if (System.IO.File.Exists(OrigenArchivo))            
-                System.IO.File.Delete(OrigenArchivo);          
-
-
-            SesionUsu.UsuWXI = "X";
-            if (Request.QueryString["WXI"] != null)            
-                SesionUsu.UsuWXI = Request.QueryString["WXI"];
-
-            
-            Session.Abandon();
-            Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
-
-
-            if (var != string.Empty)
+        {
+            if (SesionUsu != null)
             {
-                if (SesionUsu.UsuWXI != "X")
-                    Response.Redirect("Registro_Participantes.aspx" + "?Evento=" + var + "&WXI=" + SesionUsu.UsuWXI);
+                string var = SesionUsu.UsuEvento;
+                string OrigenArchivo = Server.MapPath("~") + "/ArchivoReferencia/Referencia - " + lblReferencia_l.Text + ".PDF";
+
+                if (System.IO.File.Exists(OrigenArchivo))
+                    System.IO.File.Delete(OrigenArchivo);
+
+
+                SesionUsu.UsuWXI = "X";
+                if (Request.QueryString["WXI"] != null)
+                    SesionUsu.UsuWXI = Request.QueryString["WXI"];
+
+
+                Session.Abandon();
+                Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
+
+
+                //if (var != string.Empty)
+                if (SesionUsu.UsuEvento != string.Empty)
+                {
+                    if (SesionUsu.UsuWXI != "X")
+                        Response.Redirect("Registro_Participantes.aspx" + "?Evento=" + var + "&WXI=" + SesionUsu.UsuWXI);
+                    else
+                        Response.Redirect("Registro_Participantes.aspx" + "?Evento=" + var);
+                }
                 else
-                    Response.Redirect("Registro_Participantes.aspx" + "?Evento=" + var);
+                    Response.Redirect("Registro_Participantes.aspx");
             }
-            else
-                Response.Redirect("Registro_Participantes.aspx");
         }
         protected void btnPagoBancomer_Click(object sender, EventArgs e)
         {

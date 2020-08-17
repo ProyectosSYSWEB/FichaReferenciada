@@ -43,11 +43,13 @@ namespace EmisionPagoReferenciado.Form
                     reqPatAlum.ValidationGroup = "gpoInterno";
             }
 
-            if (SesionUsu.ComponentesExtras == "S")    
-                CargarComponentesExtras();
-            else
-                pnlExtras.Visible = false;
-
+            if (SesionUsu != null)
+            {
+                if (SesionUsu.ComponentesExtras == "S")
+                    CargarComponentesExtras();
+                else
+                    pnlExtras.Visible = false;
+            }
 
         }
         #region <Botones y Eventos>

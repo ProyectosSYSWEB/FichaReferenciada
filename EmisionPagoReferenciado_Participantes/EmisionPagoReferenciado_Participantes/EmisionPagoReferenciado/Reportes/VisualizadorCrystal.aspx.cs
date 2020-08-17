@@ -69,6 +69,9 @@ namespace EmisionPagoReferenciado
                 rptPDF_Ingresos(Reporte, v1, "Ficha Referenciada");
             }
         }
+
+        
+
         private void rptPDF_Ingresos(String Reporte, object[] Parametros, string NombreReporte)
         {
             System.Web.UI.Page p = new System.Web.UI.Page();
@@ -101,6 +104,7 @@ namespace EmisionPagoReferenciado
                 report.Close();
                 report.Dispose();
                 CR_Reportes.Dispose();
+                GC.Collect();
             }
         }
 
@@ -302,6 +306,8 @@ namespace EmisionPagoReferenciado
             {
             }
         }
+
+
    
     }
 }
