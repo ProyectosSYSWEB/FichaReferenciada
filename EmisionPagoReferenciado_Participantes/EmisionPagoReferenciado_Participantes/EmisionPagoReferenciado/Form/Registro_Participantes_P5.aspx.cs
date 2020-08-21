@@ -41,10 +41,14 @@ namespace EmisionPagoReferenciado.Form
         {
             SesionUsu = (Sesion)Session["SesionFicha"];
             //SesionMultipago = (MultiPago)Session["Multipago"];
-            if (!IsPostBack)
-            {
-                Inicializar();
+            if (SesionUsu != null)
+            {           
+                if (!IsPostBack)            
+                    Inicializar();
             }
+            else            
+                Response.Redirect("https://sysweb.unach.mx/");
+            
         }
 
         #region <Botones y Eventos>
@@ -113,6 +117,10 @@ namespace EmisionPagoReferenciado.Form
                 else
                     Response.Redirect("Registro_Participantes.aspx");
             }
+            else
+                Response.Redirect("https://sysweb.unach.mx/");
+            
+
         }
         protected void btnPagoBancomer_Click(object sender, EventArgs e)
         {
@@ -239,21 +247,23 @@ namespace EmisionPagoReferenciado.Form
             else if (rbtFormaPago.SelectedValue == "2" || rbtFormaPago.SelectedValue == "3" || rbtFormaPago.SelectedValue == "4")
             {
                 //SesionUsu.FichaRefIDPagoTC = SesionUsu.FichaRefID;
-                mp_account.Value = "952";
-                mp_product.Value = "1";
-                mp_order.Value = Convert.ToString(SesionUsu.FichaRefID);
-                mp_reference.Value = SesionUsu.FichaReferencia;
-                mp_node.Value = "0";
-                mp_concept.Value = "99";
-                mp_amount.Value = string.Format("{0:0.00}", SesionUsu.ImpDetalleConcep);
-                mp_customername.Value = SesionUsu.UsuNombre + " " + SesionUsu.UsuApaterno + " " + SesionUsu.UsuAMaterno;
-                mp_currency.Value = "1";
-                mp_signature.Value = CNComun.GetSHA256(Convert.ToString(mp_order.Value + mp_reference.Value + mp_amount.Value));
-                mp_urlsuccess.Value = "https://sysweb.unach.mx/FichaReferenciada/Form/Registro_Participantes_P6.aspx"; //"Registro_Participantes_P7.aspx";
-                mp_urlfailure.Value = "https://sysweb.unach.mx/FichaReferenciada/Form/Registro_Participantes_P6.aspx"; // "Registro_Participantes_P7.aspx";
+                //if (SesionUsu != null)
+                //{
+                    mp_account.Value = "952";
+                    mp_product.Value = "1";
+                    mp_order.Value = Convert.ToString(SesionUsu.FichaRefID);
+                    mp_reference.Value = SesionUsu.FichaReferencia;
+                    mp_node.Value = "0";
+                    mp_concept.Value = "99";
+                    mp_amount.Value = string.Format("{0:0.00}", SesionUsu.ImpDetalleConcep);
+                    mp_customername.Value = SesionUsu.UsuNombre + " " + SesionUsu.UsuApaterno + " " + SesionUsu.UsuAMaterno;
+                    mp_currency.Value = "1";
+                    mp_signature.Value = CNComun.GetSHA256(Convert.ToString(mp_order.Value + mp_reference.Value + mp_amount.Value));
+                    mp_urlsuccess.Value = "https://sysweb.unach.mx/FichaReferenciada/Form/Registro_Participantes_P6.aspx"; //"Registro_Participantes_P7.aspx";
+                    mp_urlfailure.Value = "https://sysweb.unach.mx/FichaReferenciada/Form/Registro_Participantes_P6.aspx"; // "Registro_Participantes_P7.aspx";
 
-                ClientScript.RegisterStartupScript(this.GetType(), "myScript", "PagBancomer();", true);
-
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "PagBancomer();", true);
+                //}
             }
             else if (rbtFormaPago.SelectedValue == "5")
             {
@@ -269,8 +279,11 @@ namespace EmisionPagoReferenciado.Form
                     Response.Redirect("Registro_Participantes_P8.aspx");
             }
             //SesionUsu.FichaRefIDPagoTC = SesionUsu.FichaRefID;
-            SesionUsu.FichaReferencia = string.Empty;
-            SesionUsu.FichaRefID = 0;
+            //if (SesionUsu != null)
+            //{
+            //    SesionUsu.FichaReferencia = string.Empty;
+            //    SesionUsu.FichaRefID = 0;
+            //}
 
         }
         protected void ddlForma_Pago_SelectedIndexChanged(object sender, EventArgs e)

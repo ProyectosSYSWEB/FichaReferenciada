@@ -50,6 +50,9 @@ namespace EmisionPagoReferenciado.Form
                 else
                     pnlExtras.Visible = false;
             }
+            else
+                Response.Redirect("https://sysweb.unach.mx/");
+
 
         }
         #region <Botones y Eventos>
@@ -695,6 +698,7 @@ namespace EmisionPagoReferenciado.Form
             imgBttnBuscar.Enabled = true;
             ddlNivel.Enabled = true;
             SesionUsu = (Sesion)Session["SesionFicha"];
+
             string var = SesionUsu.UsuEvento;
             SesionUsu.UsuWXI = "X";
             if (Request.QueryString["WXI"] != null)
