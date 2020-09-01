@@ -33,7 +33,7 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-9">
+                    <div class="col-sm-10">
                         <p class="note note-warning">
                             <strong>
                                 <asp:Label ID="lblTitulo0" runat="server" Text="CONCEPTOS DE PAGO"></asp:Label></strong>
@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-9">
+                    <div class="col-sm-10">
                         <asp:ListBox ID="lstMaterias_Disponibles" CssClass="custom-select" runat="server" Height="200px"
                             Width="100%" OnSelectedIndexChanged="lstMaterias_Disponibles_SelectedIndexChanged"
                             AutoPostBack="True" ValidationGroup="MateriaDis"></asp:ListBox>
@@ -54,7 +54,7 @@
                             ValidationGroup="MateriaDis" InitialValue="0"></asp:RequiredFieldValidator>
                         <br />
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
 
                         <asp:Label ID="lblImporteAdd" runat="server" Font-Bold="True" ForeColor="#194169"
                             Text="Ingresa importe indicado por tu Facultad ó Dependencia" Visible="false"></asp:Label>
@@ -70,7 +70,9 @@
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtImporteAdd"
                             ErrorMessage="*Agregar Importe" ForeColor="Red" SetFocusOnError="True" ValidationGroup="MateriaDis"></asp:RequiredFieldValidator>
                     </div>
-                    <div class="col-sm-9">
+                </div>
+                <div class="row">
+                    <div class="col-sm-10">
                         <asp:ListBox ID="lstMaterias_Asignadas" runat="server" CssClass="custom-select" Height="200px" Width="100%" AutoPostBack="True" OnSelectedIndexChanged="lstMaterias_Asignadas_SelectedIndexChanged"></asp:ListBox>
                         <br />
                         <div class="alert alert-info" role="alert">
@@ -80,7 +82,7 @@
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="lstMaterias_Asignadas"
                             ErrorMessage="*Seleccionar elemento de la lista" ForeColor="Red" ValidationGroup="MateriaAsig"></asp:RequiredFieldValidator>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <asp:Button ID="btnEliminar_Materia" runat="server" Text="Eliminar" CssClass="btn btn-light"
                             OnClick="btnEliminar_Materia_Click" ValidationGroup="MateriaAsig" ToolTip="ELIMINAR" />
                     </div>

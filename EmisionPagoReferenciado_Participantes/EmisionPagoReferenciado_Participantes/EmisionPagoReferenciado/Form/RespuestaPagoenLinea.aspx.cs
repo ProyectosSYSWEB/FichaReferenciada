@@ -170,9 +170,7 @@ namespace EmisionPagoReferenciado.Form
                                             lblMsj.Text = "*" + Msj + "*";
                                             string ruta = "../Reportes/VisualizadorCrystal.aspx?cverep=3&idFact=" + SesionMultipago.Id_Fact;
                                             string _open = "window.open('" + ruta + "', 'miniContenedor', 'toolbar=yes', 'location=no', 'menubar=yes', 'resizable=yes');";
-                                            ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), _open, true);
-
-                                            //ScriptManager.RegisterStartupScript(this, this.GetType(), UniqueID, "VerRecibo(3," + SesionMultipago.Id_Fact + ");", true);
+                                            ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), _open, true);                                            
                                             Session["Multipago"] = null;
                                             SesionUsu.FichaReferencia = string.Empty;
                                             SesionUsu.FichaRefID = 0;

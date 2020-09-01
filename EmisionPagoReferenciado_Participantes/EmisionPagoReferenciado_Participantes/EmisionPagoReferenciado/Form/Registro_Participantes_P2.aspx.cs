@@ -40,11 +40,13 @@ namespace EmisionPagoReferenciado.Form
         protected void Page_Load(object sender, EventArgs e)
         {
             SesionUsu = (Sesion)Session["SesionFicha"];
-
-            if (!IsPostBack)
+            if (SesionUsu != null)
             {
-                Inicializar();
+                if (!IsPostBack)                
+                    Inicializar();                
             }
+            else
+                Response.Redirect("https://sysweb.unach.mx/");
         }
         #region <Botones y Eventos>
         protected void btnSiguiente_Click(object sender, EventArgs e)
@@ -82,10 +84,10 @@ namespace EmisionPagoReferenciado.Form
 
                     if (SesionUsu.TipoPersona == 20)
                         SesionUsu.Anexo = " REQUERIMIENTOS: " + txtObservaciones2.Text + ".    MATRICULA CAPTURADA: " + SesionUsu.MatriculaCapturada; // +" --PERIDO DE PAGO:"+SesionUsu.Observaciones;
-                    else                    
+                    else
                         SesionUsu.Anexo = " REQUERIMIENTOS: " + txtObservaciones2.Text; //+ " --PERIDO DE PAGO:" + SesionUsu.Observaciones;
-                        
-                    
+
+
                     if (SesionUsu.UsuEvento != string.Empty)
                     {
                         if (SesionUsu.UsuWXI != "X")
@@ -234,7 +236,7 @@ namespace EmisionPagoReferenciado.Form
                     lblImporteAdd.Visible = false;
                     txtImporteAdd.Text = SesionUsu.ListDetConceptoDisp[lstMaterias_Disponibles.SelectedIndex].EtiquetaDos;
                 }
-                lblDescMatDisp.Text=lstMaterias_Disponibles.SelectedItem.Text;
+                lblDescMatDisp.Text = lstMaterias_Disponibles.SelectedItem.Text;
             }
             catch (Exception ex)
             {
@@ -314,7 +316,7 @@ namespace EmisionPagoReferenciado.Form
             {
                 if (SesionUsu.TipoPersona == 1)
                     if (SesionUsu.UsuEvento == "EXTRAORDINARIO" || SesionUsu.UsuEvento == "VERANO" || SesionUsu.UsuEvento == "POSGRADO" || SesionUsu.UsuEvento == "NINGUNO" || SesionUsu.UsuEvento == "LIBRE" || SesionUsu.UsuEvento == "ALUMNO" || SesionUsu.UsuEvento == "ADMON" || SesionUsu.UsuEvento == "SUPERADMON")
-                        CargarCombo("pkg_pagos.Obt_Combo_Materias_Arbol", ref lstMaterias_Disponibles, "p_matricula", "p_evento", "p_carrera", "p_escuela", "p_nivel", "p_usuario", SesionUsu.UsuMatricula, SesionUsu.UsuEvento, SesionUsu.UsuCarrera, SesionUsu.UsuDependencia, SesionUsu.UsuNivel, SesionUsu.UsuWXI, ref ListDetConceptoDisp);                        
+                        CargarCombo("pkg_pagos.Obt_Combo_Materias_Arbol", ref lstMaterias_Disponibles, "p_matricula", "p_evento", "p_carrera", "p_escuela", "p_nivel", "p_usuario", SesionUsu.UsuMatricula, SesionUsu.UsuEvento, SesionUsu.UsuCarrera, SesionUsu.UsuDependencia, SesionUsu.UsuNivel, SesionUsu.UsuWXI, ref ListDetConceptoDisp);
                     else
                         CargarCombo("pkg_pagos.Obt_Combo_Materias_Arbol", ref lstMaterias_Disponibles, "p_matricula", "p_evento", "p_carrera", "p_escuela", "p_nivel", "p_usuario", SesionUsu.UsuMatricula, SesionUsu.UsuEvento, Convert.ToString(SesionUsu.TipoPersona), SesionUsu.UsuDependencia, SesionUsu.UsuNivel, SesionUsu.UsuWXI, ref ListDetConceptoDisp);
                 else
@@ -333,7 +335,7 @@ namespace EmisionPagoReferenciado.Form
             try
             {
                 CN_Comun CNComun = new CN_Comun();
-                CNComun.LlenaCombo(SP, ref Combo, parametro1, parametro2, parametro3, parametro4, valor1, valor2, valor3, valor4, ref  Etiquetas);
+                CNComun.LlenaCombo(SP, ref Combo, parametro1, parametro2, parametro3, parametro4, valor1, valor2, valor3, valor4, ref Etiquetas);
             }
             catch (Exception ex)
             {
@@ -345,7 +347,7 @@ namespace EmisionPagoReferenciado.Form
             try
             {
                 CN_Comun CNComun = new CN_Comun();
-                CNComun.LlenaCombo(SP, ref Combo, parametro1, parametro2, parametro3, parametro4, parametro5, valor1, valor2, valor3, valor4, valor5, ref  Etiquetas);
+                CNComun.LlenaCombo(SP, ref Combo, parametro1, parametro2, parametro3, parametro4, parametro5, valor1, valor2, valor3, valor4, valor5, ref Etiquetas);
             }
             catch (Exception ex)
             {
@@ -383,7 +385,7 @@ namespace EmisionPagoReferenciado.Form
             try
             {
                 CN_Comun CNComun = new CN_Comun();
-                CNComun.LlenaCombo(SP, ref Combo, parametro1, parametro2, parametro3, valor1, valor2, valor3, ref  Etiquetas);
+                CNComun.LlenaCombo(SP, ref Combo, parametro1, parametro2, parametro3, valor1, valor2, valor3, ref Etiquetas);
             }
             catch (Exception ex)
             {

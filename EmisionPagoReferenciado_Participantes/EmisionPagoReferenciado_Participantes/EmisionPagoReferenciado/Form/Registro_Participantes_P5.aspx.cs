@@ -153,14 +153,36 @@ namespace EmisionPagoReferenciado.Form
             try
             {
                 ConsultarDatos();
-                if (SesionUsu.UsuWXI != "X")
-                    VerificaUsuarioPV(); //Verifica si es un usuario Punto de Venta
+                VerificaEvento();
+
+                //if (SesionUsu.UsuWXI != "X")
+                //if (SesionUsu.UsuWXI != "X")
+                //    VerificaUsuarioPV(); //Verifica si es un usuario Punto de Venta
             }
             catch (Exception ex)
             {
                 lblMensajeCorreo.Text = ex.Message;
             }
         }
+
+        private void VerificaEvento()
+        {
+            lblMsj.Text = string.Empty;
+            try
+            {
+                if (SesionUsu.UsuEvento != "ALUMNO" && SesionUsu.UsuEvento != "LIBRE" && SesionUsu.UsuEvento != "SUPERADMON" && SesionUsu.UsuEvento != "ADMON")
+                    divMensajeEventos.Visible = true;
+                else
+                    divMensajeEventos.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                lblMsj.Text = ex.Message;
+            }
+
+        }
+
+
         private void VerificaUsuarioPV()
         {
             ObjTerminal.Usuario.Login = Convert.ToString(SesionUsu.UsuWXI);

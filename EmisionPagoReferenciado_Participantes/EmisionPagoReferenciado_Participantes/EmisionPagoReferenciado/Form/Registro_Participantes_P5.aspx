@@ -110,14 +110,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-2">
-                    <asp:Label ID="lblReferencia" runat="server" Text="Referencia" ></asp:Label>
+                    <asp:Label ID="lblReferencia" runat="server" Text="Referencia"></asp:Label>
                 </div>
                 <div class="col-md-5">
                     <asp:Label ID="lblReferencia_l" runat="server" CssClass="form-control text-dark font-weight-bold"></asp:Label>
                 </div>
-        
+
                 <div class="col-md-2">
-                    <asp:Label ID="lblImporte" runat="server" Text="Importe" ></asp:Label>
+                    <asp:Label ID="lblImporte" runat="server" Text="Importe"></asp:Label>
                 </div>
                 <div class="col-md-3">
                     <div class="input-group">
@@ -128,7 +128,7 @@
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
         <br />
         <div class="container">
             <div class="row">
@@ -157,41 +157,43 @@
                 <div class="col-md-2">
                     <asp:Label ID="lblForma_Pago" runat="server" Text="Forma de Pago"></asp:Label>
                 </div>
-            
-                <div class="col-md-10"><div class=" alert alert-warning">
 
-                    <asp:Label ID="lblTextformpago" runat="server" Text="Todas las transacciones son seguras y encriptadas. La información de tu tarjeta de crédito o débito nunca es almacenada."></asp:Label>
-                        </div>
-                    
-                    
-                </div>
-                </div>
-            <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-10">
+                    <div class=" alert alert-warning">
+
+                        <asp:Label ID="lblTextformpago" runat="server" Text="Todas las transacciones son seguras y encriptadas. La información de tu tarjeta de crédito o débito nunca es almacenada."></asp:Label>
                     </div>
-                <div class="col-md-4">
-                    <div>
-                        <asp:RadioButtonList ID="rbtFormaPago" runat="server" RepeatDirection="Vertical" Width="100%">
-                            <asp:ListItem Value="1" Selected="True"><hr /> Efectivo   <img src="https://sysweb.unach.mx/resources/imagenes/Pagobancos.png"  /></asp:ListItem>
-                            <asp:ListItem Value="2"><hr />Pago con tarjeta de Crédito  <img src="https://sysweb.unach.mx/resources/imagenes/visa-master.png"  /></asp:ListItem>
-                            <asp:ListItem Value="3"><hr /> Pago con tarjeta de Débito  <img src="https://sysweb.unach.mx/resources/imagenes/visa-master.png"  /></asp:ListItem>
-                            <asp:ListItem Value="4"><hr /> Cargo a Cuenta Bancaria (48 hrs)</asp:ListItem>
-                        </asp:RadioButtonList>
-                        </div>
-                        <%--   <asp:ListBox ID="ddlForma_Pago" runat="server"
-                            CssClass="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                            OnSelectedIndexChanged="ddlForma_Pago_SelectedIndexChanged" Height="91px">
-                            <asp:ListItem Value="1" Selected="True">Ventanilla Bancaria</asp:ListItem>
-                            <asp:ListItem Value="2">Tarjeta de Crédito</asp:ListItem>
-                            <asp:ListItem Value="3">Tarjeta de Débito</asp:ListItem>
-                            <asp:ListItem Value="4">Cargo a Cuenta Bancaria (48 hrs)</asp:ListItem>
-                        </asp:ListBox>--%>
-                    <asp:HiddenField ID="hddnObservaciones" runat="server" />
-                    <asp:HiddenField ID="hddnConceptos" runat="server" />
+
 
                 </div>
             </div>
-            
+            <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-6">
+                    <asp:RadioButtonList ID="rbtFormaPago" runat="server" RepeatDirection="Vertical" Width="100%">
+                        <asp:ListItem Value="1" Selected="True"><hr /> Efectivo   <img src="https://sysweb.unach.mx/resources/imagenes/Pagobancos.png"  /></asp:ListItem>
+                        <asp:ListItem Value="2"><hr />Pago con tarjeta de Crédito  <img src="https://sysweb.unach.mx/resources/imagenes/visa-master.png"  /></asp:ListItem>
+                        <asp:ListItem Value="3"><hr /> Pago con tarjeta de Débito  <img src="https://sysweb.unach.mx/resources/imagenes/visa-master.png"  /></asp:ListItem>
+                        <asp:ListItem Value="4"><hr /> Cargo a Cuenta Bancaria (48 hrs)</asp:ListItem>
+                    </asp:RadioButtonList>
+                    <asp:HiddenField ID="hddnObservaciones" runat="server" />
+                    <asp:HiddenField ID="hddnConceptos" runat="server" />
+                </div>
+                <div class="col-md-4" id="divMensajeEventos" runat="server">
+                    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+                        <div class="card-header">Comprobante Oficial</div>
+                        <div class="card-body">
+                            <%--<h5 class="card-title">Info Panel title</h5>--%>  
+                            <p class="card-text text-white">Ingresar a https://sysweb.unach.mx/ingresos/, en <div class="font-weight-bold">REFERENCIA BANCARIA</div>
+                                <p>
+                                </p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </asp:Panel>
 

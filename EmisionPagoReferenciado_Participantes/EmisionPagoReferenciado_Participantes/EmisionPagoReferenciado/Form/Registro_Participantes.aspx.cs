@@ -1450,17 +1450,7 @@ namespace EmisionPagoReferenciado.Form
             try
             {
                 CNComun.LlenaLista("PKG_PAGOS_2016.Obt_Combo_Tipo_Empleado", ref lstTipoPersonal, "p_plaza", txtNumPlaza.Text);
-                if (lstTipoPersonal.Items.Count == 1)
-                {
-                    //txtNombre_Gral.Text
-                    //pnlMsjReg2.Visible = true;
-                    //lblMsjReg2.Text = "No se encontro ningún dato, favor de llenar los campos de abajo.";
-                    //txtNombre.Text = string.Empty;
-                    //txtPaterno.Text = string.Empty;
-                    //txtMaterno.Text = string.Empty;
-                    //txtMaterno_TextChanged(null, null);
-                }
-                else
+                if (lstTipoPersonal.Items.Count > 1)
                 {
                     pnlMsjReg2.Visible = false;
                     lblMsjReg2.Text = string.Empty;
