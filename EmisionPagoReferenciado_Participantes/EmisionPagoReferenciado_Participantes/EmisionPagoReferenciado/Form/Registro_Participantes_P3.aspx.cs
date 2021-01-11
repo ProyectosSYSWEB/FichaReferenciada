@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using CapaEntidad;
 using CapaNegocio;
 #region Hecho por
-//Nombre:      Melissa Alejandra Rodríguez González
+//Nombre:      Lisseth Gtz. Gómez
 //Correo:      melissargz@hotmail.com
 //Institución: Unach
 #endregion
@@ -31,10 +31,13 @@ namespace EmisionPagoReferenciado.Form
         protected void Page_Load(object sender, EventArgs e)
         {
             SesionUsu = (Sesion)Session["SesionFicha"];
-            if (!IsPostBack)
+            if (SesionUsu != null)
             {
-                Inicializar();
+                if (!IsPostBack)                
+                    Inicializar();                
             }
+            else
+                Response.Redirect("https://sysweb.unach.mx/");
         }
         #region <Botones y Eventos>
 
@@ -61,8 +64,9 @@ namespace EmisionPagoReferenciado.Form
 
         protected void btnAnterior_Click(object sender, EventArgs e)
         {
+
             SesionUsu.FichaComprobanteFiscal = rdoBttnFactFis.SelectedValue;
-            SesionUsu.FichaTipoPersonaFiscal = rdoBttnTipoPersonaFiscal.SelectedValue;            
+            SesionUsu.FichaTipoPersonaFiscal = rdoBttnTipoPersonaFiscal.SelectedValue;
             SesionUsu.FichaRazonSocial = txtRazon_Social.Text;
             SesionUsu.FichaRFC = txtRFC.Text;
             SesionUsu.FichaCalleFiscal = txtCalle_Fiscal.Text;
@@ -73,6 +77,8 @@ namespace EmisionPagoReferenciado.Form
             SesionUsu.FichaTelefonoFiscal = txtTelefono_Fiscal.Text;
             SesionUsu.FichaCorreoFiscal = txtCorreo_Fiscal.Text;
             SesionUsu.FichaMetodoPago = ddlMetodoPago.SelectedValue;
+            SesionUsu.FichaUsoCFDI = ddlCFDI.SelectedValue;
+            SesionUsu.FichaObsSolicitudFactura = txtDescConcepto.Text.ToUpper();
             //SesionUsu.FichaCiudad = txtTelefono_Fiscal.Text;
             SesionUsu.FichaOpcion = 1; // bandera para saber que esta regresando y copiar datos
             if (SesionUsu.UsuEvento != string.Empty)
@@ -144,6 +150,9 @@ namespace EmisionPagoReferenciado.Form
                     txtTelefono_Fiscal.Text = SesionUsu.FichaTelefonoFiscal;
                     txtCorreo_Fiscal.Text = SesionUsu.FichaCorreoFiscal;
                     ddlMetodoPago.SelectedValue = SesionUsu.FichaMetodoPago;
+                    ddlCFDI.SelectedValue=SesionUsu.FichaUsoCFDI;
+                    txtDescConcepto.Text=SesionUsu.FichaObsSolicitudFactura;
+
                     //txtCalle_Fiscal.Text = SesionUsu.FichaDomicilio;
                     //txtTelefono_Fiscal.Text = SesionUsu.FichaCiudad;
                 }
@@ -152,7 +161,7 @@ namespace EmisionPagoReferenciado.Form
 
                 lblEvento.Text = ObjParticipante.EventoStr; // +" "+SesionUsu.FichaReferencia;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 lblMsj.Text = ex.Message;
             }
@@ -168,38 +177,41 @@ namespace EmisionPagoReferenciado.Form
                 ObjFichaReferenciada.Referencia = SesionUsu.FichaReferencia;
                 //ObjFichaReferenciada.ConceptoRef = SesionUsu.Observaciones;
                 if (SesionUsu.UsuEvento == "FINANZAS_2016")
-                    ObjFichaReferenciada.ConceptoRef = SesionUsu.Observaciones + " PERIDO_PAGO:" + SesionUsu.PeriodoPago + SesionUsu.Anexo;                
+                    ObjFichaReferenciada.ConceptoRef = SesionUsu.Observaciones + " PERIDO_PAGO:" + SesionUsu.PeriodoPago + SesionUsu.Anexo;
                 else
                     ObjFichaReferenciada.ConceptoRef = SesionUsu.Observaciones + SesionUsu.Anexo;
 
                 ObjFichaReferenciada.TipoPersonaFiscal = (rdoBttnFactFis.SelectedValue == "S") ? rdoBttnTipoPersonaFiscal.SelectedValue : string.Empty;
                 ObjFichaReferenciada.RazonSocial = txtRazon_Social.Text.ToUpper();
-                ObjFichaReferenciada.RFC = txtRFC.Text.ToUpper();                
+                ObjFichaReferenciada.RFC = txtRFC.Text.ToUpper();
                 ObjFichaReferenciada.CalleFiscal = txtCalle_Fiscal.Text.ToUpper();
                 ObjFichaReferenciada.ColoniaFiscal = txtColonia_Fiscal.Text.ToUpper();
                 ObjFichaReferenciada.CPFiscal = txtCP_Fiscal.Text.ToUpper();
-                ObjFichaReferenciada.EstadoFiscal =(rdoBttnFactFis.SelectedValue=="S")?ddlEstado_Fiscal.SelectedValue:string.Empty;
+                ObjFichaReferenciada.EstadoFiscal = (rdoBttnFactFis.SelectedValue == "S") ? ddlEstado_Fiscal.SelectedValue : string.Empty;
                 ObjFichaReferenciada.MunicipioFiscal = (rdoBttnFactFis.SelectedValue == "S") ? ddlMunicipio_Fiscal.SelectedValue : string.Empty;
                 ObjFichaReferenciada.TelefonoFiscal = txtTelefono_Fiscal.Text;
                 ObjFichaReferenciada.CorreoFiscal = (rdoBttnFactFis.SelectedValue == "S") ? txtCorreo_Fiscal.Text : string.Empty;
-                ObjFichaReferenciada.MetodoPagoFiscal = ddlMetodoPago.SelectedValue;          
-                                      
+                ObjFichaReferenciada.MetodoPagoFiscal = ddlMetodoPago.SelectedValue;
+                ObjFichaReferenciada.CFDI=ddlCFDI.SelectedValue;
+                ObjFichaReferenciada.ObsSolicitudFactura= txtDescConcepto.Text.ToUpper();
+
+
                 ObjFichaReferenciada.Evento = SesionUsu.UsuEvento;
                 ObjFichaReferenciada.NoControl = SesionUsu.UsuMatricula;
-                
-                if (SesionUsu.TipoPersona == 1)                
+                ObjFichaReferenciada.Correo = SesionUsu.UsuCorreo;
+                if (SesionUsu.TipoPersona == 1)
                     ObjFichaReferenciada.Nombre = SesionUsu.UsuNombre + " " + SesionUsu.UsuApaterno + " " + SesionUsu.UsuAMaterno;
 
-                else                
+                else
                     ObjFichaReferenciada.Nombre = SesionUsu.UsuNombre + " " + SesionUsu.UsuApaterno + " " + SesionUsu.UsuAMaterno;
-                
+
                 CNFichaReferenciada.ActualizarFichaReferenciada(ref ObjFichaReferenciada, ref Verificador);
 
                 if (Verificador == "0")
                 {
                     lblMsj.Text = string.Empty;
                     SesionUsu.FichaComprobanteFiscal = rdoBttnFactFis.SelectedValue;
-                    SesionUsu.FichaTipoPersonaFiscal = rdoBttnTipoPersonaFiscal.SelectedValue;                    
+                    SesionUsu.FichaTipoPersonaFiscal = rdoBttnTipoPersonaFiscal.SelectedValue;
                     SesionUsu.FichaRazonSocial = txtRazon_Social.Text.ToUpper();
                     SesionUsu.FichaRFC = txtRFC.Text.ToUpper();
                     SesionUsu.FichaCalleFiscal = txtCalle_Fiscal.Text.ToUpper();
@@ -210,6 +222,9 @@ namespace EmisionPagoReferenciado.Form
                     SesionUsu.FichaTelefonoFiscal = txtTelefono_Fiscal.Text.ToUpper();
                     SesionUsu.FichaCorreoFiscal = txtCorreo_Fiscal.Text;
                     SesionUsu.FichaMetodoPago = ddlMetodoPago.SelectedValue;
+                    SesionUsu.FichaUsoCFDI = ddlCFDI.SelectedValue;
+                    SesionUsu.FichaObsSolicitudFactura = txtDescConcepto.Text.ToUpper();
+
                     SesionUsu.FichaOpcion = 1;
                     //if (SesionUsu.UsuCorreo != txtCorreo.Text)
                     //{
@@ -237,6 +252,7 @@ namespace EmisionPagoReferenciado.Form
                 ddlEstado_Fiscal.SelectedValue = "8";
                 ddlEstado_Fiscal_SelectedIndexChanged(null, null);
                 ddlMunicipio_Fiscal.SelectedValue = "213";
+                //CargarCombo("PKG_PAGOS_2016.Obt_Combo_Tipo_Servicios_F", ref ddlServicio);                
             }
             catch (Exception ex)
             {
@@ -267,7 +283,7 @@ namespace EmisionPagoReferenciado.Form
                 throw new Exception(ex.Message);
             }
         }
-      
+
         #endregion
 
         protected void rdoBttnFactFis_SelectedIndexChanged(object sender, EventArgs e)
@@ -283,6 +299,8 @@ namespace EmisionPagoReferenciado.Form
                 valEstado_Fiscal.ValidationGroup = "DatosFiscales";
                 valMunicipio_Fiscal.ValidationGroup = "DatosFiscales";
                 valMetodoPago.ValidationGroup = "DatosFiscales";
+                valCFDI.ValidationGroup = "DatosFiscales";
+                valDescConcepto.ValidationGroup = "DatosFiscales";
                 valCorreo_Fiscal.ValidationGroup = "DatosFiscales";
                 btnSiguiente.ValidationGroup = "DatosFiscales";
                 valCheck.ValidationGroup = "DatosFiscales";
@@ -299,6 +317,8 @@ namespace EmisionPagoReferenciado.Form
                 valMunicipio_Fiscal.ValidationGroup = string.Empty;
                 valCorreo_Fiscal.ValidationGroup = string.Empty;
                 valMetodoPago.ValidationGroup = string.Empty;
+                valCFDI.ValidationGroup = string.Empty;
+                valDescConcepto.ValidationGroup = string.Empty;
                 valCheck.ValidationGroup = string.Empty;
                 btnSiguiente.ValidationGroup = string.Empty;
                 rdoBttnTipoPersonaFiscal.SelectedValue = "M";
@@ -308,9 +328,11 @@ namespace EmisionPagoReferenciado.Form
                 txtColonia_Fiscal.Text = string.Empty;
                 txtCP_Fiscal.Text = string.Empty;
                 ddlEstado_Fiscal.SelectedValue = "8";
-                ddlEstado_Fiscal_SelectedIndexChanged(null, null);                
+                ddlEstado_Fiscal_SelectedIndexChanged(null, null);
                 ddlMunicipio_Fiscal.SelectedValue = "213";
                 ddlMetodoPago.SelectedValue = "0";
+                ddlCFDI.SelectedValue = "0";
+                txtDescConcepto.Text = string.Empty;
                 txtTelefono_Fiscal.Text = string.Empty;
                 txtCorreo_Fiscal.Text = string.Empty;
             }

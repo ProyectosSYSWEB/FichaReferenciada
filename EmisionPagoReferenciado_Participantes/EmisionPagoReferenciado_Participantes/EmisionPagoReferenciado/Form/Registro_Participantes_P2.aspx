@@ -62,7 +62,7 @@
                         <asp:TextBox ID="txtImporteAdd" runat="server" CausesValidation="True" Visible="false"
                             Width="100px">0</asp:TextBox><br />
                         <br />
-                        <asp:Button ID="btnAgregar_Materia" runat="server" Text="Agregar" CssClass="btn btn-blue-grey"
+                        <asp:Button ID="btnAgregar_Materia" runat="server" Text="Agregar" CssClass="btn" style="background-color:#d2af47; color:#fff"
                             OnClick="btnAgregar_Materia_Click" ValidationGroup="MateriaDis" ToolTip="AGREGAR" /><br />
                         <asp:Label ID="lblMsj" runat="server" ForeColor="Red" Font-Size="Small"></asp:Label>
 

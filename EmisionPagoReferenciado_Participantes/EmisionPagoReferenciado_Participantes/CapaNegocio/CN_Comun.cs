@@ -849,9 +849,9 @@ namespace CapaNegocio
             cliente.Credentials =
                 new System.Net.NetworkCredential("sysweb@unach.mx", "Dsia890#");
 
-            cliente.Port = 25;
-            cliente.EnableSsl = false;
-            cliente.Host = "montebello.unach.mx"; //Para Gmail "smtp.gmail.com";
+            cliente.Port = 587;
+            cliente.EnableSsl = true;
+            cliente.Host = "smtp.gmail.com"; //Para Gmail "smtp.gmail.com";
 
             try
             {

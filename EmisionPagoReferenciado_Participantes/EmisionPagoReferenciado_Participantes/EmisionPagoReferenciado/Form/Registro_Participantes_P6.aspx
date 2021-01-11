@@ -15,11 +15,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="col">
-                <strong>
-                    <asp:Label ID="lblTitulo" runat="server" Text="PAGO CON TARJETA"></asp:Label>
-                </strong>
-                <br />
+            <div class="col note note-warning">
+                <h6>
+                    <asp:Label ID="lblTitulo" runat="server" Text="PAGO CON TARJETA Ó CLABE INTERBANCARIA"></asp:Label></h6>                
                 <asp:Label ID="lblContador" runat="server"></asp:Label>
             </div>
         </div>
@@ -30,7 +28,7 @@
         <div class="row">
             <div class="col-md-3">
                 <strong>
-                    <asp:Label ID="lblEtFecha" runat="server" Text="FECHA DE PAGO" Width="100px"></asp:Label>
+                    <asp:Label ID="lblEtFecha" runat="server" Text="Fecha de Pago"></asp:Label>
                 </strong>
             </div>
             <div class="col-md-9">
@@ -42,7 +40,7 @@
         <div class="row">
             <div class="col-md-3">
                 <strong>
-                    <asp:Label ID="lblEtReferencia" runat="server" Text="REFERENCIA"></asp:Label>
+                    <asp:Label ID="lblEtReferencia" runat="server" Text="Referencia"></asp:Label>
                 </strong>
             </div>
             <div class="col-md-9">
@@ -54,7 +52,7 @@
         <div class="row">
             <div class="col-md-3">
                 <strong>
-                    <asp:Label ID="lblEtFolio" runat="server" Text="FOLIO"></asp:Label>
+                    <asp:Label ID="lblEtFolio" runat="server" Text="Folio"></asp:Label>
                 </strong>
             </div>
             <div class="col-md-9">
@@ -66,7 +64,7 @@
         <div class="row">
             <div class="col-md-3">
                 <strong>
-                    <asp:Label ID="lblEtMedioPago" runat="server" Text="MEDIO DE PAGO"></asp:Label>
+                    <asp:Label ID="lblEtMedioPago" runat="server" Text="Medio de Pago"></asp:Label>
                 </strong>
             </div>
             <div class="col-md-9">
@@ -90,7 +88,7 @@
         <div class="row">
             <div class="col-md-3">
                 <strong>
-                    <asp:Label ID="lblEtAutorizacion" runat="server" Text="AUTORIZACIÓN"></asp:Label>
+                    <asp:Label ID="lblEtAutorizacion" runat="server" Text="Autorización"></asp:Label>
                 </strong>
             </div>
             <div class="col-md-9">
@@ -102,7 +100,7 @@
         <div class="row">
             <div class="col-md-3">
                 <strong>
-                    <asp:Label ID="lblEtImporte" runat="server" Text="IMPORTE"></asp:Label>
+                    <asp:Label ID="lblEtImporte" runat="server" Text="Importe"></asp:Label>
                 </strong>
             </div>
             <div class="col-md-9">
@@ -128,41 +126,51 @@
             </div>
         </div>
     </div>
-    <div class="alert alert-info" align="center">
-        <asp:Label ID="lblMsj" runat="server" Font-Bold="True" ForeColor="Navy"></asp:Label>
-        <br />
-        <div style="border-radius: 10px 10px 10px 10px; -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius: 10px 10px 10px 10px; border: 1px solid #18386b;">
-            <asp:Label ID="lblmensaje2" runat="server"></asp:Label>
+    <div class="container alert alert-info text-center">
+        <div class="row">
+            <div class="col">
+                <asp:Label ID="lblMsj" runat="server" Font-Bold="True" ForeColor="Navy"></asp:Label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <asp:Label ID="lblmensaje2" runat="server"></asp:Label>
+            </div>
         </div>
     </div>
-    <div align="center">
-        <br />
-
-        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-            <ContentTemplate>
-                <asp:Button ID="btnRecibo" runat="server" CssClass="btn btn-primary bt-xs"
-                    Text="Imprimir Recibo" OnClick="btnRecibo_Click" Visible="False" />
-                &nbsp;
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                    <ContentTemplate>
+                        <asp:Button ID="btnRecibo" runat="server" CssClass="btn btn-primary bt-xs"
+                            Text="Imprimir Recibo" OnClick="btnRecibo_Click" Visible="False" />
+                        &nbsp;
                     <asp:Button ID="btnPago" runat="server" CssClass="btn btn-primary bt-xs"
                         Text="Finalizar" OnClick="btnPago_Click" Visible="False" />
-            </ContentTemplate>
-        </asp:UpdatePanel>
-        <br />
-
-        <asp:UpdateProgress ID="UpdateProgress1" AssociatedUpdatePanelID="UpdatePanel1" runat="server">
-            <ProgressTemplate>
-                <asp:Image ID="Image23" runat="server" Height="50px" ImageUrl="https://sysweb.unach.mx/resources/imagenes/ajax_loader_gray_512.gif"
-                    class="img-responsive" alt="Responsive image" ToolTip="Espere un momento, por favor.." />
-            </ProgressTemplate>
-        </asp:UpdateProgress>
-
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-            <ContentTemplate>
-                <iframe id="Iframe1" runat="server" frameborder="0" marginheight="0" marginwidth="0"
-                    name="miniContenedor" style="height: 500px" width="100%"></iframe>
-            </ContentTemplate>
-        </asp:UpdatePanel>
-
-        <br />
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <asp:UpdateProgress ID="UpdateProgress1" AssociatedUpdatePanelID="UpdatePanel1" runat="server">
+                    <ProgressTemplate>
+                        <asp:Image ID="Image23" runat="server" Height="50px" ImageUrl="https://sysweb.unach.mx/resources/imagenes/ajax_loader_gray_512.gif"
+                            class="img-responsive" alt="Responsive image" ToolTip="Espere un momento, por favor.." />
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>
+                        <iframe id="Iframe1" runat="server" frameborder="0" marginheight="0" marginwidth="0"
+                            name="miniContenedor" style="height: 500px" width="100%"></iframe>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+        </div>
     </div>
 </asp:Content>

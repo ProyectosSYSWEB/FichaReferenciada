@@ -33,15 +33,6 @@ namespace EmisionPagoReferenciado.Form
         protected global::System.Web.UI.WebControls.Label lblEvento;
 
         /// <summary>
-        /// Control Label1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-
-        /// <summary>
         /// Control UpdatePanel1.
         /// </summary>
         /// <remarks>
@@ -96,33 +87,6 @@ namespace EmisionPagoReferenciado.Form
         protected global::System.Web.UI.WebControls.Panel pnlDatos;
 
         /// <summary>
-        /// Control lblTipoPersonaFiscal.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTipoPersonaFiscal;
-
-        /// <summary>
-        /// Control UpdatePanel7.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel7;
-
-        /// <summary>
-        /// Control rdoBttnTipoPersonaFiscal.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdoBttnTipoPersonaFiscal;
-
-        /// <summary>
         /// Control lblRFC.
         /// </summary>
         /// <remarks>
@@ -148,6 +112,33 @@ namespace EmisionPagoReferenciado.Form
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator valRFC;
+
+        /// <summary>
+        /// Control lblTipoPersonaFiscal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTipoPersonaFiscal;
+
+        /// <summary>
+        /// Control UpdatePanel7.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel7;
+
+        /// <summary>
+        /// Control rdoBttnTipoPersonaFiscal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rdoBttnTipoPersonaFiscal;
 
         /// <summary>
         /// Control UpdatePanel6.
@@ -276,15 +267,6 @@ namespace EmisionPagoReferenciado.Form
         protected global::System.Web.UI.WebControls.RequiredFieldValidator valEstado_Fiscal;
 
         /// <summary>
-        /// Control lblMunicipio_Fiscal.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMunicipio_Fiscal;
-
-        /// <summary>
         /// Control ddlMunicipio_Fiscal.
         /// </summary>
         /// <remarks>
@@ -301,15 +283,6 @@ namespace EmisionPagoReferenciado.Form
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator valMunicipio_Fiscal;
-
-        /// <summary>
-        /// Control lblCP_Fiscal.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCP_Fiscal;
 
         /// <summary>
         /// Control txtCP_Fiscal.
@@ -330,15 +303,6 @@ namespace EmisionPagoReferenciado.Form
         protected global::System.Web.UI.WebControls.RequiredFieldValidator valCP_Fiscal;
 
         /// <summary>
-        /// Control lblMetodoPago.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMetodoPago;
-
-        /// <summary>
         /// Control ddlMetodoPago.
         /// </summary>
         /// <remarks>
@@ -355,6 +319,24 @@ namespace EmisionPagoReferenciado.Form
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator valMetodoPago;
+
+        /// <summary>
+        /// Control ddlCFDI.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCFDI;
+
+        /// <summary>
+        /// Control valCFDI.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valCFDI;
 
         /// <summary>
         /// Control lblTelefono_Fiscal.
@@ -400,6 +382,24 @@ namespace EmisionPagoReferenciado.Form
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator valCorreo_Fiscal;
+
+        /// <summary>
+        /// Control txtDescConcepto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDescConcepto;
+
+        /// <summary>
+        /// Control valDescConcepto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valDescConcepto;
 
         /// <summary>
         /// Control UpdatePanel5.

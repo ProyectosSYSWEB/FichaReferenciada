@@ -125,7 +125,9 @@ namespace EmisionPagoReferenciado.Form
                 if (SesionMultipago != null)
                 {
                     lblFolio.Text = SesionMultipago.Order;
-                    lblMedioPago.Text = (SesionMultipago.PaymentMethod == "TDX") ? "VISA/MASTERCARD" : "";
+                    //lblMedioPago.Text = (SesionMultipago.PaymentMethod == "TDX") ? "VISA/MASTERCARD" : "";
+                    lblMedioPago.Text = (SesionMultipago.PaymentMethod == "TDX") ? "VISA/MASTERCARD" : (SesionMultipago.PaymentMethod == "CLABE") ? "CLABE INTERBANCARIA": (SesionMultipago.PaymentMethod == "CIE_INTER") ? "CIE INTERBANCARIO":"";
+
                     lblReferencia.Text = SesionMultipago.Reference;
                     lblImporte.Text = string.Format("{0:c2}", Convert.ToDouble(SesionMultipago.Amount));
                     lblAutorizacion.Text = SesionMultipago.Authorization;
@@ -151,6 +153,7 @@ namespace EmisionPagoReferenciado.Form
                                     if (SesionMultipago.Authorization != "000000")
                                     {
                                         //Msj = "!PAGO REALIZADO CON ÉXITO¡";
+                                        Msj = string.Empty;
                                         divPagoConf.Visible = true;
                                         lblmensaje2.Text = "Si desea descargar nuevamente su recibo oficial puede hacerlo accediendo al <BR/> Sistema de Recaudación de Ingresos (https://sysweb.unach.mx/ingresos)";
                                     }
@@ -179,8 +182,9 @@ namespace EmisionPagoReferenciado.Form
                                             ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), _open, true);
 
                                             Session["Multipago"] = null;
-                                            SesionUsu.FichaReferencia = string.Empty;
-                                            SesionUsu.FichaRefID = 0;
+                                            Session["SesionFicha"] = null;
+                                            //SesionUsu.FichaReferencia = string.Empty;
+                                            //SesionUsu.FichaRefID = 0;
                                         }
                                     }
                                 }
@@ -319,7 +323,7 @@ namespace EmisionPagoReferenciado.Form
         //            ObjMultipago.Cardtype = SesionMultipago.Cardtype;
         //        ObjMultipago.IdFichaBancaria = SesionUsu.FichaRefIDPagoTC;// SesionUsu.FichaRefID;
         //        ObjMultipago.Carrera = SesionUsu.UsuCarrera;
-        //        ObjMultipago.Origen = "SYSWEB";
+        //        ObjMultipago.OrigenSis = "SYSWEB";
 
 
         //        string CadenaHash = CNComun.GetSHA256(SesionMultipago.Order + SesionMultipago.Reference + SesionMultipago.Amount + SesionMultipago.Authorization);

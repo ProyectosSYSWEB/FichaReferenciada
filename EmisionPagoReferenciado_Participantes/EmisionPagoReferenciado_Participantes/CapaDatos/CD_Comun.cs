@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 using System.IO;
 using CapaEntidad;
 #region Hecho por
-//Nombre:      Melissa Alejandra Rodríguez González
+//Nombre:      Lisseth Gtz. Gómez
 //Correo:      melissargz@hotmail.com
 //Institución: Unach
 #endregion
@@ -113,7 +113,7 @@ namespace CapaDatos
                         Comun.EtiquetaTres = Convert.ToString(dr.GetValue(3));
                         Comun.EtiquetaCuatro = Convert.ToString(dr.GetValue(4));
                     }
-                    else if (dr.FieldCount == 6)
+                    else if (dr.FieldCount >= 6)
                     {
 
                         Comun.EtiquetaDos = Convert.ToString(dr.GetValue(2));
@@ -121,6 +121,30 @@ namespace CapaDatos
                         Comun.EtiquetaCuatro = Convert.ToString(dr.GetValue(4));
                         Comun.EtiquetaCinco = Convert.ToString(dr.GetValue(5));
                     }
+                    //else if (dr.FieldCount == 7)
+                    //{
+
+                    //    Comun.EtiquetaDos = Convert.ToString(dr.GetValue(2));
+                    //    Comun.EtiquetaTres = Convert.ToString(dr.GetValue(3));
+                    //    Comun.EtiquetaCuatro = Convert.ToString(dr.GetValue(4));
+                    //    Comun.EtiquetaCinco = Convert.ToString(dr.GetValue(5));
+                    //    Comun.EtiquetaSeis = Convert.ToString(dr.GetValue(6));
+                    //    //Comun.EtiquetaSiete = Convert.ToString(dr.GetValue(7));
+
+                    //}
+                    //else if (dr.FieldCount == 8)
+                    //{
+
+                    //    Comun.EtiquetaDos = Convert.ToString(dr.GetValue(2));
+                    //    Comun.EtiquetaTres = Convert.ToString(dr.GetValue(3));
+                    //    Comun.EtiquetaCuatro = Convert.ToString(dr.GetValue(4));
+                    //    Comun.EtiquetaCinco = Convert.ToString(dr.GetValue(5));
+                    //    Comun.EtiquetaSeis = Convert.ToString(dr.GetValue(6));
+                    //    Comun.EtiquetaSiete = Convert.ToString(dr.GetValue(7));
+                    //    //Comun.EtiquetaOcho = Convert.ToString(dr.GetValue(8));
+
+                    //}
+
                     list.Add(Comun);
                 }
                 dr.Close();

@@ -6,7 +6,7 @@ using System.Data;
 using System.Data.OracleClient;
 using CapaEntidad;
 #region Hecho por
-//Nombre:      Melissa Alejandra Rodríguez González
+//Nombre:      Lisseth Gtz. Gómez
 //Correo:      melissargz@hotmail.com
 //Institución: Unach
 #endregion
@@ -60,7 +60,7 @@ namespace CapaDatos
                 CDDatos.LimpiarOracleCommand(ref Cmd);
             }
         }
-        public void InsertarFichaReferenciada(ref FichaReferenciada ObjFichaReferenciada, ref string Verificador)
+        public void InsertarFichaReferenciada(ref FichaReferenciada ObjFichaReferenciada, string Correo, ref string Verificador)
         {
             CD_Datos CDDatos = new CD_Datos();
             OracleCommand Cmd = null;
@@ -78,7 +78,9 @@ namespace CapaDatos
                                           "p_REFERENCIA",
                                           "p_OBSERVACIONES",
                                           "p_ALUMNO",
-                                          "p_EVENTO"};
+                                          "p_EVENTO",
+                                          "P_CORREO"
+                };
                 object[] Valores = { 
                                         ObjFichaReferenciada.IdFichaBancaria,
                                         ObjFichaReferenciada.NoControl,
@@ -90,14 +92,17 @@ namespace CapaDatos
                                         ObjFichaReferenciada.Referencia,
                                         ObjFichaReferenciada.ConceptoRef,
                                         ObjFichaReferenciada.Nombre,
-                                        ObjFichaReferenciada.Evento
+                                        ObjFichaReferenciada.Evento,
+                                        Correo
             };
                 string[] ParametrosOut ={                                        
                                           "p_BANDERA",
                                           "p_Dias_Vigencia"
                 };
 
-               Cmd = CDDatos.GenerarOracleCommand("INS_FICHA_BANCARIA", ref Verificador, ParametrosIn, Valores, ParametrosOut);
+               Cmd = CDDatos.GenerarOracleCommand("INS_INF_FICHA_BANCARIA", ref Verificador, ParametrosIn, Valores, ParametrosOut);
+               //Cmd = CDDatos.GenerarOracleCommand("INS_FICHA_BANCARIA", ref Verificador, ParametrosIn, Valores, ParametrosOut);
+
 
             }
             catch (Exception ex)
@@ -133,9 +138,16 @@ namespace CapaDatos
                                           "P_TELEFONO_FISCAL",
                                           "P_CORREO_FISCAL",
                                           "P_METODO_PAGO_FISCAL",
+
+                                          "P_CFDI", 
+                                          //"P_TIPO_SERVICIO_FISCAL", 
+                                          "P_OBS_SOLICITUD_FACTURA", 
+                                          //"P_FORMA_PAGO_FISCAL",
+
                                           "p_EVENTO",
                                           "p_MATRICULA",
-                                          "p_ALUMNO"
+                                          "p_ALUMNO",
+                                          "P_CORREO"
                                         };
                 object[] Valores = { 
                                         ObjFichaReferenciada.IdFichaBancaria,
@@ -155,18 +167,23 @@ namespace CapaDatos
                                         ObjFichaReferenciada.TelefonoFiscal,
                                         ObjFichaReferenciada.CorreoFiscal,       
                                         ObjFichaReferenciada.MetodoPagoFiscal,                                                                                                                 
-                                        //ObjFichaReferenciada.Ciudad,
+                                        ObjFichaReferenciada.CFDI,
+                                        //ObjFichaReferenciada.TipoServicioFiscal,
+                                        ObjFichaReferenciada.ObsSolicitudFactura,
+                                        //ObjFichaReferenciada.FormaPagoFiscal,
                                         ObjFichaReferenciada.Evento,
                                         ObjFichaReferenciada.NoControl,
-                                        ObjFichaReferenciada.Nombre
+                                        ObjFichaReferenciada.Nombre,
+                                        ObjFichaReferenciada.Correo
             };
                 string[] ParametrosOut ={                                        
                                           "p_BANDERA"
                 };
 
-                Cmd = CDDatos.GenerarOracleCommand("UPD_FICHA_BANCARIA_2016", ref Verificador, ParametrosIn, Valores, ParametrosOut);
+                Cmd = CDDatos.GenerarOracleCommand("UPD_INF_FICHA_BANCARIA", ref Verificador, ParametrosIn, Valores, ParametrosOut);
+                //Cmd = CDDatos.GenerarOracleCommand("UPD_FICHA_BANCARIA_2016", ref Verificador, ParametrosIn, Valores, ParametrosOut);
 
-              
+
             }
             catch (Exception ex)
             {

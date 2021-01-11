@@ -14,6 +14,9 @@ namespace CapaEntidad
         private string _EtiquetaTres;
         private string _EtiquetaCuatro;
         private string _EtiquetaCinco;
+        private string _EtiquetaSeis;
+        private string _EtiquetaSiete;
+        private string _EtiquetaOcho;
         private string _Ruta;
         private byte[] _ImgBlob;
 
@@ -50,6 +53,25 @@ namespace CapaEntidad
             get { return _EtiquetaCinco; }
             set { _EtiquetaCinco = value; }
         }
+
+        public string EtiquetaSeis
+        {
+            get { return _EtiquetaSeis; }
+            set { _EtiquetaSeis = value; }
+        }
+
+        public string EtiquetaSiete
+        {
+            get { return _EtiquetaSiete; }
+            set { _EtiquetaSiete = value; }
+        }
+
+        public string EtiquetaOcho
+        {
+            get { return _EtiquetaOcho; }
+            set { _EtiquetaOcho = value; }
+        }
+
         public string Descripcion
         {
             get { return _Descripcion; }

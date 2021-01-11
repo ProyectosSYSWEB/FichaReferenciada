@@ -11,6 +11,12 @@
 
         }
 
+        function MensajeAlumnos() {
+            jAlert("Con el objetivo de salvaguardar la salud del personal y de los estudiantes que realizan trámites ante la Dirección de Servicios Escolares, se les informa que por instrucciones superiores, se suspenderá la atención al público del 11 al 22 de enero del presente, para reanudar el día 25 de enero, si nuestras autoridades así lo permiten. Los invitamos a estar pendientes de los avisos a través de nuestros medios electrónicos. Agradecemos su comprensión.", "AVISO");
+            //jAlert('close');
+
+        }
+
 
         function MensajeCaja() {
             jAlert("A partir del 01 de febrero del 2018 todas las transferencias/depósitos de las Retenciones de Impuestos y Rendimientos de las cuentas bancarias efectuadas por las Unidades Académicas y Dependencias de Administración Central de la Universidad, se deben realizar mediante el Sistema de Ingresos en el módulo de fichas referenciadas con opción única de Cargo a Cuenta Bancaria.", "INFORMACIÓN");
@@ -62,12 +68,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <!-- Vertical Steppers -->
     <div class="container d-md-none">
-            <div class="row">                
-                <div class="col">
-                    <img src="../Images/MovilPaso1.png" class="img-responsive" alt="Responsive image" />
-                </div>
+        <div class="row">
+            <div class="col">
+                <img src="../Images/MovilPaso1.png" class="img-responsive" alt="Responsive image" />
             </div>
         </div>
+    </div>
     <div class="container d-none d-sm-none d-md-block">
         <div class="row">
             <div class="col text-center">
@@ -83,20 +89,22 @@
             </div>
 
             <div class="col-md-3 text-center">
-                <asp:Button ID="btnLimpiar" runat="server" CssClass="btn btn-blue-grey" Text="Borrar Datos"
+                <asp:Button ID="btnLimpiar" runat="server" CssClass="btn" style="background-color:#d2af47; color:#fff" Text="Borrar Datos"
                     OnClick="btnLimpiar_Click" />
             </div>
         </div>
     </div>
     <div class="container">
         <div class="content_main">
-            <div class="row">
+            <div class="row" runat="server" id="rowEspecificaciones">
                 <div class="col">
+                    <div class="note note-warning" style="font-size: 14px">
                     <asp:UpdatePanel ID="UpdatePanel11" runat="server">
                         <ContentTemplate>
-                            <asp:Label ID="lblEspecificaciones" runat="server" Style="font-weight: bold; font-size: smaller" Width="100%" CssClass="alert alert-warning"></asp:Label>
+                            <asp:Label ID="lblEspecificaciones" runat="server" Style="font-weight: bold; font-size: smaller" Width="100%"></asp:Label>
                         </ContentTemplate>
                     </asp:UpdatePanel>
+                        </div>
                 </div>
             </div>
             <asp:UpdatePanel ID="UpdatePanel7" runat="server">
@@ -118,10 +126,13 @@
             <div class="col-md-9">
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
-                        <asp:DropDownList ID="ddlTipo_Participante" CssClass="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlTipo_Participante_SelectedIndexChanged">
+                        <asp:DropDownList ID="ddlTipo_Participante" CssClass="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlTipo_Participante_SelectedIndexChanged" CausesValidation="True">
                         </asp:DropDownList>
                     </ContentTemplate>
                 </asp:UpdatePanel>
+                <asp:RequiredFieldValidator ID="reqExterno" runat="server" ErrorMessage="*Tipo de Participante" ForeColor="Red" ControlToValidate="ddlTipo_Participante" InitialValue="0" ValidationGroup="gpoExterno">*Requerido</asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="reqInternoSM" runat="server" ErrorMessage="*Tipo de Participante" ForeColor="Red" ControlToValidate="ddlTipo_Participante" InitialValue="0" ValidationGroup="gpoInternoSM">*Requerido</asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="reqInterno" runat="server" ErrorMessage="*Tipo de Participante" ForeColor="Red" ControlToValidate="ddlTipo_Participante" InitialValue="0" ValidationGroup="gpoInterno">*Requerido</asp:RequiredFieldValidator>
             </div>
         </div>
         <asp:UpdatePanel ID="updPnlEmpUNACH" runat="server">
@@ -188,7 +199,7 @@
                         <div class="col-md-9">
                             <asp:TextBox ID="txtNombre_Gral" runat="server" TabIndex="200" AutoPostBack="True" OnTextChanged="txtNombre_Gral_TextChanged" CssClass="form-control"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtNombre_Gral"
-                                ErrorMessage="*Requerido" ForeColor="Red" ValidationGroup="gpoExterno"></asp:RequiredFieldValidator>
+                                ErrorMessage="*Nombre(s)" ForeColor="Red" ValidationGroup="gpoExterno">*Requerido</asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="row">
@@ -198,7 +209,7 @@
                         <div class="col-md-4">
                             <asp:TextBox ID="txtPaterno_Gral" runat="server" TabIndex="201" CssClass="form-control"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPaterno_Gral"
-                                ErrorMessage="*Requerido" ForeColor="Red" ValidationGroup="gpoExterno"></asp:RequiredFieldValidator>
+                                ErrorMessage="*Apellido Paterno" ForeColor="Red" ValidationGroup="gpoExterno">*Requerido</asp:RequiredFieldValidator>
                         </div>
 
                         <div class="col-md-1">
@@ -208,7 +219,7 @@
                             <asp:TextBox ID="txtMaterno_Gral" runat="server" OnTextChanged="txtMaterno_Gral_TextChanged"
                                 AutoPostBack="True" TabIndex="202" CssClass="form-control"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="requeridoMaterno" runat="server" ControlToValidate="txtMaterno_Gral"
-                                ErrorMessage="*Requerido" ForeColor="Red" ValidationGroup="gpoExterno"></asp:RequiredFieldValidator>
+                                ErrorMessage="*Apellido Materno" ForeColor="Red" ValidationGroup="gpoExterno">*Requerido</asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="row">
@@ -229,7 +240,7 @@
                                 <asp:ListItem Value="M" Selected="True">Masculino</asp:ListItem>
                             </asp:RadioButtonList>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="rdoGenero_Gral"
-                                ErrorMessage="*Requerido" ForeColor="Red" ValidationGroup="gpoExterno"></asp:RequiredFieldValidator>
+                                ErrorMessage="*Genero" ForeColor="Red" ValidationGroup="gpoExterno">*Requerido</asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="row">
@@ -250,7 +261,7 @@
                             <asp:DropDownList ID="ddlEdo_Provincia_Gral" runat="server" TabIndex="210" CssClass="custom-select">
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlEdo_Provincia_Gral"
-                                ErrorMessage="*Requerido" ForeColor="Red" ValidationGroup="gpoExterno"></asp:RequiredFieldValidator>
+                                ErrorMessage="*Estado" ForeColor="Red" ValidationGroup="gpoExterno">*Requerido</asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="row">
@@ -327,7 +338,7 @@
                         </div>
                         <div class="col-md-4">
                             <asp:TextBox ID="txtCorreo_Gral" runat="server" TabIndex="219" CssClass="form-control"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator19" runat="server" ControlToValidate="txtCorreo_Gral" ErrorMessage="*Requerido" ForeColor="Red" ValidationGroup="gpoExterno"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator19" runat="server" ControlToValidate="txtCorreo_Gral" ErrorMessage="*Correo" ForeColor="Red" ValidationGroup="gpoExterno">*Requerido</asp:RequiredFieldValidator>
                         </div>
                     </div>
                 </asp:Panel>
@@ -461,7 +472,7 @@
                             </div>
                             <div class="col-md-4">
                                 <asp:TextBox ID="txtPaternoReg" runat="server" CssClass="form-control" TabIndex="4"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="reqPatAlum" runat="server" ControlToValidate="txtPaternoReg" ErrorMessage="*Requerido" ForeColor="Red" ValidationGroup="gpoInterno"></asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ID="reqPatAlum" runat="server" ControlToValidate="txtPaternoReg" ErrorMessage="*Apellido Paterno" ForeColor="Red" ValidationGroup="gpoInterno">*Requerido</asp:RequiredFieldValidator>
                             </div>
 
                             <div class="col-md-1">
@@ -481,8 +492,8 @@
                                     ClientIDMode="Predictable" OnSelectedIndexChanged="ddlDependencia_D_SelectedIndexChanged" AutoPostBack="True">
                                 </asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server"
-                                    ControlToValidate="ddlDependencia_D" ErrorMessage="*Requerido" ForeColor="Red"
-                                    InitialValue="0" ValidationGroup="gpoInterno"></asp:RequiredFieldValidator>
+                                    ControlToValidate="ddlDependencia_D" ErrorMessage="*Depependencia" ForeColor="Red"
+                                    InitialValue="0" ValidationGroup="gpoInterno">*Requerido</asp:RequiredFieldValidator>
                                 <asp:TextBox ID="txtEscuela" runat="server" CssClass="form-control" Visible="false"></asp:TextBox>
                             </div>
                         </div>
@@ -518,10 +529,10 @@
                             </div>
                             <div class="col-md-4">
                                 <asp:TextBox ID="txtSemestre" runat="server" CssClass="form-control" Enabled="False" TabIndex="8"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="txtSemestre"
-                                    ErrorMessage="*Requerido" ForeColor="Red" ValidationGroup="gpoInterno"></asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ID="RequreqPatAlumiredFieldValidator13" runat="server" ControlToValidate="txtSemestre"
+                                    ErrorMessage="*Semestre" ForeColor="Red" ValidationGroup="gpoInterno">*Requerido</asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="txtSemestre"
-                                    ForeColor="Red" ErrorMessage="* Solo Números" ValidationGroup="gpoInterno" ValidationExpression="\d+"></asp:RegularExpressionValidator>
+                                    ForeColor="Red" ErrorMessage="*Semestre numerico" ValidationGroup="gpoInterno" ValidationExpression="\d+">*Solo números</asp:RegularExpressionValidator>
                             </div>
 
                             <div class="col-md-1">
@@ -531,7 +542,7 @@
                                 <asp:TextBox ID="txtGrupo" runat="server" CssClass="form-control" Enabled="False" TabIndex="9"
                                     MaxLength="1"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ControlToValidate="txtGrupo"
-                                    ErrorMessage="*Requerido" ForeColor="Red" ValidationGroup="gpoInterno"></asp:RequiredFieldValidator>
+                                    ErrorMessage="*Grupo" ForeColor="Red" ValidationGroup="gpoInterno">*Requerido</asp:RequiredFieldValidator>
                             </div>
                         </div>
                         <div class="row">
@@ -541,7 +552,7 @@
                             <div class="col-md-4">
                                 <asp:DropDownList ID="ddlPeriodo_Pago_I" runat="server" CssClass="custom-select" TabIndex="10">
                                 </asp:DropDownList>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator21" runat="server" ControlToValidate="ddlPeriodo_Pago_I" ErrorMessage="*Requerido" ForeColor="Red" InitialValue="0" ValidationGroup="gpoInterno"></asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator21" runat="server" ControlToValidate="ddlPeriodo_Pago_I" ErrorMessage="*Periodo Pago" ForeColor="Red" InitialValue="0" ValidationGroup="gpoInterno">*Requerido</asp:RequiredFieldValidator>
                             </div>
 
                             <div class="col-md-1">
@@ -561,7 +572,7 @@
                             </div>
                             <div class="col-md-9">
                                 <asp:TextBox ID="txtCorreo0" runat="server" CssClass="form-control" TabIndex="12"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="CampoReqCorreo0" runat="server" ControlToValidate="txtCorreo0" ErrorMessage="*Requerido" ForeColor="Red" ValidationGroup="gpoInterno"></asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ID="CampoReqCorreo0" runat="server" ControlToValidate="txtCorreo0" ErrorMessage="*Correo" ForeColor="Red" ValidationGroup="gpoInterno">*Requerido</asp:RequiredFieldValidator>
                                 &nbsp;<asp:RegularExpressionValidator runat="server" ControlToValidate="txtCorreo0" ErrorMessage="*Este correo no es válido"
                                     ValidationExpression="^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$" ValidationGroup="gpoInterno" ForeColor="Red" ID="ExpRegCorreo" />
                             </div>
@@ -581,7 +592,7 @@
                         <div class="col-md-4">
                             <asp:TextBox ID="txtNombreEst_Ext" CssClass="form-control" runat="server" TabIndex="100"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="txtNombreEst_Ext"
-                                ErrorMessage="*Requerido" ForeColor="Red" ValidationGroup="gpoInternoSM"></asp:RequiredFieldValidator>
+                                ErrorMessage="*Nombre" ForeColor="Red" ValidationGroup="gpoInternoSM">*Requerido</asp:RequiredFieldValidator>
                         </div>
 
                         <div class="col-md-1">
@@ -589,7 +600,7 @@
                         </div>
                         <div class="col-md-4">
                             <asp:TextBox ID="txtPaternoEst_Ext" CssClass="form-control" runat="server" TabIndex="101"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator23" runat="server" ControlToValidate="txtPaternoEst_Ext" ErrorMessage="*Requerido" ForeColor="Red" ValidationGroup="gpoInternoSM"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator23" runat="server" ControlToValidate="txtPaternoEst_Ext" ErrorMessage="*Apellido Paterno" ForeColor="Red" ValidationGroup="gpoInternoSM">*Requerido</asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="row">
@@ -599,7 +610,7 @@
                         <div class="col-md-4">
                             <asp:TextBox ID="txtMaternoEst_Ext" CssClass="form-control" runat="server" AutoPostBack="True" OnTextChanged="txtMaternoEst_Ext_TextChanged"
                                 TabIndex="102"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="requeridoMaternoExt" runat="server" ControlToValidate="txtMaternoEst_Ext" ErrorMessage="*Requerido" ForeColor="Red" ValidationGroup="gpoInternoSM"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="requeridoMaternoExt" runat="server" ControlToValidate="txtMaternoEst_Ext" ErrorMessage="*Apellido Materno" ForeColor="Red" ValidationGroup="gpoInternoSM">*Requerido</asp:RequiredFieldValidator>
                         </div>
 
                         <div class="col-md-1">
@@ -620,7 +631,7 @@
                         </div>
                         <div class="col-md-9">
                             <asp:TextBox ID="txtNombreEscuela_Ext" CssClass="form-control" runat="server" TabIndex="104"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator24" runat="server" ControlToValidate="txtNombreEscuela_Ext" ErrorMessage="*Requerido" ForeColor="Red" ValidationGroup="gpoInternoSM"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator24" runat="server" ControlToValidate="txtNombreEscuela_Ext" ErrorMessage="*Nombre de la Escuela" ForeColor="Red" ValidationGroup="gpoInternoSM">*Requerido</asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="row">
@@ -641,7 +652,7 @@
                                 ForeColor="Red" ErrorMessage="* Solo Números" ValidationGroup="gpoInternoSM"
                                 ValidationExpression="\d+"></asp:RegularExpressionValidator>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ControlToValidate="txtSemestreEst_Ext"
-                                ErrorMessage="*Requerido" ForeColor="Red" ValidationGroup="gpoInternoSM"></asp:RequiredFieldValidator>
+                                ErrorMessage="*Semestre" ForeColor="Red" ValidationGroup="gpoInternoSM">*Requerido</asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="row">
@@ -652,7 +663,7 @@
                             <asp:TextBox ID="txtGrupoEst_Ext" CssClass="form-control" runat="server" TabIndex="107" MaxLength="10"></asp:TextBox>
 
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ControlToValidate="txtGrupoEst_Ext"
-                                ErrorMessage="*Requerido" ForeColor="Red" ValidationGroup="gpoInternoSM"></asp:RequiredFieldValidator>
+                                ErrorMessage="*Grupo" ForeColor="Red" ValidationGroup="gpoInternoSM">*Requerido</asp:RequiredFieldValidator>
                         </div>
 
                         <div class="col-md-2">
@@ -676,7 +687,7 @@
                         </div>
                         <div class="col-md-3">
                             <asp:TextBox ID="txtCorreoEst_Ext" CssClass="form-control" runat="server" TabIndex="110"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator25" runat="server" ControlToValidate="txtCorreoEst_Ext" ErrorMessage="*Requerido" ForeColor="Red" ValidationGroup="gpoInternoSM"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator25" runat="server" ControlToValidate="txtCorreoEst_Ext" ErrorMessage="*Correo" ForeColor="Red" ValidationGroup="gpoInternoSM">*Requerido</asp:RequiredFieldValidator>
                         </div>
                     </div>
                 </asp:Panel>
@@ -732,6 +743,17 @@
                     <div class="col">
                         <asp:Label ID="lblMsj2" runat="server" Font-Bold="False" ForeColor="Red"></asp:Label>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        </div>
+                    <div class="col-md-4">
+                        <asp:ValidationSummary ID="valInterno" CssClass="aler alert-danger" runat="server" ValidationGroup="gpoInterno" HeaderText="Estos campos son requeridos:" />
+                        <asp:ValidationSummary ID="valExterno" CssClass="aler alert-danger" runat="server" ValidationGroup="gpoExterno" HeaderText="Estos campos son requeridos:"/>
+                        <asp:ValidationSummary ID="valInternoSM" CssClass="aler alert-danger" runat="server" ValidationGroup="gpoInternoSM"  HeaderText="Estos campos son requeridos:" />
+                    </div>
+                    <div class="col-md-4 text-center">
+                        </div>
                 </div>
                 <div class="row">
                     <div class="col text-center">

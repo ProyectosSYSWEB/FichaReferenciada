@@ -33,6 +33,15 @@ namespace EmisionPagoReferenciado.Form
         protected global::System.Web.UI.WebControls.Button btnLimpiar;
 
         /// <summary>
+        /// Control rowEspecificaciones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl rowEspecificaciones;
+
+        /// <summary>
         /// Control UpdatePanel11.
         /// </summary>
         /// <remarks>
@@ -103,6 +112,33 @@ namespace EmisionPagoReferenciado.Form
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlTipo_Participante;
+
+        /// <summary>
+        /// Control reqExterno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqExterno;
+
+        /// <summary>
+        /// Control reqInternoSM.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqInternoSM;
+
+        /// <summary>
+        /// Control reqInterno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqInterno;
 
         /// <summary>
         /// Control updPnlEmpUNACH.
@@ -906,13 +942,13 @@ namespace EmisionPagoReferenciado.Form
         protected global::System.Web.UI.WebControls.TextBox txtSemestre;
 
         /// <summary>
-        /// Control RequiredFieldValidator13.
+        /// Control RequreqPatAlumiredFieldValidator13.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator13;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequreqPatAlumiredFieldValidator13;
 
         /// <summary>
         /// Control RegularExpressionValidator2.
@@ -1444,6 +1480,33 @@ namespace EmisionPagoReferenciado.Form
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMsj2;
+
+        /// <summary>
+        /// Control valInterno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary valInterno;
+
+        /// <summary>
+        /// Control valExterno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary valExterno;
+
+        /// <summary>
+        /// Control valInternoSM.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary valInternoSM;
 
         /// <summary>
         /// Control btnCancelar.

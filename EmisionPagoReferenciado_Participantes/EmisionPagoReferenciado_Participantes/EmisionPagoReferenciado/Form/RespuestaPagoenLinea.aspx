@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RespuestaPagoenLinea.aspx.cs" Inherits="EmisionPagoReferenciado.Form.RespuestaPagoenLinea" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+       <script language="javascript" type="text/javascript">
+           function ConfirmaPagoFU2(referencia) {
+                  window.location.href = "https://fundacionunach.org/donacion/?p=factura&ref=" + referencia;
+           }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="pasos">
@@ -157,6 +162,7 @@
                 </asp:UpdatePanel>
             </div>
         </div>
+        <asp:HiddenField ID="mp_reference" runat="server" Value="mpreference" />
     </div>
 
 

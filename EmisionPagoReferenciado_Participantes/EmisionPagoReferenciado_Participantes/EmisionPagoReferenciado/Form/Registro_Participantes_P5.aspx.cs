@@ -12,8 +12,8 @@ using CrystalDecisions.Shared;
 using CapaEntidad;
 using CapaNegocio;
 #region Hecho por
-//Nombre:      Melissa Alejandra Rodríguez González
-//Correo:      melissargz@hotmail.com
+//Nombre:      Lisseth Gtz. Gómez
+//Correo:      lis_go82@hotmail.com
 //Institución: Unach
 #endregion
 namespace EmisionPagoReferenciado.Form
@@ -153,7 +153,7 @@ namespace EmisionPagoReferenciado.Form
             try
             {
                 ConsultarDatos();
-                VerificaEvento();
+                //VerificaEvento();
 
                 //if (SesionUsu.UsuWXI != "X")
                 //if (SesionUsu.UsuWXI != "X")
@@ -266,7 +266,7 @@ namespace EmisionPagoReferenciado.Form
                    
                 }
             }
-            else if (rbtFormaPago.SelectedValue == "2" || rbtFormaPago.SelectedValue == "3" || rbtFormaPago.SelectedValue == "4")
+            else if (rbtFormaPago.SelectedValue == "2" || rbtFormaPago.SelectedValue == "3" || rbtFormaPago.SelectedValue == "4" || rbtFormaPago.SelectedValue == "5")
             {
                 //SesionUsu.FichaRefIDPagoTC = SesionUsu.FichaRefID;
                 //if (SesionUsu != null)
@@ -281,8 +281,8 @@ namespace EmisionPagoReferenciado.Form
                     mp_customername.Value = SesionUsu.UsuNombre + " " + SesionUsu.UsuApaterno + " " + SesionUsu.UsuAMaterno;
                     mp_currency.Value = "1";
                     mp_signature.Value = CNComun.GetSHA256(Convert.ToString(mp_order.Value + mp_reference.Value + mp_amount.Value));
-                    mp_urlsuccess.Value = "https://sysweb.unach.mx/FichaReferenciada/Form/Registro_Participantes_P6.aspx"; //"Registro_Participantes_P7.aspx";
-                    mp_urlfailure.Value = "https://sysweb.unach.mx/FichaReferenciada/Form/Registro_Participantes_P6.aspx"; // "Registro_Participantes_P7.aspx";
+                    mp_urlsuccess.Value = "https://sysweb.unach.mx/FichaReferenciadaPruebas/Form/Registro_Participantes_P6.aspx"; //"Registro_Participantes_P7.aspx";
+                    mp_urlfailure.Value = "https://sysweb.unach.mx/FichaReferenciadaPruebas/Form/Registro_Participantes_P6.aspx"; // "Registro_Participantes_P7.aspx";
 
                     ClientScript.RegisterStartupScript(this.GetType(), "myScript", "PagBancomer();", true);
                 //}
@@ -319,8 +319,9 @@ namespace EmisionPagoReferenciado.Form
             //string ruta = "../Reportes/VisualizadorCrystal.aspx?cverep=1&Nombre=" + lblNombre_l.Text + "&Referencia=" + lblReferencia_l.Text + "&Importe=" + lblImporte_l.Text.TrimStart('$') + "&Vigencia=" + lblVigencia_l.Text + "&Concepto=" + hddnConceptos.Value + "&Observaciones=" + hddnObservaciones.Value;
             //string _open = "window.open('" + ruta + "', 'miniContenedor', 'toolbar=yes', 'location=no', 'menubar=yes', 'resizable=yes');";
             //ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), _open, true);
+            if (SesionUsu != null)           
+                txtCorreo.Text = SesionUsu.UsuCorreo;
 
-            txtCorreo.Text = SesionUsu.UsuCorreo;
             modalCorreo.Show();
         }
 

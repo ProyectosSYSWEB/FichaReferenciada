@@ -6,7 +6,7 @@ using System.Globalization;
 using System.Data;
 using System.Data.OracleClient;
 #region Hecho por
-//Nombre:      Melissa Alejandra Rodríguez González
+//Nombre:      Lisseth Gtz. Gómez
 //Correo:      melissargz@hotmail.com
 //Institución: Unach
 #endregion

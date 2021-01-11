@@ -122,6 +122,7 @@ namespace EmisionPagoReferenciado.Form
                     lblFolio.Text = SesionMultipago.Order;
                     lblMedioPago.Text = (SesionMultipago.PaymentMethod == "TDX") ? "VISA/MASTERCARD" : "";
                     lblReferencia.Text = SesionMultipago.Reference;
+                    mp_reference.Value = SesionMultipago.Reference;
                     lblImporte.Text = string.Format("{0:c2}", Convert.ToDouble(SesionMultipago.Amount));
                     lblAutorizacion.Text = SesionMultipago.Authorization;
                     lblNumTarjeta.Text = SesionMultipago.PanComplete;
@@ -166,14 +167,26 @@ namespace EmisionPagoReferenciado.Form
                                             lblMsj.Text = Msj + SesionMultipago.Reference + "***";
                                         else
                                         {
-                                            SesionMultipago.Id_Fact = SesionMultipago.Id_Fact;
-                                            lblMsj.Text = "*" + Msj + "*";
-                                            string ruta = "../Reportes/VisualizadorCrystal.aspx?cverep=3&idFact=" + SesionMultipago.Id_Fact;
-                                            string _open = "window.open('" + ruta + "', 'miniContenedor', 'toolbar=yes', 'location=no', 'menubar=yes', 'resizable=yes');";
-                                            ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), _open, true);                                            
-                                            Session["Multipago"] = null;
-                                            SesionUsu.FichaReferencia = string.Empty;
-                                            SesionUsu.FichaRefID = 0;
+                                            if (mp_reference.Value.Substring(0, 5) == "99999")
+                                            {
+                                                lblMsj.Text = "*" + mp_reference.Value.Substring(0, 5) + "*";
+                                                //mp_reference.Value = lblReferencia.Text;
+                                                //ScriptManager.RegisterStartupScript(this, GetType(), "FU", "ConfirmaPagoFU();", true);
+                                                ClientScript.RegisterStartupScript(this.GetType(), "FU", "ConfirmaPagoFU();", true);
+                                                Response.Redirect("https://fundacionunach.org/donacion/?p=factura&ref=" + mp_reference.Value);
+
+                                            }
+                                            else
+                                            {
+                                                SesionMultipago.Id_Fact = SesionMultipago.Id_Fact;
+                                                lblMsj.Text = "*" + Msj + "*";
+                                                string ruta = "../Reportes/VisualizadorCrystal.aspx?cverep=3&idFact=" + SesionMultipago.Id_Fact;
+                                                string _open = "window.open('" + ruta + "', 'miniContenedor', 'toolbar=yes', 'location=no', 'menubar=yes', 'resizable=yes');";
+                                                ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), _open, true);
+                                                Session["Multipago"] = null;
+                                                SesionUsu.FichaReferencia = string.Empty;
+                                                SesionUsu.FichaRefID = 0;
+                                            }
                                         }
                                     }
                                 }

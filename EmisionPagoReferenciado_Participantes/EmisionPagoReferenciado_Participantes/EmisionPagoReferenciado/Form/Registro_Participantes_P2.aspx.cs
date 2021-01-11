@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 using CapaEntidad;
 using CapaNegocio;
 #region Hecho por
-//Nombre:      Melissa Alejandra Rodríguez González
+//Nombre:      Lisseth Gtz. Gómez
 //Correo:      melissargz@hotmail.com
 //Institución: Unach
 #endregion
@@ -583,8 +583,8 @@ namespace EmisionPagoReferenciado.Form
                 ObjFichaReferenciada.Grupo = SesionUsu.UsuGrupo;
                 ObjFichaReferenciada.Semestre = SesionUsu.UsuSemestre;
                 ObjFichaReferenciada.Evento = SesionUsu.UsuEvento;
-
-                CNFichaReferenciada.InsertarFichaReferenciada(ref ObjFichaReferenciada, ref Verificador);
+                ObjFichaReferenciada.Correo = SesionUsu.UsuCorreo;
+                CNFichaReferenciada.InsertarFichaReferenciada(ref ObjFichaReferenciada, SesionUsu.UsuCorreo, ref Verificador);
 
                 if (Verificador == "0")
                 {

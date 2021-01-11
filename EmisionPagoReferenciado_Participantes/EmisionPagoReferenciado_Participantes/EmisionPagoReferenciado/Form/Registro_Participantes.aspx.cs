@@ -39,6 +39,11 @@ namespace EmisionPagoReferenciado.Form
                     ClientScript.RegisterStartupScript(GetType(), "Mensaje", "MensajeCaja();", true);
                     reqPatAlum.ValidationGroup = string.Empty;
                 }
+                else if(SesionUsu.UsuEvento=="ALUMNO")
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "MensajeAlumnos", "MensajeAlumnos();", true);
+
+                }
                 else
                     reqPatAlum.ValidationGroup = "gpoInterno";
             }
@@ -152,8 +157,8 @@ namespace EmisionPagoReferenciado.Form
                     //pnlParticipante_Gral.Visible = true;
                     txtNombreEst_Ext.Focus();
                     btnSiguiente.ValidationGroup = "gpoInternoSM";
-                }
-                else //Público General
+                }                
+                else if (SesionUsu.TipoParticipante == "X")
                 {
                     pnlParticipante_Gral.Visible = true;
                     txtNombre_Gral.Focus();
@@ -163,6 +168,11 @@ namespace EmisionPagoReferenciado.Form
                     SesionUsu.UsuWXI = "X";
                     btnSiguiente.ValidationGroup = "gpoExterno";
                 }
+                //else
+                //{
+                //    rowError.Visible = true;
+                //    lblMsj.Text = "<i class='fa fa-user - circle' aria-hidden='true'></i> Seleccionar un tipo de participante.";
+                //}
                 CNComun.LlenaCombo("pkg_pagos_2016.Obt_Combo_Grado_Estudio_Evento", ref ddlNivel_Ext, "p_evento", "p_tipo_participante", SesionUsu.UsuEvento, ddlTipo_Participante.SelectedValue);
 
 
@@ -275,7 +285,7 @@ namespace EmisionPagoReferenciado.Form
                                 pnlEstudianteUNACH.Visible = true;
                                 btnRegistrar.Visible = false;
                                 ddlDependencia_D.Enabled = false;
-                                ddlCarrera.Enabled = false;
+                                //ddlCarrera.Enabled = false;
                                 txtNombreReg.Enabled = false;
                                 txtPaternoReg.Enabled = false;
                                 txtMaternoReg.Enabled = false;
@@ -313,6 +323,11 @@ namespace EmisionPagoReferenciado.Form
                                     txtCarrera.Visible = false;
                                     txtCarrera.Text = ddlCarrera.SelectedItem.Text;
                                 }
+                                if (ddlNivel.SelectedValue == "N")
+                                    ddlCarrera.Enabled = true;
+                                else
+                                    ddlCarrera.Enabled = false;
+
                                 txtSemestre.Text = ObjAlumno.Semestre;
                                 txtGrupo.Text = ObjAlumno.Grupo;
                                 txtCorreo0.Text = ObjAlumno.Correo;
@@ -329,8 +344,10 @@ namespace EmisionPagoReferenciado.Form
                             }
                             else
                             {
+                                txtCorreo0.Text = ObjAlumno.Correo;
                                 rowError.Visible = true;
-                                lblMsj.Text = "Matricula Suspendida";
+                                EnviarCorreoActivacion(txtMatricula.Text.ToUpper(), ddlNivel.SelectedValue);
+                                lblMsj.Text = "Tu clave "+txtMatricula.Text+" aún no ha sido activada, para realizar la activación deberas consultar tu correo "+txtCorreo0.Text;
                             }
                         }
                         else
@@ -726,7 +743,8 @@ namespace EmisionPagoReferenciado.Form
             //SesionUsu = (Sesion)Session["Sesion"];
             lblMsj.Text = string.Empty;
             rowError.Visible = false;
-            lblEspecificaciones.Visible = false;
+            //lblEspecificaciones.Visible = false;
+            rowEspecificaciones.Visible = false;
             try
             {
                 Session["ConfTipoPart"] = null;
@@ -795,13 +813,13 @@ namespace EmisionPagoReferenciado.Form
                         if (ObjParticipante.EventoEspecificacion != "" || ObjParticipante.EventoEspecificacion != string.Empty)
                         {
                             //lblEspecificacionesLey.Visible = true; 02/07
-                            lblEspecificaciones.Visible = true;
+                            rowEspecificaciones.Visible = true;
                             lblEspecificaciones.Text = ObjParticipante.EventoEspecificacion;
                         }
                         else
                         {
                             //lblEspecificacionesLey.Visible = false;  02/07
-                            lblEspecificaciones.Visible = false;
+                            rowEspecificaciones.Visible = false;
                             lblEspecificaciones.Text = string.Empty;
                         }
 
@@ -822,7 +840,7 @@ namespace EmisionPagoReferenciado.Form
                     lblTipo_Participante.Visible = false;
                     pnlEstudianteUNACH_RegMatricula.Visible = true;
                     //lblEspecificacionesLey.Visible = false;  02/07
-                    lblEspecificaciones.Visible = false;
+                    rowEspecificaciones.Visible = false;
                     lblEspecificaciones.Text = string.Empty;
                     //SesionUsu.TipoParticipante = "S";
                     CargarCombos();
@@ -1126,6 +1144,8 @@ namespace EmisionPagoReferenciado.Form
             string ruta = string.Empty;
             string asunto = string.Empty;
             string contenido = string.Empty;
+            rowError.Visible = false;
+            lblMsj.Text = string.Empty;
             try
             {
                 System.Net.Mail.MailMessage mmsg = new System.Net.Mail.MailMessage();

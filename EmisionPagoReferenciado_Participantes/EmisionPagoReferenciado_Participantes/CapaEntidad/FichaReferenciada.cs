@@ -30,6 +30,13 @@ namespace CapaEntidad
             set { _Referencia = value; }
         }
 
+        private string _Correo;
+        public string Correo
+        {
+            get { return _Correo.Trim(); }
+            set { _Correo = value.Trim(); }
+        }
+
         //--DATOS FISCALES--//
         private string _TipoPersonaFiscal;
         public string TipoPersonaFiscal
@@ -106,6 +113,34 @@ namespace CapaEntidad
         {
             get { return _CorreoFiscal.Trim(); }
             set { _CorreoFiscal = value.Trim(); }
+        }
+
+        private string _CFDI;
+        public string CFDI
+        {
+            get { return _CFDI.Trim(); }
+            set { _CFDI = value.Trim(); }
+        }
+
+        private string _TipoServicioFiscal;
+        public string TipoServicioFiscal
+        {
+            get { return _TipoServicioFiscal.Trim(); }
+            set { _TipoServicioFiscal = value.Trim(); }
+        }
+
+        private string _ObsSolicitudFactura;
+        public string ObsSolicitudFactura
+        {
+            get { return _ObsSolicitudFactura.Trim(); }
+            set { _ObsSolicitudFactura = value.Trim(); }
+        }
+
+        private string _FormaPagoFiscal;
+        public string FormaPagoFiscal
+        {
+            get { return _FormaPagoFiscal.Trim(); }
+            set { _FormaPagoFiscal = value.Trim(); }
         }
 
         private string _ComprobanteFiscal;

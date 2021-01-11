@@ -12,7 +12,7 @@ using CrystalDecisions.ReportSource;
 using CrystalDecisions.CrystalReports;
 
 #region Hecho por
-//Nombre:      Melissa Alejandra Rodríguez González
+//Nombre:      Lisseth Gtz. Gómez
 //Correo:      melissargz@hotmail.com
 //Institución: Unach
 #endregion
@@ -70,7 +70,12 @@ namespace EmisionPagoReferenciado
             }
         }
 
-        
+        protected void Page_UnLoad(object sender, EventArgs e)
+        {
+            //report.Close();
+        }
+
+
 
         private void rptPDF_Ingresos(String Reporte, object[] Parametros, string NombreReporte)
         {
@@ -135,6 +140,7 @@ namespace EmisionPagoReferenciado
                 report.Close();
                 report.Dispose();
                 CR_Reportes.Dispose();
+                GC.Collect();
             }
         }
         private void rptReporte_FE(String Reporte, object[] Valores)
@@ -156,9 +162,9 @@ namespace EmisionPagoReferenciado
                 connectionInfo.Password = "unach09";
                 SetDBLogonForReport(connectionInfo, report);
                 report.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, false, "RepComprobanteFiscal");
-                CR_Reportes.ReportSource = report;
-                report.Close();
-                report.Dispose();
+                //CR_Reportes.ReportSource = report;
+                //report.Close();
+                //report.Dispose();
             }
             catch (Exception ex)
             {
@@ -167,10 +173,12 @@ namespace EmisionPagoReferenciado
             finally
             {
 
-                //report.Close();
-                //report.Dispose();
-
+                //CR_Reportes.Dispose();
+                CR_Reportes.ReportSource = report;
+                report.Close();
+                report.Dispose();
                 CR_Reportes.Dispose();
+                GC.Collect();
             }
         }
         private void rptPDF(String Reporte, String Nombre, String Referencia, Double Importe, String Vigencia, String Concepto, String Observaciones)
@@ -212,6 +220,8 @@ namespace EmisionPagoReferenciado
                 report.Close();
                 report.Dispose();
                 CR_Reportes.Dispose();
+                CR_Reportes = null;
+                GC.Collect();
             }
         }
         private void rptPDFAdjunto(String Reporte, String Nombre, String Referencia, Double Importe, String Vigencia, String Concepto, String Observaciones)
@@ -254,16 +264,18 @@ namespace EmisionPagoReferenciado
                 report.Close();
                 report.Dispose();
                 CR_Reportes.Dispose();
+                GC.Collect();
             }
         }
         private void rptPDF2(String Reporte, string Evento, string Matricula)
         {
+            ConnectionInfo connectionInfo = new ConnectionInfo();
+            System.Web.UI.Page p = new System.Web.UI.Page();
+            CrystalDecisions.CrystalReports.Engine.ReportDocument report = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
             try
             {
 
-                ConnectionInfo connectionInfo = new ConnectionInfo();
-                System.Web.UI.Page p = new System.Web.UI.Page();
-                CrystalDecisions.CrystalReports.Engine.ReportDocument report = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 report.Load(p.Server.MapPath("~") + Reporte);
                 report.SetParameterValue(0, Matricula);
                 report.SetParameterValue(1, Evento);
@@ -273,9 +285,9 @@ namespace EmisionPagoReferenciado
                 connectionInfo.Password = "unach09";
                 SetDBLogonForReport(connectionInfo, report);
                 report.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, false, "FichaReferenciada");
-                CR_Reportes.ReportSource = report;
-                report.Close();
-                report.Dispose();
+                //CR_Reportes.ReportSource = report;
+                //report.Close();
+                //report.Dispose();
             }
             catch (Exception ex)
             {
@@ -283,9 +295,13 @@ namespace EmisionPagoReferenciado
             }
             finally
             {
-                //CR_Reportes.ReportSource = report;
-              
+                //CR_Reportes.ReportSource = report;              
+                //CR_Reportes.Dispose();
+                CR_Reportes.ReportSource = report;
+                report.Close();
+                report.Dispose();
                 CR_Reportes.Dispose();
+                GC.Collect();
             }
         }        
         private void SetDBLogonForReport(ConnectionInfo connectionInfo, ReportDocument reportDocument)

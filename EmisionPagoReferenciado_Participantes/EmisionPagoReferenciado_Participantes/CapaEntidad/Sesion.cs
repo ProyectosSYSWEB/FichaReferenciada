@@ -42,7 +42,7 @@ namespace CapaEntidad
             set { _UsuCelular = value.Trim(); }
         }
 
-        private string _UsuCorreo;
+        private string _UsuCorreo=string.Empty;
         public string UsuCorreo
         {
             get {
@@ -282,6 +282,20 @@ namespace CapaEntidad
         {
             get { return _FichaMetodoPago.Trim(); }
             set { _FichaMetodoPago = value.Trim(); }
+        }
+
+        private string _FichaUsoCFDI;
+        public string FichaUsoCFDI
+        {
+            get { return _FichaUsoCFDI.Trim(); }
+            set { _FichaUsoCFDI = value.Trim(); }
+        }
+
+        private string _FichaObsSolicitudFactura;
+        public string FichaObsSolicitudFactura
+        {
+            get { return _FichaObsSolicitudFactura.Trim(); }
+            set { _FichaObsSolicitudFactura = value.Trim(); }
         }
 
 

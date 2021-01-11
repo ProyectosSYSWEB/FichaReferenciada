@@ -43,7 +43,7 @@
 </footer>--%>
 <!-- Footer -->
 <!-- Footer -->
-<footer class="page-footer font-small pt-4"  style="background-color:#d2af47">
+<footer class="page-footer font-small pt-4" style="background-color: #585858; color: #fff">
 
   <!-- Footer Text -->
   <div class="container-fluid text-center text-md-left">
