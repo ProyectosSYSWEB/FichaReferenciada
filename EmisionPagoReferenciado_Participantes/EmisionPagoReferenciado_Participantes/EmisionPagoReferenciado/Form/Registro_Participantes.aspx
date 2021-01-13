@@ -12,8 +12,10 @@
         }
 
         function MensajeAlumnos() {
-            jAlert("Con el objetivo de salvaguardar la salud del personal y de los estudiantes que realizan trámites ante la Dirección de Servicios Escolares, se les informa que por instrucciones superiores, se suspenderá la atención al público del 11 al 22 de enero del presente, para reanudar el día 25 de enero, si nuestras autoridades así lo permiten. Los invitamos a estar pendientes de los avisos a través de nuestros medios electrónicos. Agradecemos su comprensión.", "AVISO");
-            //jAlert('close');
+            //jAlert("Con el objetivo de salvaguardar la salud del personal y de los estudiantes que realizan trámites ante la Dirección de Servicios Escolares, se les informa que por instrucciones superiores, se suspenderá la atención al público del 11 al 22 de enero del presente, para reanudar el día 25 de enero, si nuestras autoridades así lo permiten. Los invitamos a estar pendientes de los avisos a través de nuestros medios electrónicos. Agradecemos su comprensión.", "INFORMACIÓN");
+            $(document).ready(function () {
+                $('#myModal').modal('toggle')
+            });
 
         }
 
@@ -774,7 +776,20 @@
     </div>
 
 
-
+     <div id="myModal" class="modal fade">
+            <div class="modal-dialog modal-login">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Aviso</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        Con el objetivo de salvaguardar la salud del personal y de los estudiantes que realizan trámites en la Dirección de Servicios Escolares, quedan suspendidos los <strong> PAGOS DE CERTIFICACIÓN DE DOCUMENTOS </strong> hasta nuevo aviso. Agradecemos su comprensión.
+                    </div>
+                    <div class="modal-footer"><button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Cerrar</button></div>
+                </div>
+            </div>
+        </div>
     <script src="../Scripts/jCodigoPostal.js"></script>
 </asp:Content>
 

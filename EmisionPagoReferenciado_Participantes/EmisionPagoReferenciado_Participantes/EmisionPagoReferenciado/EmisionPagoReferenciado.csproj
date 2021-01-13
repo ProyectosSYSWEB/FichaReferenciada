@@ -168,6 +168,7 @@
     <Content Include="Prueba.aspx" />
     <Content Include="Reportes\VisualizadorCrystal.aspx" />
     <Content Include="Scripts\jCodigoPostal.js" />
+    <Content Include="Scripts\jquery.alerts.js" />
     <Content Include="Scripts\Reportes.js" />
     <Content Include="Styles\grid.css" />
     <Content Include="Styles\media-queries.css" />

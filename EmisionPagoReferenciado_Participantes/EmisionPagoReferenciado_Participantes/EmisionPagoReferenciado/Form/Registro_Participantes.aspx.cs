@@ -34,6 +34,7 @@ namespace EmisionPagoReferenciado.Form
             if (!IsPostBack)
             {
                 Inicializar();
+                
                 if (SesionUsu.UsuEvento == "FINANZAS_2016" || SesionUsu.UsuEvento == "RENDIMIENTOS")
                 {
                     ClientScript.RegisterStartupScript(GetType(), "Mensaje", "MensajeCaja();", true);
@@ -766,7 +767,7 @@ namespace EmisionPagoReferenciado.Form
                     CNParticipante.ConsultarEvento(ref ObjParticipante, ref Verificador);
                     if (ObjParticipante.StatusEvento == 'N')
                     {
-                        SesionUsu.UsuEvento = "ALUMNO";
+                        //SesionUsu.UsuEvento = "ALUMNO";
                         rowError.Visible = true;
                         lblMsj.Text = "El Evento no esta Vigente, favor de comunicarse con el administrador de la Dependencia";
                         //pnlEstudianteUNACH_RegMatricula.Visible = false;
