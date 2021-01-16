@@ -11,6 +11,7 @@ using CapaNegocio;
 //Correo:      lis_go82@hotmail.com
 //Institución: Unach
 #endregion
+    
 namespace EmisionPagoReferenciado.Form
 {
     public partial class Registro_Participantes : System.Web.UI.Page
