@@ -12,7 +12,7 @@ namespace CapaEntidad
         private string _Descripcion;
         private string _EtiquetaDos;
         private string _EtiquetaTres;
-        private string _EtiquetaCuatro;
+        private string _EtiquetaCuatro = string.Empty;
         private string _EtiquetaCinco;
         private string _EtiquetaSeis;
         private string _EtiquetaSiete;

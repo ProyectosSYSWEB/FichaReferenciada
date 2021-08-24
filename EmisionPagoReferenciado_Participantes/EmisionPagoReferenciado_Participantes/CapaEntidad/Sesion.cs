@@ -14,6 +14,14 @@ namespace CapaEntidad
             set { _UsuWXI = value.Trim(); }
         }
 
+        private string _UsuWXIAdmon="X";
+        public string UsuWXIAdmon
+        {
+            get { return _UsuWXIAdmon.Trim(); }
+            set { _UsuWXIAdmon = value.Trim(); }
+        }
+
+
         private string _ComponentesExtras="N";
         public string ComponentesExtras
         {

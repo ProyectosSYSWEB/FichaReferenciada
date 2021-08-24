@@ -7,11 +7,13 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace EmisionPagoReferenciado {
-    
-    
-    public partial class Site1 {
-        
+namespace EmisionPagoReferenciado
+{
+
+
+    public partial class Site1
+    {
+
         /// <summary>
         /// Control Head1.
         /// </summary>
@@ -20,7 +22,7 @@ namespace EmisionPagoReferenciado {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
-        
+
         /// <summary>
         /// Control HeadContent.
         /// </summary>
@@ -29,7 +31,7 @@ namespace EmisionPagoReferenciado {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadContent;
-        
+
         /// <summary>
         /// Control form1.
         /// </summary>
@@ -38,7 +40,7 @@ namespace EmisionPagoReferenciado {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
+
         /// <summary>
         /// Control ToolkitScriptManager1.
         /// </summary>
@@ -46,8 +48,8 @@ namespace EmisionPagoReferenciado {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::AjaxControlToolkit.ToolkitScriptManager ToolkitScriptManager1;
-        
+        protected global::System.Web.UI.ScriptManager ToolkitScriptManager1;
+
         /// <summary>
         /// Control NavigationMenu.
         /// </summary>
@@ -56,7 +58,7 @@ namespace EmisionPagoReferenciado {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Menu NavigationMenu;
-        
+
         /// <summary>
         /// Control MainContent.
         /// </summary>
@@ -65,7 +67,7 @@ namespace EmisionPagoReferenciado {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
-        
+
         /// <summary>
         /// Control Image1.
         /// </summary>
@@ -74,7 +76,7 @@ namespace EmisionPagoReferenciado {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image Image1;
-        
+
         /// <summary>
         /// Control pie.
         /// </summary>
@@ -83,7 +85,7 @@ namespace EmisionPagoReferenciado {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::EmisionPagoReferenciado.Form.CUPiePagina pie;
-        
+
         /// <summary>
         /// Control lblMsj.
         /// </summary>

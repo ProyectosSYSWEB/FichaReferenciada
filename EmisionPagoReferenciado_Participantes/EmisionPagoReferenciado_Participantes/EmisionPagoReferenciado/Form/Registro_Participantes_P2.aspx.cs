@@ -92,6 +92,8 @@ namespace EmisionPagoReferenciado.Form
                     {
                         if (SesionUsu.UsuWXI != "X")
                             Response.Redirect("Registro_Participantes_P3.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXI=" + SesionUsu.UsuWXI);
+                        else if (SesionUsu.UsuWXIAdmon != "X")
+                            Response.Redirect("Registro_Participantes_P3.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXIEvento=" + SesionUsu.UsuWXIAdmon);
                         else
                             Response.Redirect("Registro_Participantes_P3.aspx" + "?Evento=" + SesionUsu.UsuEvento);
                     }
@@ -114,6 +116,8 @@ namespace EmisionPagoReferenciado.Form
             {
                 if (SesionUsu.UsuWXI != "X")
                     Response.Redirect("Registro_Participantes.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXI=" + SesionUsu.UsuWXI);
+                else if (SesionUsu.UsuWXIAdmon != "X")
+                    Response.Redirect("Registro_Participantes.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXIEvento=" + SesionUsu.UsuWXIAdmon);
                 else
                     Response.Redirect("Registro_Participantes.aspx" + "?Evento=" + SesionUsu.UsuEvento);
             }
@@ -584,7 +588,7 @@ namespace EmisionPagoReferenciado.Form
                 ObjFichaReferenciada.Semestre = SesionUsu.UsuSemestre;
                 ObjFichaReferenciada.Evento = SesionUsu.UsuEvento;
                 ObjFichaReferenciada.Correo = SesionUsu.UsuCorreo;
-                CNFichaReferenciada.InsertarFichaReferenciada(ref ObjFichaReferenciada, SesionUsu.UsuCorreo, ref Verificador);
+                CNFichaReferenciada.InsertarFichaReferenciada(ref ObjFichaReferenciada, SesionUsu.UsuCorreo, SesionUsu.UsuWXI, ref Verificador);
 
                 if (Verificador == "0")
                 {

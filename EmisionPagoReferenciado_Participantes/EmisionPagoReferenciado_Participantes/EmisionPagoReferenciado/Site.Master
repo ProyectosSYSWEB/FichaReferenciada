@@ -13,7 +13,6 @@
     <%--<link href="~/Styles/grid.css" rel="stylesheet" type="text/css" />--%>
     <link rel="stylesheet" href="~/bootstrap/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="../Scripts/jquery.alerts.js"></script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="~/bootstrap/css/mdb.css">
 
@@ -65,6 +64,13 @@
         .step-content {
             width: 90%;
         }
+
+       .nav-tabs .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    color: #5f5f5f;
+}
     </style>
     <script type="text/javascript">
         window.history.forward();
@@ -87,8 +93,9 @@
 </head>
 <body onload="noBack();">
     <form id="form1" runat="server">
-        <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
-        </asp:ToolkitScriptManager>
+        <%--<asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+        </asp:ToolkitScriptManager>--%>
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #18386b;">
             <div class="top-line" style="width: 100%">
                 <div class="d-flex justify-content-between">
@@ -159,7 +166,7 @@
         <%--<div class="top-line">
                 <asp:Image ID="Image1" runat="server" ImageUrl="" Width="130px"/>
             </div>--%>
-        <div class="container card">
+        <div class="card" style="width: 98%;    padding-right: 15px;    padding-left: 15px;    margin-right: auto;    margin-left: auto;">
             <div style="font-size: 15px; min-height: 400px;">
 
                 <asp:ContentPlaceHolder ID="MainContent" runat="server" />

@@ -763,6 +763,24 @@ namespace CapaNegocio
             return clave;
 
         }
+        public string ConsultaTipoUsu(Usuario objUsuario, ref string Verificador)
+        {
+            string clave = "0";
+            try
+            {
+
+                CD_Comun CDComun = new CD_Comun();
+                clave = CDComun.ConsultaTipoUsu(objUsuario, ref Verificador);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return clave;
+
+        }
+
         public string GetSHA256(string Signature)
         {
             string message;
@@ -847,7 +865,7 @@ namespace CapaNegocio
 
             //Hay que crear las credenciales del correo emisor
             cliente.Credentials =
-                new System.Net.NetworkCredential("sysweb@unach.mx", "Dsia890#");
+                new System.Net.NetworkCredential("sysweb@unach.mx", "cfgdfsgcqsxrnioo");
 
             cliente.Port = 587;
             cliente.EnableSsl = true;
@@ -902,7 +920,7 @@ namespace CapaNegocio
 
             //Hay que crear las credenciales del correo emisor
             cliente.Credentials =
-                new System.Net.NetworkCredential("sysweb@unach.mx", "Dsia890#");
+                new System.Net.NetworkCredential("sysweb@unach.mx", "cfgdfsgcqsxrnioo");
 
             cliente.Port = 587; //25;
             cliente.EnableSsl = true; //false;

@@ -21,7 +21,7 @@ namespace EmisionPagoReferenciado
         #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
-            SesionUsu = (Sesion)Session["Sesion"];
+            SesionUsu = (Sesion)Session["SesionFicha"];
        
            
             if (!IsPostBack)

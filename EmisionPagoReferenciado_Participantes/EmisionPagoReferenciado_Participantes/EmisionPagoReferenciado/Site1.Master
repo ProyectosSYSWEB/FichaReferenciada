@@ -39,8 +39,9 @@
 </head>
 <body onload="noBack();" >
     <form id="form1" runat="server">
-    <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
-    </asp:ToolkitScriptManager>
+   <%-- <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+    </asp:ToolkitScriptManager>--%>
+        <asp:ScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ScriptManager>
     <div class="page">
         <div class="header">
         <a href="http://www.sysweb.unach.mx" title="ir al Portal de Servicios Administrativos(SYSWEB)">

@@ -688,5 +688,34 @@ namespace CapaDatos
             }
             return clave;
         }
+        public string ConsultaTipoUsu(Usuario objUsuario, ref string Verificador)
+        {
+            CD_Datos CDDatos = new CD_Datos();
+            OracleCommand cmm = null;
+            string clave = "0";
+            objUsuario.TipoUsu = "N";
+            try
+            {
+
+                string[] Parametros = { "P_USUARIO" };
+                string[] ParametrosOut = { "P_TIPO_USU", "P_BANDERA" };
+                object[] Valores = { objUsuario.Nombre };
+                cmm = CDDatos.GenerarOracleCommand("VAL_USUARIO_ADMON", Parametros, Valores, ParametrosOut);
+                //if (Verificador == "0")
+                //{
+                    objUsuario.TipoUsu = Convert.ToString(cmm.Parameters["P_TIPO_USU"].Value);
+                //}
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                CDDatos.LimpiarOracleCommand(ref cmm);
+            }
+            return clave;
+        }
+
     }
 }

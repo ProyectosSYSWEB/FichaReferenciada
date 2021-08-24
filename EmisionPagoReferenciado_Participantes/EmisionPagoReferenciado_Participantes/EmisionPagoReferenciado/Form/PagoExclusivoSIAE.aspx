@@ -12,7 +12,7 @@
     <br />
     <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>--%>
- <div id="InfPagoRef" runat="server">
+    <div id="InfPagoRef" runat="server">
         <div class="row">
             <div class="col text-center">
                 <asp:Label ID="lblMsj" runat="server" Style="text-align: center" Font-Bold="True" ForeColor="#3166A2"></asp:Label>
@@ -101,20 +101,24 @@
                 </div>
             </div>
         </div>
-
-        <div class="container">
+        <div class="container" id="divExpiroFecha" runat="server" visible="false">
+            <div class="row alert alert-danger">
+                <div class="col text-center font-weight-bold">
+                    La vigencia de la referencia ya expiro.
+                </div>
+            </div>
+        </div>
+        <div class="container" id="divPagoTDC" runat="server">
             <div class="row text-center">
                 <div class="col-md-3">
                 </div>
                 <div class="col-md-3">
                     <asp:ImageButton ID="imgBttnPagoEfec" runat="server" ImageUrl="https://sysweb.unach.mx/resources/imagenes/formaPago_Efectivo.png" OnClick="imgBttnPagoEfec_Click" />
                     <h5>PAGO EN EFECTIVO</h5>
-
                 </div>
                 <div class="col-md-3">
                     <asp:ImageButton ID="imgBttnPagoTDC" runat="server" ImageUrl="https://sysweb.unach.mx/resources/imagenes/formaPago_TDC.png" OnClick="imgBttnPagoTDC_Click" />
                     <h5>PAGO CON TARJETA</h5>
-
                 </div>
                 <div class="col-md-3">
                 </div>
@@ -128,19 +132,20 @@
             <div class="row">
                 <div class="col-md-5">
                     <img src="../Images/pngocean.com.PNG" class="auto-style1" />
-                                        <%--<img src="../Images/acceso_denegado.PNG" class="auto-style1" />--%>
-
+                    <%--<img src="../Images/acceso_denegado.PNG" class="auto-style1" />--%>
                 </div>
                 <div class="col-md-7">
                     <br />
                     <br />
                     <br />
                     <br />
-                    <h1><p class="font-weight-bold blue-grey-text">ACCESO</p>
+                    <h1>
+                        <p class="font-weight-bold blue-grey-text">ACCESO</p>
                         <h1></h1>
                         <h1>
                             <p class="font-weight-bold blue-grey-text">
-                                DENEGADO</p>
+                                DENEGADO
+                            </p>
                             <h1></h1>
                         </h1>
                     </h1>
@@ -149,7 +154,7 @@
         </div>
         <br />
     </div>
-      <%--  </ContentTemplate>
+    <%--  </ContentTemplate>
     </asp:UpdatePanel>
-   --%>
+    --%>
 </asp:Content>

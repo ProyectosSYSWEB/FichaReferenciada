@@ -8,18 +8,17 @@ using System.Web.UI.WebControls;
 
 namespace EmisionPagoReferenciado.Form
 {
-    public partial class PagoExclusivoSIAE : System.Web.UI.Page
+    public partial class PagoExclusivoSYSWEB : System.Web.UI.Page
     {
         #region <Variables>
         String Verificador = string.Empty;
         Sesion SesionUsu = new Sesion();
         CN_Token CNToken = new CN_Token();
-        FichaReferenciadaSIAE objDatos = new FichaReferenciadaSIAE();
+        FichaReferenciada objDatos = new FichaReferenciada();
 
         #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Session["Sesion"] = null;
             if (Session["DatosRef"] == null)
                 Session["DatosRef"] = new Sesion();
 
@@ -47,27 +46,31 @@ namespace EmisionPagoReferenciado.Form
                     bool Valido = CNToken.ValidateToken(TK);
                     if (Valido == true)
                     {
-                        CNToken.ObtenerDatos(ref objDatos, TK, ref Verificador);
+                        CNToken.ObtenerDatosSYSWEB(ref objDatos, TK, ref Verificador);
                         if (Verificador == "0")
                         {
 
-                            SesionUsu.FichaRefID = objDatos.IdReferencia;
-                            SesionUsu.ImpConcepto = objDatos.Importe;
+                            SesionUsu.FichaRefID = objDatos.IdFichaBancaria;
+                            SesionUsu.ImpConcepto = objDatos.Total;
                             SesionUsu.UsuNombre = objDatos.Nombre;
                             SesionUsu.FichaReferencia = objDatos.Referencia;
                             lblNombre_l.Text = objDatos.Nombre;
                             lblReferencia_l.Text = objDatos.Referencia;
-                            lblImporte_l.Text = Convert.ToString(objDatos.Importe);
-                            lblConcepto_l.Text = objDatos.Concepto;
-                            lblVigencia_l.Text = objDatos.Vigencia;
+                            lblImporte_l.Text = Convert.ToString(objDatos.Total);
+                            lblConcepto_l.Text = objDatos.ObsSolicitudFactura;
+                            lblVigencia_l.Text = objDatos.FechaVigencia;
                             System.Web.HttpContext.Current.Session["DatosRef"] = SesionUsu;
                             if (Convert.ToInt32(objDatos.Dias_Vigencia) > 0)
                             {
+                                AccesoDen.Visible = false;
+                                InfPagoRef.Visible = true;
                                 divPagoTDC.Visible = true;
                                 divExpiroFecha.Visible = false;
                             }
                             else
                             {
+                                AccesoDen.Visible = false;
+                                InfPagoRef.Visible = true;
                                 divPagoTDC.Visible = false;
                                 divExpiroFecha.Visible = true;
                             }
@@ -77,37 +80,16 @@ namespace EmisionPagoReferenciado.Form
                     }
                     else
                     {
-                        divPagoTDC.Visible = false;
-                        divExpiroFecha.Visible = false;
                         AccesoDen.Visible = true;
                         InfPagoRef.Visible = false;
                     }
                 }
                 else
                 {
-                    divPagoTDC.Visible = false;
-                    divExpiroFecha.Visible = false;
                     AccesoDen.Visible = true;
                     InfPagoRef.Visible = false;
                 }
             }
-        }
-
-        //else
-        //{
-        //    SesionUsu = (Sesion)Session["DatosSIAE"];
-
-        //}
-
-
-
-        protected void imgBttnPagoEfec_Click(object sender, ImageClickEventArgs e)
-        {
-            string ruta = "../Reportes/VisualizadorCrystal.aspx?cverep=REP_SIAE&idFicha=" + SesionUsu.FichaRefID;
-
-            string _open = "window.open('" + ruta + "', 'miniContenedor', 'toolbar=yes', 'location=no', 'menubar=yes', 'resizable=yes');";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), _open, true);
-
         }
 
         protected void imgBttnPagoTDC_Click(object sender, ImageClickEventArgs e)
@@ -117,7 +99,13 @@ namespace EmisionPagoReferenciado.Form
             string nombre = SesionUsu.UsuNombre;
             string _open = "window.open('" + "PagoenLinea.aspx?order_m=" + SesionUsu.FichaRefID + "&reference_m=" + SesionUsu.FichaReferencia + "&amount_m=" + SesionUsu.ImpConcepto + "&customername_m=" + SesionUsu.UsuNombre + "', '_newtab');";
             ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), _open, true);
+        }
 
+        protected void imgBttnPagoEfec_Click(object sender, ImageClickEventArgs e)
+        {
+            string ruta = "../Reportes/VisualizadorCrystal.aspx?cverep=REP_SYSWEB&idFicha=" + SesionUsu.FichaReferencia;
+            string _open = "window.open('" + ruta + "', 'miniContenedor', 'toolbar=yes', 'location=no', 'menubar=yes', 'resizable=yes');";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), _open, true);
         }
     }
 }

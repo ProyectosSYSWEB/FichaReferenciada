@@ -12,8 +12,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
-        </asp:ToolkitScriptManager>
+        <%--<asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+        </asp:ToolkitScriptManager>--%>
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <asp:ContentPlaceHolder ID="MainContent" runat="server" />
     </form>
 </body>

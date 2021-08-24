@@ -68,6 +68,12 @@ namespace EmisionPagoReferenciado
                 object[] v1 = { idFicha };
                 rptPDF_Ingresos(Reporte, v1, "Ficha Referenciada");
             }
+            else if (cverep == "REP_SYSWEB")
+            {
+                Reporte = "Reportes\\Ficha_Referenciada_SYSWEB.rpt";
+                object[] v1 = { idFicha };
+                rptPDF_Ingresos(Reporte, v1, "Ficha Referenciada");
+            }
         }
 
         protected void Page_UnLoad(object sender, EventArgs e)

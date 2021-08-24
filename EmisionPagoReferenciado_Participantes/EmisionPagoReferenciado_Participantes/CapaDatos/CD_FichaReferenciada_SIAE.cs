@@ -26,6 +26,7 @@ namespace CapaDatos
                                         "p_Importe",
                                         "p_Vigencia",
                                         "p_Concepto",
+                                        "P_DIAS_VIGENCIA",
                                         "p_Bandera"
                                         };
 
@@ -38,8 +39,8 @@ namespace CapaDatos
                     objReferenciaSIAE.Vigencia = Convert.ToString(Cmd.Parameters["P_VIGENCIA"].Value);
                     objReferenciaSIAE.Concepto = Convert.ToString(Cmd.Parameters["P_CONCEPTO"].Value);
                     objReferenciaSIAE.Referencia = Convert.ToString(Cmd.Parameters["P_REFERENCIA"].Value);
+                    objReferenciaSIAE.Dias_Vigencia = Convert.ToInt32(Cmd.Parameters["P_DIAS_VIGENCIA"].Value);
                     objReferenciaSIAE.IdReferencia = id;
-
                 }
 
             }

@@ -142,9 +142,23 @@ namespace EmisionPagoReferenciado.Form
                 {
                     SesionUsu.UsuWXI = "X";
                     txtNumPlaza.Focus();
-                    txtNombre_Gral.Enabled = false;
-                    txtPaterno_Gral.Enabled = false;
-                    txtMaterno_Gral.Enabled = false;
+                    if (SesionUsu.UsuEvento == "202100043" && ddlTipo_Participante.SelectedValue == "1400")
+                    {
+                        divMsjParticipante.Visible = true;
+                        lblMsjParticipante.Text = "<strong>NOTA:</strong> Favor de llenar los campos con los datos del hijo del trabajador para poder realizar el registro de forma correcta.";
+                        txtNombre_Gral.Enabled = true;
+                        txtPaterno_Gral.Enabled = true;
+                        txtMaterno_Gral.Enabled = true;
+                        //txtNombre_Gral.Text = string.Empty;
+                        //txtPaterno_Gral.Text = string.Empty;
+                        //txtMaterno_Gral.Text = string.Empty;
+                    }
+                    else
+                    { 
+                        txtNombre_Gral.Enabled = false;
+                        txtPaterno_Gral.Enabled = false;
+                        txtMaterno_Gral.Enabled = false;
+                    }
                     pnlEmpUNACH.Visible = true;
                     btnSiguiente.ValidationGroup = "gpoExterno";
                 }
@@ -656,6 +670,8 @@ namespace EmisionPagoReferenciado.Form
                         {
                             if (SesionUsu.UsuWXI != "X")
                                 Response.Redirect("Registro_Participantes_P2.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXI=" + SesionUsu.UsuWXI);
+                            else if (SesionUsu.UsuWXIAdmon != "X")
+                                Response.Redirect("Registro_Participantes_P2.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXIEvento=" + SesionUsu.UsuWXIAdmon);
                             else
                                 Response.Redirect("Registro_Participantes_P2.aspx" + "?Evento=" + SesionUsu.UsuEvento);
                         }
@@ -685,7 +701,13 @@ namespace EmisionPagoReferenciado.Form
                                 if(SesionUsu.ComponentesExtras == "S")
                                     ObtenerValoresComponentesExtras();
 
-                                Response.Redirect("Registro_Participantes_P2.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXI=" + SesionUsu.UsuWXI);
+
+                                if (SesionUsu.UsuWXI != "X")
+                                    Response.Redirect("Registro_Participantes_P2.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXI=" + SesionUsu.UsuWXI);
+                                else if (SesionUsu.UsuWXIAdmon != "X")
+                                    Response.Redirect("Registro_Participantes_P2.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXIEvento=" + SesionUsu.UsuWXIAdmon);
+                                else
+                                    Response.Redirect("Registro_Participantes_P2.aspx" + "?Evento=" + SesionUsu.UsuEvento);
 
 
                             }
@@ -720,6 +742,7 @@ namespace EmisionPagoReferenciado.Form
 
             string var = SesionUsu.UsuEvento;
             SesionUsu.UsuWXI = "X";
+            SesionUsu.UsuWXIAdmon = "X";
             if (Request.QueryString["WXI"] != null)
             {
                 SesionUsu.UsuWXI = Request.QueryString["WXI"];
@@ -762,6 +785,9 @@ namespace EmisionPagoReferenciado.Form
                 //SesionUsu.UsuEvento_Exclusivo = "N";
                 if (Request.QueryString["Evento"] != null)
                 {
+                    if (Request.QueryString["WXIEvento"] != null)
+                        SesionUsu.UsuWXIAdmon = Request.QueryString["WXIEvento"];
+
                     SesionUsu.UsuEvento = Request.QueryString["Evento"];
                     ObjParticipante.Evento = SesionUsu.UsuEvento;
 
@@ -1421,9 +1447,21 @@ namespace EmisionPagoReferenciado.Form
             CNParticipante.ConsultarParticipanteEmpleado(ref ObjParticipante, ref Verificador);
             if (Verificador == "0")
             {
-                txtNombre_Gral.Text = ObjParticipante.Nombre.ToUpper();
-                txtPaterno_Gral.Text = ObjParticipante.APaterno.ToUpper();
-                txtMaterno_Gral.Text = ObjParticipante.AMaterno.ToUpper();
+                if (SesionUsu.UsuEvento == "202100043" && ddlTipo_Participante.SelectedValue == "1400")
+                {
+                    divMsjParticipante.Visible = true;
+                    lblMsjParticipante.Text = ObjParticipante.Nombre.ToUpper() + " " + ObjParticipante.APaterno.ToUpper() + " "+ ObjParticipante.AMaterno.ToUpper() + "<br/><strong>NOTA:</strong> Favor de llenar los campos con los datos del beneficiario(hijo) para poder realizar el registro de forma correcta.";
+
+                    txtNombre_Gral.Text = string.Empty;
+                    txtPaterno_Gral.Text = string.Empty;
+                    txtMaterno_Gral.Text = string.Empty;
+                }
+                else
+                {
+                    txtNombre_Gral.Text = ObjParticipante.Nombre.ToUpper();
+                    txtPaterno_Gral.Text = ObjParticipante.APaterno.ToUpper();
+                    txtMaterno_Gral.Text = ObjParticipante.AMaterno.ToUpper();
+                }
                 btnSiguiente.Visible = true;
                 btnSiguiente.Enabled = true;
                 btnCancelar.Visible = true;

@@ -15,7 +15,50 @@ namespace CapaDatos
 {
     public class CD_FichaReferenciada
     {
+        public void ConsultarFichaReferenciadaSYSWEB(ref FichaReferenciada objReferencia, ref string Verificador)
+        {
+            CD_Datos CDDatos = new CD_Datos();
+            OracleCommand Cmd = null;
+            try
+            {
 
+                int id = objReferencia.IdFichaBancaria;
+                string[] ParametrosIn = { "p_id_referencia" };
+                object[] Valores = { objReferencia.IdFichaBancaria };
+                string[] ParametrosOut ={
+                                        "p_Referencia",
+                                        "p_Nombre",
+                                        "p_Importe",
+                                        "p_Vigencia",
+                                        "p_Concepto",
+                                        "P_DIAS_VIGENCIA",
+                                        "p_Bandera"
+                                        };
+
+                Cmd = CDDatos.GenerarOracleCommand("OBT_REFERENCIA_SYSWEB", ref Verificador, ParametrosIn, Valores, ParametrosOut);
+                if (Verificador == "0")
+                {
+                    int idRef = objReferencia.IdFichaBancaria;
+                    objReferencia = new FichaReferenciada();
+                    objReferencia.Nombre = Convert.ToString(Cmd.Parameters["p_Nombre"].Value);
+                    objReferencia.Total = Convert.ToDouble(Cmd.Parameters["p_Importe"].Value);
+                    objReferencia.FechaVigencia = Convert.ToString(Cmd.Parameters["P_VIGENCIA"].Value);
+                    objReferencia.ObsSolicitudFactura = Convert.ToString(Cmd.Parameters["P_CONCEPTO"].Value);
+                    objReferencia.Referencia = Convert.ToString(Cmd.Parameters["P_REFERENCIA"].Value);
+                    objReferencia.Dias_Vigencia = Convert.ToInt32(Cmd.Parameters["P_DIAS_VIGENCIA"].Value);
+                    objReferencia.IdFichaBancaria = idRef;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                CDDatos.LimpiarOracleCommand(ref Cmd);
+            }
+        }
         public void ConsultarFichaReferenciada(ref FichaReferenciada ObjFichaReferenciada, ref string Verificador)
         {
             CD_Datos CDDatos = new CD_Datos();
@@ -60,7 +103,7 @@ namespace CapaDatos
                 CDDatos.LimpiarOracleCommand(ref Cmd);
             }
         }
-        public void InsertarFichaReferenciada(ref FichaReferenciada ObjFichaReferenciada, string Correo, ref string Verificador)
+        public void InsertarFichaReferenciada(ref FichaReferenciada ObjFichaReferenciada, string Correo, string WXI, ref string Verificador)
         {
             CD_Datos CDDatos = new CD_Datos();
             OracleCommand Cmd = null;
@@ -79,7 +122,8 @@ namespace CapaDatos
                                           "p_OBSERVACIONES",
                                           "p_ALUMNO",
                                           "p_EVENTO",
-                                          "P_CORREO"
+                                          "P_CORREO",
+                                          "P_WXI"
                 };
                 object[] Valores = { 
                                         ObjFichaReferenciada.IdFichaBancaria,
@@ -93,15 +137,16 @@ namespace CapaDatos
                                         ObjFichaReferenciada.ConceptoRef,
                                         ObjFichaReferenciada.Nombre,
                                         ObjFichaReferenciada.Evento,
-                                        Correo
+                                        Correo,
+                                        WXI
             };
                 string[] ParametrosOut ={                                        
                                           "p_BANDERA",
                                           "p_Dias_Vigencia"
                 };
-
-               Cmd = CDDatos.GenerarOracleCommand("INS_INF_FICHA_BANCARIA", ref Verificador, ParametrosIn, Valores, ParametrosOut);
-               //Cmd = CDDatos.GenerarOracleCommand("INS_FICHA_BANCARIA", ref Verificador, ParametrosIn, Valores, ParametrosOut);
+                Cmd = CDDatos.GenerarOracleCommand("INS_FICHA_REF", ref Verificador, ParametrosIn, Valores, ParametrosOut);
+                //Cmd = CDDatos.GenerarOracleCommand("INS_INF_FICHA_BANCARIA", ref Verificador, ParametrosIn, Valores, ParametrosOut);
+                //Cmd = CDDatos.GenerarOracleCommand("INS_FICHA_BANCARIA", ref Verificador, ParametrosIn, Valores, ParametrosOut);
 
 
             }

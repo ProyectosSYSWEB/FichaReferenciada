@@ -58,6 +58,8 @@ namespace EmisionPagoReferenciado.Form
                {
                 if (SesionUsu.UsuWXI != "X")
                     Response.Redirect("Registro_Participantes_P3.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXI=" + SesionUsu.UsuWXI);
+                else if (SesionUsu.UsuWXIAdmon != "X")
+                    Response.Redirect("Registro_Participantes_P3.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXIEvento=" + SesionUsu.UsuWXIAdmon);
                 else
                     Response.Redirect("Registro_Participantes_P3.aspx" + "?Evento=" + SesionUsu.UsuEvento);
             }  
@@ -70,8 +72,10 @@ namespace EmisionPagoReferenciado.Form
             btnAnterior.Visible = false;
             btnImprimir.Visible = false;
             btnPagoBancomer.Visible = false;
-            pnlDatos.Visible = false;
-            Iframe1.Visible = true;
+            //divDatosPago.Visible = false;
+            //imgBancos.Visible = false;
+            //Iframe1.Visible = true;
+            divRep.Visible = true;
             var = SesionUsu.UsuEvento;
             palabra = SesionUsu.UsuWXI;
             Session.Abandon();
@@ -111,6 +115,8 @@ namespace EmisionPagoReferenciado.Form
                 {
                     if (SesionUsu.UsuWXI != "X")
                         Response.Redirect("Registro_Participantes.aspx" + "?Evento=" + var + "&WXI=" + SesionUsu.UsuWXI);
+                    else if (SesionUsu.UsuWXIAdmon != "X")
+                        Response.Redirect("Registro_Participantes.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXIEvento=" + SesionUsu.UsuWXIAdmon);
                     else
                         Response.Redirect("Registro_Participantes.aspx" + "?Evento=" + var);
                 }
@@ -146,18 +152,29 @@ namespace EmisionPagoReferenciado.Form
         {
             btnAnterior.Visible = true;
             btnForma_Pago.Visible = true;
-            pnlDatos.Visible = true;
-            Iframe1.Visible = false;
+            //Iframe1.Visible = false;
+            divRep.Visible = false;
             lblMensajeCorreo.Text = string.Empty;
-
+            Verificador = string.Empty;
             try
             {
-                ConsultarDatos();
-                //VerificaEvento();
+                if (SesionUsu.UsuEvento == "SUPERADMON" || SesionUsu.UsuEvento == "ADMON" || SesionUsu.UsuWXIAdmon != "X")
+                    //divGenLink.Visible = true;
+                //if (SesionUsu.UsuWXIAdmon != "X")
+                {
+                    Usuario objUsuario = new Usuario();
+                    objUsuario.Nombre = SesionUsu.UsuWXIAdmon;
+                    CNComun.ConsultaTipoUsu(objUsuario, ref Verificador);
+                    //if (Verificador == "0")
+                    //{
+                        if (objUsuario.TipoUsu == "SA" || objUsuario.TipoUsu == "A")
+                            divGenLink.Visible = true;
+                    //}
+                }
+                else
+                    divGenLink.Visible = false;
 
-                //if (SesionUsu.UsuWXI != "X")
-                //if (SesionUsu.UsuWXI != "X")
-                //    VerificaUsuarioPV(); //Verifica si es un usuario Punto de Venta
+                ConsultarDatos();               
             }
             catch (Exception ex)
             {
@@ -197,19 +214,20 @@ namespace EmisionPagoReferenciado.Form
         private void ConsultarDatos()
         {
             
-                CNComun.LlenaListaRbn("PKG_PAGOS_2016.Obt_Combo_Formas_Pago", ref rbtFormaPago, "p_evento", "p_usuario", SesionUsu.UsuEvento, SesionUsu.UsuWXI);
-                rbtFormaPago.SelectedIndex = 0;
+            CNComun.LlenaListaRbn("PKG_PAGOS_2016.Obt_Combo_Formas_Pago", ref rbtFormaPago, "p_evento", "p_usuario", SesionUsu.UsuEvento, SesionUsu.UsuWXI);
+            rbtFormaPago.SelectedIndex = 0;
 
-                lblImporte_l.Text = string.Format("{0:c2}", SesionUsu.ImpDetalleConcep);
-                lblReferencia_l.Text = SesionUsu.FichaReferencia;
-                lblConcepto_l.Text = SesionUsu.Observaciones + ".    TIPO DE PERSONA:  " + SesionUsu.TipoPersonaStr + ".    PERIODO DE PAGO:  " + SesionUsu.PeriodoPago + ".   " + SesionUsu.Anexo;
-                hddnConceptos.Value = SesionUsu.Observaciones;
-                hddnObservaciones.Value = SesionUsu.TipoPersonaStr + ".    PERIODO DE PAGO:  " + SesionUsu.PeriodoPago + ".   " + SesionUsu.Anexo;
-                lblVigencia_l.Text = SesionUsu.FechaVigencia;
-                lblNombre_l.Text = SesionUsu.UsuNombre + " " + SesionUsu.UsuApaterno + " " + SesionUsu.UsuAMaterno;
+            lblImporte_l.Text = string.Format("{0:c2}", SesionUsu.ImpDetalleConcep);
+            lblReferencia_l.Text = SesionUsu.FichaReferencia;
+            lblConcepto_l.Text = SesionUsu.Observaciones + ".    TIPO DE PERSONA:  " + SesionUsu.TipoPersonaStr + ".    PERIODO DE PAGO:  " + SesionUsu.PeriodoPago + ".   " + SesionUsu.Anexo;
+            hddnConceptos.Value = SesionUsu.Observaciones;
+            hddnObservaciones.Value = SesionUsu.TipoPersonaStr + ".    PERIODO DE PAGO:  " + SesionUsu.PeriodoPago + ".   " + SesionUsu.Anexo;
+            lblVigencia_l.Text = SesionUsu.FechaVigencia;
+            lblNombre_l.Text = SesionUsu.UsuNombre + " " + SesionUsu.UsuApaterno + " " + SesionUsu.UsuAMaterno;
+            rbtFormaPago_SelectedIndexChanged(null, null);
                 //if (SesionUsu.UsuEvento == "FINANZAS_2016")
                 //    ddlForma_Pago.Items.
-            
+
         }
         private void rptPDFAdjunto(String Reporte, String Nombre, String Referencia, String Importe, String Vigencia, String Concepto, String Observaciones)
         {
@@ -242,6 +260,8 @@ namespace EmisionPagoReferenciado.Form
                 report.Close();
                 report.Dispose();
                 //CR_Reportes.Dispose();
+                GC.Collect();
+                //CR_Reportes.Dispose();
             }
         }
         protected void btnForma_Pago_Click(object sender, EventArgs e)
@@ -250,8 +270,11 @@ namespace EmisionPagoReferenciado.Form
             {
                 btnAnterior.Visible = false;
                 btnForma_Pago.Visible = false;
-                pnlDatos.Visible = false;
-                Iframe1.Visible = true;
+                divRep.Visible = true;
+                //imgBancos.Visible = false; //pnDatos
+                //Iframe1.Visible = true;
+                divDatosPago.Visible = false;
+                divRep.Visible = true;
                 if (lblReferencia_l.Text == string.Empty)
                     lblMsj.Text = "Debe Generar la Referencia Bancaria";
                 else
@@ -267,10 +290,7 @@ namespace EmisionPagoReferenciado.Form
                 }
             }
             else if (rbtFormaPago.SelectedValue == "2" || rbtFormaPago.SelectedValue == "3" || rbtFormaPago.SelectedValue == "4" || rbtFormaPago.SelectedValue == "5")
-            {
-                //SesionUsu.FichaRefIDPagoTC = SesionUsu.FichaRefID;
-                //if (SesionUsu != null)
-                //{
+            {               
                     mp_account.Value = "952";
                     mp_product.Value = "1";
                     mp_order.Value = Convert.ToString(SesionUsu.FichaRefID);
@@ -281,11 +301,9 @@ namespace EmisionPagoReferenciado.Form
                     mp_customername.Value = SesionUsu.UsuNombre + " " + SesionUsu.UsuApaterno + " " + SesionUsu.UsuAMaterno;
                     mp_currency.Value = "1";
                     mp_signature.Value = CNComun.GetSHA256(Convert.ToString(mp_order.Value + mp_reference.Value + mp_amount.Value));
-                    mp_urlsuccess.Value = "https://sysweb.unach.mx/FichaReferenciadaPruebas/Form/Registro_Participantes_P6.aspx"; //"Registro_Participantes_P7.aspx";
-                    mp_urlfailure.Value = "https://sysweb.unach.mx/FichaReferenciadaPruebas/Form/Registro_Participantes_P6.aspx"; // "Registro_Participantes_P7.aspx";
-
-                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "PagBancomer();", true);
-                //}
+                    mp_urlsuccess.Value = "https://sysweb.unach.mx/FichaReferenciada/Form/Registro_Participantes_P6.aspx"; //"Registro_Participantes_P7.aspx";
+                    mp_urlfailure.Value = "https://sysweb.unach.mx/FichaReferenciada/Form/Registro_Participantes_P6.aspx"; // "Registro_Participantes_P7.aspx";
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "PagBancomer();", true);                
             }
             else if (rbtFormaPago.SelectedValue == "5")
             {
@@ -294,6 +312,8 @@ namespace EmisionPagoReferenciado.Form
                 {
                     if (SesionUsu.UsuWXI != "X")
                         Response.Redirect("Registro_Participantes_P8.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXI=" + SesionUsu.UsuWXI);
+                    else if (SesionUsu.UsuWXIAdmon != "X")
+                        Response.Redirect("Registro_Participantes_P8.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXIEvento=" + SesionUsu.UsuWXIAdmon);
                     else
                         Response.Redirect("Registro_Participantes_P8.aspx" + "?Evento=" + SesionUsu.UsuEvento);
                 }
@@ -379,6 +399,52 @@ namespace EmisionPagoReferenciado.Form
         {
             chkCorreo.Checked = false;
             modalCorreo.Hide();
+        }
+
+        protected void rbtFormaPago_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //divDatosPago.Visible = false;
+
+
+            if (SesionUsu.UsuEvento != "ALUMNO" && SesionUsu.UsuEvento != "LIBRE" && SesionUsu.UsuEvento != "SUPERADMON" && SesionUsu.UsuEvento != "ADMON")
+            {
+                if (rbtFormaPago.SelectedValue == "1")
+                    lblInfFormaPago.Text = "El comprobante oficial estará disponible 24 hrs., hábiles después de haber realizado el pago, en https://sysweb.unach.mx/ingresos/, en la opción <strong>REFERENCIA BANCARIA.</strong>";
+                else if (rbtFormaPago.SelectedValue == "2")
+                    lblInfFormaPago.Text = "Recuerda <strong>NO CERRAR EL PORTAL DE BANCOMER,</strong> te direccionara nuevamente a sysweb para obtener tu comprobante oficial.";
+                else if (rbtFormaPago.SelectedValue == "4")
+                    lblInfFormaPago.Text = "El comprobante oficial estará disponible hasta 48 hrs. hábiles después de haber realizado el pago, en la página https://sysweb.unach.mx/ingresos/, en la opción <strong>REFERENCIA BANCARIA.</strong>";
+                else if (rbtFormaPago.SelectedValue == "5")
+                    lblInfFormaPago.Text = "El comprobante oficial estará disponible hasta 72 hrs. hábiles después de haber realizado el pago, en la página https://sysweb.unach.mx/ingresos/, en la opción <strong>REFERENCIA BANCARIA.</strong>";
+
+
+            }
+            else
+            {
+                if (rbtFormaPago.SelectedValue == "1")
+                    lblInfFormaPago.Text = "El comprobante oficial estará disponible 24 hrs., hábiles después de haber realizado el pago, en https://sysweb.unach.mx/ingresos/, en la opción <strong>ALUMNO Ó ASPIRANTE.</strong>";
+                else if (rbtFormaPago.SelectedValue == "2")
+                    lblInfFormaPago.Text = "Recuerda <strong>NO CERRAR EL PORTAL DE BANCOMER,</strong> te direccionara nuevamente a sysweb para obtener tu comprobante oficial.";
+                else if (rbtFormaPago.SelectedValue == "3")
+                    lblInfFormaPago.Text = "El comprobante oficial estará disponible hasta 48 hrs. hábiles después de haber realizado el pago, en la página https://sysweb.unach.mx/ingresos/, en la opción <strong>ALUMNO Ó ASPIRANTE.</strong>";
+                else if (rbtFormaPago.SelectedValue == "2")
+                    lblInfFormaPago.Text = "El comprobante oficial estará disponible hasta 72 hrs. hábiles después de haber realizado el pago, en la página https://sysweb.unach.mx/ingresos/, en la opción <strong>ALUMNO Ó ASPIRANTE.</strong>";
+
+            }
+        }
+
+        protected void linkGen_Click(object sender, EventArgs e)
+        {
+            string cadena = string.Empty;
+            try
+            {
+                cadena = CN_Token.GenerarToken(Convert.ToInt32(SesionUsu.FichaRefID), SesionUsu.FichaReferencia);
+                linkPago.Text = "https://sysweb.unach.mx/FichaReferenciada/Form/PagoExclusivoSYSWEB.aspx?sw_acc=" + cadena;
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
     }
 }

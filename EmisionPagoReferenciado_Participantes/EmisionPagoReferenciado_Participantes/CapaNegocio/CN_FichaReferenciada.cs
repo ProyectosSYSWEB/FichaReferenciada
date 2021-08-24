@@ -21,12 +21,12 @@ namespace CapaNegocio
                 throw new Exception(ex.Message);
             }
         }
-        public void InsertarFichaReferenciada(ref FichaReferenciada FichaReferenciada, string Correo, ref string Verificador)
+        public void InsertarFichaReferenciada(ref FichaReferenciada FichaReferenciada, string Correo, string WXI, ref string Verificador)
         {
             try
             {
                 CD_FichaReferenciada CDFichaReferenciada = new CD_FichaReferenciada();
-                CDFichaReferenciada.InsertarFichaReferenciada(ref FichaReferenciada, Correo, ref Verificador);
+                CDFichaReferenciada.InsertarFichaReferenciada(ref FichaReferenciada, Correo, WXI, ref Verificador);
             }
             catch(Exception ex)
             {

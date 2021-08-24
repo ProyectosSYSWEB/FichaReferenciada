@@ -7,6 +7,14 @@ namespace CapaEntidad
 {
     public class FichaReferenciada
     {
+        private double _Total;
+
+        public double Total
+        {
+            get { return _Total; }
+            set { _Total = value; }
+        }
+
         private int _IdFichaBancaria;
 
         public int IdFichaBancaria
@@ -14,6 +22,7 @@ namespace CapaEntidad
             get { return _IdFichaBancaria; }
             set { _IdFichaBancaria = value; }
         }
+
         private string _ConceptoRef;
 
         public string ConceptoRef
@@ -178,7 +187,15 @@ namespace CapaEntidad
             get { return _Vigencia; }
             set { _Vigencia = value; }
         }
-        
+
+        private int _Dias_Vigencia = 1;
+
+        public int Dias_Vigencia
+        {
+            get { return _Dias_Vigencia; }
+            set { _Dias_Vigencia = value; }
+        }
+
         private string _Nombre;
 
         public string Nombre

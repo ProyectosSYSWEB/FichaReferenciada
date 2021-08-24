@@ -51,6 +51,8 @@ namespace EmisionPagoReferenciado.Form
                 {
                     if (SesionUsu.UsuWXI != "X")
                         Response.Redirect("Registro_Participantes_P5.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXI=" + SesionUsu.UsuWXI);
+                    else if (SesionUsu.UsuWXIAdmon != "X")
+                        Response.Redirect("Registro_Participantes_P5.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXIEvento=" + SesionUsu.UsuWXIAdmon);
                     else
                         Response.Redirect("Registro_Participantes_P5.aspx" + "?Evento=" + SesionUsu.UsuEvento);
                 }
@@ -85,6 +87,8 @@ namespace EmisionPagoReferenciado.Form
             {
                 if (SesionUsu.UsuWXI != "X")
                     Response.Redirect("Registro_Participantes_P2.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXI=" + SesionUsu.UsuWXI);
+                else if (SesionUsu.UsuWXIAdmon != "X")
+                    Response.Redirect("Registro_Participantes_P2.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXIEvento=" + SesionUsu.UsuWXIAdmon);
                 else
                     Response.Redirect("Registro_Participantes_P2.aspx" + "?Evento=" + SesionUsu.UsuEvento);
             }

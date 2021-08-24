@@ -11,7 +11,7 @@ namespace EmisionPagoReferenciado.Form
 {
 
 
-    public partial class PagoExclusivoSIAE
+    public partial class PagoExclusivoSYSWEB
     {
 
         /// <summary>
@@ -157,15 +157,6 @@ namespace EmisionPagoReferenciado.Form
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPagoTDC;
-
-        /// <summary>
-        /// Control imgBttnPagoEfec.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgBttnPagoEfec;
 
         /// <summary>
         /// Control imgBttnPagoTDC.

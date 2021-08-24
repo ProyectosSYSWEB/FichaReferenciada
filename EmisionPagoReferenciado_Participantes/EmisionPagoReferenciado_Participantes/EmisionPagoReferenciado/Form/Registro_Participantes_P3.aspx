@@ -13,15 +13,56 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 text-center">
-                <img src="https://sysweb.unach.mx/resources/imagenes/Paso3.png" class="img-responsive" alt="Responsive image" />
+    <div class="container-fluid">
+        <div class="row d-none d-sm-none d-md-block">
+            <div class="col">
+                <ul class="stepper stepper-horizontal">
+
+                    <!-- First Step -->
+                    <li class="disabled">
+                        <a href="#!">
+                            <span class="circle">1</span>
+                            <span class="label">Usuario</span>
+                        </a>
+                    </li>
+
+                    <!-- Second Step -->
+                    <li class="disabled">
+                        <a href="#!">
+                            <span class="circle">2</span>
+                            <span class="label">Servicios</span>
+                        </a>
+                    </li>
+
+                    <!-- Third Step -->
+                    <li class="active">
+                        <a href="#!">
+                            <span class="circle"><i class="fa fa-sticky-note" aria-hidden="true"></i></span>
+                            <span class="label"  style="color:#5f5f5f">Comprobante Fiscal</span>
+                        </a>
+                    </li>
+
+                    <li class="disabled">
+                        <a href="#!">
+                            <span class="circle">4</span>
+                            <span class="label">Método de Pago</span>
+                        </a>
+                    </li>
+
+                </ul>
             </div>
+        </div>
+        <div class="row  d-md-none">
+            <ul class="nav nav-tabs step-anchor">
+                <li class="nav-item disabled"><a href="" class="nav-link">Paso 1<br><small>Usuario</small></a></li>
+                <li class="nav-item disabled"><a href="" class="nav-link">Paso 2<br><small>Servicios</small></a></li>
+                <li class="nav-item active font-weight-bold" style="background-color:#d2d2d2"><a href="" class="nav-link">Paso 3<br><small>Comprobante Fiscal</small></a></li>
+                <li class="nav-item disabled"><a href="" class="nav-link">Paso 4<br><small>Método de Pago</small></a></li>
+            </ul>
         </div>
         <br />
         <div class="row">
-            <div class="col-md-10">
+            <div class="col">
                 <asp:UpdatePanel ID="UpdatePanel8" runat="server">
                     <ContentTemplate>
                         <h4>
@@ -162,7 +203,7 @@
                                 <div class="row">
                                     <div class="col-md-2">
                                         Metodo de Pago
-                                    </div> 
+                                    </div>
                                     <div class="col-md-4">
                                         <asp:DropDownList ID="ddlMetodoPago" runat="server" CssClass="custom-select" TabIndex="9" onkeypress="if (event.keyCode==13) return false;">
                                             <asp:ListItem Value="0">--Seleccionar--</asp:ListItem>
@@ -218,9 +259,12 @@
                                         <div class="alert alert-warning">
                                             <asp:UpdatePanel ID="UpdatePanel5" runat="server">
                                                 <ContentTemplate>
-                                                    <asp:CheckBox ID="chkValidado" runat="server" Font-Bold="False" CssClass="alert alert-warning" Text=" * Estás de acuerdo que los datos capturados son correctos y serán utilizados para utilizar la factura correspondiente." ValidationGroup="DatosFiscales" />
+                                                    <asp:CheckBox ID="chkValidado" runat="server" Font-Bold="False" CssClass="alert alert-warning" Text=" * Estás de acuerdo que los datos capturados son correctos y serán utilizados para utilizar la factura correspondiente. " ValidationGroup="DatosFiscales" />
+                                                    <asp:CustomValidator ID="valCheck" runat="server" ErrorMessage="*Requerido" ClientValidationFunction="ValidateCheckBox" ForeColor="Red" ValidationGroup="DatosFiscales"></asp:CustomValidator><br />
+
+                                                    <br />
+                                                    <strong>NOTA:</strong> La solicitud de la factura será validada cuando este confirmado el pago (comprobante oficial).
                                                     &nbsp;
-                                        <asp:CustomValidator ID="valCheck" runat="server" ErrorMessage="*Requerido" ClientValidationFunction="ValidateCheckBox" ForeColor="Red" ValidationGroup="DatosFiscales"></asp:CustomValidator><br />
                                                 </ContentTemplate>
                                             </asp:UpdatePanel>
                                         </div>
@@ -236,7 +280,7 @@
             <div class="col text-center">
                 <asp:Button ID="btnAnterior" runat="server" CssClass="btn btn-light" Text="Anterior"
                     OnClick="btnAnterior_Click" />
-                &nbsp;<asp:Button ID="btnSiguiente" runat="server" CssClass="btn" style="background-color:#d2af47; color:#fff" Text="Siguiente"
+                &nbsp;<asp:Button ID="btnSiguiente" runat="server" CssClass="btn" Style="background-color: #d2af47; color: #fff" Text="Siguiente"
                     OnClick="btnSiguiente_Click" TabIndex="10" ValidationGroup="DatosFiscales" />
             </div>
         </div>

@@ -42,6 +42,13 @@ namespace CapaEntidad
             set { _Vigencia = value; }
         }
 
+        private int _Dias_Vigencia=1;
+        public int Dias_Vigencia
+        {
+            get { return _Dias_Vigencia; }
+            set { _Dias_Vigencia = value; }
+        }
+
         private string _Concepto;
         public string Concepto
         {

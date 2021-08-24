@@ -6,32 +6,70 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div class="container">
-                <div class="row">
-                    <div class="col text-center">
-                        <img src="https://sysweb.unach.mx/resources/imagenes/paso2.PNG" class="img-responsive" alt="Responsive image" />
+            <div class="container-fluid">
+                <div class="row d-none d-sm-none d-md-block">
+                    <div class="col">
+                        <ul class="stepper stepper-horizontal">
+
+                            <!-- First Step -->
+                            <li class="disabled">
+                                <a href="#!">
+                                    <span class="circle">1</span>
+                                    <span class="label">Usuario</span>
+                                </a>
+                            </li>
+
+                            <!-- Second Step -->
+                            <li class="active">
+                                <a href="#!">
+                                    <span class="circle"><i class="fa fa-cog" aria-hidden="true"></i></span>
+                                    <span class="label" style="color: #5f5f5f">Servicios</span>
+                                </a>
+                            </li>
+
+                            <!-- Third Step -->
+                            <li class="disabled">
+                                <a href="#!">
+                                    <span class="circle">3</span>
+                                    <span class="label">Comprobante Fiscal</span>
+                                </a>
+                            </li>
+
+                            <li class="disabled">
+                                <a href="#!">
+                                    <span class="circle">4</span>
+                                    <span class="label">Método de Pago</span>
+                                </a>
+                            </li>
+
+                        </ul>
                     </div>
                 </div>
-            </div>
-            <div class="container">
+                <div class="row  d-md-none">
+                    <ul class="nav nav-tabs step-anchor">
+                        <li class="nav-item disabled"><a href="" class="nav-link">Paso 1<br>
+                            <small>Usuario</small></a></li>
+                        <li class="nav-item active font-weight-bold" style="background-color: #d2d2d2"><a href="" class="nav-link">Paso 2<br>
+                            <small>Servicios</small></a></li>
+                        <li class="nav-item disabled"><a href="" class="nav-link">Paso 3<br>
+                            <small>Comprobante Fiscal</small></a></li>
+                        <li class="nav-item disabled"><a href="" class="nav-link">Paso 4<br>
+                            <small>Método de Pago</small></a></li>
+                    </ul>
+                </div>
                 <div class="row">
                     <div class="col text-dark">
-                        <%--<p class="note note-warning"><strong>--%>
                         <h5>
                             <asp:Label ID="lblEvento" runat="server" Text=""></asp:Label>
                         </h5>
-                        <%--</strong></p>--%>
                     </div>
                 </div>
-            </div>
-
-            <div style="position: fixed; right: 50px; bottom: 10px; background-color: #fff; border-radius: 13px 13px 13px 13px; -moz-border-radius: 13px 13px 13px 13px; -webkit-border-radius: 13px 13px 13px 13px; border: 0px solid #000000; padding: 10px; -webkit-box-shadow: 0px 0px 6px 3px rgba(150,142,150,1); -moz-box-shadow: 0px 0px 6px 3px rgba(150,142,150,1); box-shadow: 0px 0px 6px 3px rgba(150,142,150,1);">
-                <asp:Label ID="lblCostoMat0" runat="server" Text="Total:  " Font-Bold="True" Font-Size="30px"></asp:Label>
-                <asp:Label ID="lblImporteTotal" runat="server" Font-Bold="True" ForeColor="#3483fa"
-                    Font-Size="30px">0.00</asp:Label>
-                <b>MXN</b>
-            </div>
-            <div class="container">
+                <div style="position: fixed; right: 50px; bottom: 10px; background-color: #fff; border-radius: 13px 13px 13px 13px; -moz-border-radius: 13px 13px 13px 13px; -webkit-border-radius: 13px 13px 13px 13px; border: 0px solid #000000; padding: 10px; -webkit-box-shadow: 0px 0px 6px 3px rgba(150,142,150,1); -moz-box-shadow: 0px 0px 6px 3px rgba(150,142,150,1); box-shadow: 0px 0px 6px 3px rgba(150,142,150,1);">
+                    <asp:Label ID="lblCostoMat0" runat="server" Text="Total:  " Font-Bold="True" Font-Size="30px"></asp:Label>
+                    <asp:Label ID="lblImporteTotal" runat="server" Font-Bold="True" ForeColor="#3483fa"
+                        Font-Size="30px">0.00</asp:Label>
+                    <b>MXN</b>
+                </div>
                 <div class="row">
                     <div class="col-sm-10">
                         <p class="note note-warning">
@@ -46,7 +84,7 @@
                             Width="100%" OnSelectedIndexChanged="lstMaterias_Disponibles_SelectedIndexChanged"
                             AutoPostBack="True" ValidationGroup="MateriaDis"></asp:ListBox>
                         <br />
-                        <div class="alert alert-info" role="alert">
+                        <div class="alert alert-dark" role="alert">
                             <asp:Label ID="lblDescMatDisp" runat="server"></asp:Label>
                         </div>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="lstMaterias_Disponibles"
@@ -62,7 +100,7 @@
                         <asp:TextBox ID="txtImporteAdd" runat="server" CausesValidation="True" Visible="false"
                             Width="100px">0</asp:TextBox><br />
                         <br />
-                        <asp:Button ID="btnAgregar_Materia" runat="server" Text="Agregar" CssClass="btn" style="background-color:#d2af47; color:#fff"
+                        <asp:Button ID="btnAgregar_Materia" runat="server" Text="Agregar" CssClass="btn" Style="background-color: #d2af47; color: #fff"
                             OnClick="btnAgregar_Materia_Click" ValidationGroup="MateriaDis" ToolTip="AGREGAR" /><br />
                         <asp:Label ID="lblMsj" runat="server" ForeColor="Red" Font-Size="Small"></asp:Label>
 
@@ -75,7 +113,7 @@
                     <div class="col-sm-10">
                         <asp:ListBox ID="lstMaterias_Asignadas" runat="server" CssClass="custom-select" Height="200px" Width="100%" AutoPostBack="True" OnSelectedIndexChanged="lstMaterias_Asignadas_SelectedIndexChanged"></asp:ListBox>
                         <br />
-                        <div class="alert alert-info" role="alert">
+                        <div class="alert alert-dark" role="alert">
                             <asp:Label ID="lblDescMatAsig" runat="server"></asp:Label>
                         </div>
                         <br />
@@ -106,7 +144,7 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col text-center">
                 <asp:UpdateProgress ID="UpdateProgress3" AssociatedUpdatePanelID="UpdatePanel1" runat="server">

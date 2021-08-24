@@ -309,7 +309,7 @@ namespace EmisionPagoReferenciado.Form
                     ObjMultipago.Securepayment = SesionMultipago.Securepayment;
                 if (Convert.ToString(SesionMultipago.Cardtype) != null)
                     ObjMultipago.Cardtype = SesionMultipago.Cardtype;
-                ObjMultipago.IdFichaBancaria = SesionUsu.FichaRefID;
+                ObjMultipago.IdFichaBancaria = Convert.ToInt32(SesionMultipago.Order); //SesionUsu.FichaRefID;
                 ObjMultipago.Carrera = SesionUsu.UsuCarrera;
                 ObjMultipago.Origen = "SYSWEB";
 
