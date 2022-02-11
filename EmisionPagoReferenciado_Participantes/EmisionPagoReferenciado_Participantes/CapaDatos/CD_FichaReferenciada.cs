@@ -289,8 +289,8 @@ namespace CapaDatos
                 //-----------OBTIENE LA DEPENDENCIA SEGUN EL NIVEL, EJ: 41101 A 41102 PARA POSGRADO-----------//
 
                 CDDatos = new CD_Datos();
-                string[] ParametrosIn2 = { "p_depedencia", "p_nivel" };
-                object[] Valores2 = { ObjFichaReferenciada.Dependencia, ObjFichaReferenciada.Nivel };
+                string[] ParametrosIn2 = { "p_depedencia", "p_nivel", "p_evento" };
+                object[] Valores2 = { ObjFichaReferenciada.Dependencia, ObjFichaReferenciada.Nivel, ObjFichaReferenciada.Evento };
                 string[] ParametrosOut2 = { "p_dependencia_ajustada", "p_bandera" };
 
                 Cmd = CDDatos.GenerarOracleCommand("GNR_DEPENDENCIA_AJUSTADA_2016", ParametrosIn2, Valores2, ParametrosOut2);

@@ -32,8 +32,8 @@ namespace EmisionPagoReferenciado
         {           
             try
             {
-
-                ObjComun.EtiquetaCuatro = SesionUsu.UsuEvento;
+                if(SesionUsu!=null)
+                    ObjComun.EtiquetaCuatro = SesionUsu.UsuEvento;
 
                 //Image1.ImageUrl = string.Empty;
 

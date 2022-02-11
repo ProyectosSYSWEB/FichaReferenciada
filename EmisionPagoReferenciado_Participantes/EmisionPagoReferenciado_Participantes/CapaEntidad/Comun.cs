@@ -13,10 +13,10 @@ namespace CapaEntidad
         private string _EtiquetaDos;
         private string _EtiquetaTres;
         private string _EtiquetaCuatro = string.Empty;
-        private string _EtiquetaCinco;
-        private string _EtiquetaSeis;
-        private string _EtiquetaSiete;
-        private string _EtiquetaOcho;
+        private string _EtiquetaCinco = string.Empty;
+        private string _EtiquetaSeis = string.Empty;
+        private string _EtiquetaSiete = string.Empty;
+        private string _EtiquetaOcho=string.Empty;
         private string _Ruta;
         private byte[] _ImgBlob;
 

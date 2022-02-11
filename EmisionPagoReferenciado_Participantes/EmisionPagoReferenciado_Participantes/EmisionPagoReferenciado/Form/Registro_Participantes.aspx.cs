@@ -41,11 +41,8 @@ namespace EmisionPagoReferenciado.Form
                     ClientScript.RegisterStartupScript(GetType(), "Mensaje", "MensajeCaja();", true);
                     reqPatAlum.ValidationGroup = string.Empty;
                 }
-                else if(SesionUsu.UsuEvento=="ALUMNO")
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "MensajeAlumnos", "MensajeAlumnos();", true);
-
-                }
+                else if(SesionUsu.UsuEvento=="ALUMNO")                
+                    ClientScript.RegisterStartupScript(GetType(), "MensajeAlumnos", "MensajeAlumnos();", true);                
                 else
                     reqPatAlum.ValidationGroup = "gpoInterno";
             }
@@ -59,6 +56,7 @@ namespace EmisionPagoReferenciado.Form
             }
             else
                 Response.Redirect("https://sysweb.unach.mx/");
+
 
 
         }
@@ -83,13 +81,20 @@ namespace EmisionPagoReferenciado.Form
             txtNombre_Gral.Enabled = true;
             txtPaterno_Gral.Enabled = true;
             txtMaterno_Gral.Enabled = true;
-
+            rowEspecificacionesTipoPart.Visible = false;
+            lblEspecificacionesTipoPart.Text=string.Empty;
             if (Session["ConfTipoPart"] != null)
             {
                 ListTipoPartcipante = (List<Comun>)Session["ConfTipoPart"];
                 SesionUsu.TipoParticipante = ListTipoPartcipante[ddlTipo_Participante.SelectedIndex].EtiquetaTres;
                 SesionUsu.Ponente = ListTipoPartcipante[ddlTipo_Participante.SelectedIndex].EtiquetaCuatro;
                 SesionUsu.RequiereConstancia = ListTipoPartcipante[ddlTipo_Participante.SelectedIndex].EtiquetaCinco;
+                if (ListTipoPartcipante[ddlTipo_Participante.SelectedIndex].EtiquetaOcho.Length>1)
+                {
+                    rowEspecificacionesTipoPart.Visible = true;
+                    lblEspecificacionesTipoPart.Text = ListTipoPartcipante[ddlTipo_Participante.SelectedIndex].EtiquetaOcho;
+                }
+
                 if (SesionUsu.TipoParticipante != "S" && SesionUsu.TipoParticipante != "E")
                 {
                     if (SesionUsu.Ponente == "S")
@@ -101,10 +106,6 @@ namespace EmisionPagoReferenciado.Form
                     if (SesionUsu.RequiereConstancia == "S")
                         pnlConstancia.Visible = true;
                 }
-
-
-
-
                 if (SesionUsu.TipoParticipante == "S") //Estudiante UNACH
                 {
                     //lblNivel.Visible = false;
@@ -184,11 +185,7 @@ namespace EmisionPagoReferenciado.Form
                     SesionUsu.UsuWXI = "X";
                     btnSiguiente.ValidationGroup = "gpoExterno";
                 }
-                //else
-                //{
-                //    rowError.Visible = true;
-                //    lblMsj.Text = "<i class='fa fa-user - circle' aria-hidden='true'></i> Seleccionar un tipo de participante.";
-                //}
+
                 CNComun.LlenaCombo("pkg_pagos_2016.Obt_Combo_Grado_Estudio_Evento", ref ddlNivel_Ext, "p_evento", "p_tipo_participante", SesionUsu.UsuEvento, ddlTipo_Participante.SelectedValue);
 
 
@@ -796,6 +793,7 @@ namespace EmisionPagoReferenciado.Form
                     {
                         //SesionUsu.UsuEvento = "ALUMNO";
                         rowError.Visible = true;
+                        //rowEspecificaciones.Visible = true;
                         lblMsj.Text = "El Evento no esta Vigente, favor de comunicarse con el administrador de la Dependencia";
                         //pnlEstudianteUNACH_RegMatricula.Visible = false;
                         pnlEstudianteUNACH_RegMatricula.Visible = false;
@@ -930,6 +928,7 @@ namespace EmisionPagoReferenciado.Form
         private void InicializarTipoParticipante()
         {
             rowError.Visible = false;
+            pnlEstudianteUNACH_RegMatricula.Visible = false;
             try
             {
                 if (SesionUsu.FichaRefID != 0)

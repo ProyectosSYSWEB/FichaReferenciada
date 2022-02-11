@@ -119,8 +119,6 @@
                     <small>Método de Pago</small></a></li>
             </ul>
         </div>
-    </div>
-    <div class="container-fluid">
         <div class="row">
             <div class="col-md-9 text-dark">
                 <h5>
@@ -132,8 +130,6 @@
                     OnClick="btnLimpiar_Click" />
             </div>
         </div>
-    </div>
-    <div class="container-fluid">
         <div class="row" runat="server" id="rowEspecificaciones">
             <div class="col">
                 <div class="note note-warning" style="font-size: 14px">
@@ -144,23 +140,21 @@
                     </asp:UpdatePanel>
                 </div>
             </div>
-            <asp:UpdatePanel ID="UpdatePanel7" runat="server">
-                <ContentTemplate>
-                    <div id="rowError" runat="server">
-                        <div class="row alert alert-danger" role="alert">
-                            <asp:Label ID="lblMsj" runat="server" Font-Bold="True"></asp:Label>
-                        </div>
-                    </div>
-                </ContentTemplate>
-
-            </asp:UpdatePanel>
-
         </div>
+        <asp:UpdatePanel ID="updPnlError" runat="server">
+            <ContentTemplate>
+                <div class="row alert alert-danger" id="rowError" runat="server">
+                    <div class="col">
+                        <asp:Label ID="lblMsj" runat="server" Font-Bold="True"></asp:Label>
+                    </div>
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
         <div class="row">
             <div class="col-md-2">
                 <asp:Label ID="lblTipo_Participante" runat="server" Text="Tipo de participante (*)"></asp:Label>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-6">
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
                         <asp:DropDownList ID="ddlTipo_Participante" CssClass="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlTipo_Participante_SelectedIndexChanged" CausesValidation="True">
@@ -172,11 +166,30 @@
                 <asp:RequiredFieldValidator ID="reqInterno" runat="server" ErrorMessage="*Tipo de Participante" ForeColor="Red" ControlToValidate="ddlTipo_Participante" InitialValue="0" ValidationGroup="gpoInterno">*Requerido</asp:RequiredFieldValidator>
             </div>
         </div>
-    </div>
-    <asp:UpdatePanel ID="updPnlEmpUNACH" runat="server">
-        <ContentTemplate>
-            <asp:Panel ID="pnlEmpUNACH" runat="server" Visible="False">
-                <div class="container-fluid">
+        <div class="row">
+            <div class="col text-center">
+                <asp:UpdateProgress ID="updPgrEspTipoPart" AssociatedUpdatePanelID="UpdatePanel1" runat="server">
+                    <ProgressTemplate>
+                        <asp:Image ID="imgEspTipoPart" runat="server" Height="50px" ImageUrl="https://sysweb.unach.mx/resources/imagenes/ajax_loader_gray_512.gif" ToolTip="Espere un momento, por favor.." AlternateText="Espere un momento, por favor.." />
+                    </ProgressTemplate>
+                </asp:UpdateProgress>                
+            </div>
+        </div>
+        <asp:UpdatePanel ID="updPnlEspTipoPart" runat="server">
+            <ContentTemplate>
+                <div class="row" runat="server" id="rowEspecificacionesTipoPart">
+                    <div class="col-md-2 font-weight-bold text-info">Nota </div>
+                    <div class="col-md-6 alert alert-info">
+                        <%--<i class="fa fa-file"></i>--%>
+                        <asp:Label ID="lblEspecificacionesTipoPart" runat="server" Style="font-weight: bold; font-size: smaller" Width="100%"></asp:Label>
+                    </div>
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+
+        <asp:UpdatePanel ID="updPnlEmpUNACH" runat="server">
+            <ContentTemplate>
+                <asp:Panel ID="pnlEmpUNACH" runat="server" Visible="False">
                     <div class="row">
                         <div class="col-md-2">
                             <asp:Label ID="lblNumPlaza" runat="server" Text="# de Plaza"></asp:Label>
@@ -206,31 +219,28 @@
                             </asp:UpdatePanel>
                         </div>
                     </div>
-                </div>
-            </asp:Panel>
-        </ContentTemplate>
-    </asp:UpdatePanel>
-    <div class="row">
-        <div class="col text-center">
-            <asp:UpdateProgress ID="updProgEmpUNACH" AssociatedUpdatePanelID="updPnlEmpUNACH" runat="server">
-                <ProgressTemplate>
-                    <asp:Image ID="Image88" runat="server" Height="50px" ImageUrl="https://sysweb.unach.mx/resources/imagenes/ajax_loader_gray_512.gif" ToolTip="Espere un momento, por favor.." AlternateText="Espere un momento, por favor.." />
-                </ProgressTemplate>
-            </asp:UpdateProgress>
-            <asp:UpdateProgress ID="UpdateProgress1" AssociatedUpdatePanelID="UpdatePanel2" runat="server">
-                <ProgressTemplate>
-                    <div class="centro">
-                        <asp:Image ID="Image23" runat="server" alt="Responsive image" class="img-responsive" Height="50px" ImageUrl="https://sysweb.unach.mx/resources/imagenes/ajax_loader_gray_512.gif" ToolTip="Espere un momento, por favor.." />
-                    </div>
-                </ProgressTemplate>
-            </asp:UpdateProgress>
+                </asp:Panel>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <div class="row">
+            <div class="col text-center">
+                <asp:UpdateProgress ID="updProgEmpUNACH" AssociatedUpdatePanelID="updPnlEmpUNACH" runat="server">
+                    <ProgressTemplate>
+                        <asp:Image ID="Image88" runat="server" Height="50px" ImageUrl="https://sysweb.unach.mx/resources/imagenes/ajax_loader_gray_512.gif" ToolTip="Espere un momento, por favor.." AlternateText="Espere un momento, por favor.." />
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
+                <asp:UpdateProgress ID="UpdateProgress1" AssociatedUpdatePanelID="UpdatePanel2" runat="server">
+                    <ProgressTemplate>
+                        <div class="centro">
+                            <asp:Image ID="Image23" runat="server" alt="Responsive image" class="img-responsive" Height="50px" ImageUrl="https://sysweb.unach.mx/resources/imagenes/ajax_loader_gray_512.gif" ToolTip="Espere un momento, por favor.." />
+                        </div>
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
+            </div>
         </div>
-    </div>
-
-    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-        <ContentTemplate>
-            <asp:Panel ID="pnlParticipante_Gral" runat="server">
-                <div class="container-fluid">
+        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+            <ContentTemplate>
+                <asp:Panel ID="pnlParticipante_Gral" runat="server">
                     <div class="row alert alert-warning" id="divMsjParticipante" runat="server" visible="false">
                         <div class="col">
                             <asp:Label ID="lblMsjParticipante" runat="server" Text="Label"></asp:Label>
@@ -291,17 +301,14 @@
                         <div class="col-md-2">
                             <asp:Label ID="lblCP" runat="server" Text="Código Postal"></asp:Label>
                         </div>
-                        <div class="col-md-4">
-                            <div class="input-group mb-3">
-                                <asp:TextBox ID="txtCP_Gral" runat="server" TabIndex="209" CssClass="form-control" onkeypress="if (event.keyCode==13) return false;"></asp:TextBox>
-
-                            </div>
+                        <div class="col-md-2">
+                            <asp:TextBox ID="txtCP_Gral" runat="server" Width="100%" TabIndex="209" CssClass="form-control" onkeypress="if (event.keyCode==13) return false;"></asp:TextBox>
                         </div>
 
                         <div class="col-md-2">
                             <asp:Label ID="lblEdo_Provincia" runat="server" Text="Estado / Provincia"></asp:Label>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <asp:DropDownList ID="ddlEdo_Provincia_Gral" runat="server" TabIndex="210" CssClass="custom-select">
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlEdo_Provincia_Gral"
@@ -385,14 +392,12 @@
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator19" runat="server" ControlToValidate="txtCorreo_Gral" ErrorMessage="*Correo" ForeColor="Red" ValidationGroup="gpoExterno">*Requerido</asp:RequiredFieldValidator>
                         </div>
                     </div>
-                </div>
-            </asp:Panel>
-        </ContentTemplate>
-    </asp:UpdatePanel>
-    <asp:UpdatePanel ID="UpdatePanel4" runat="server">
-        <ContentTemplate>
-            <asp:Panel ID="pnlEstudianteUNACH_RegMatricula" runat="server" Visible="False">
-                <div class="container-fluid">
+                </asp:Panel>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <asp:UpdatePanel ID="UpdatePanel4" runat="server">
+            <ContentTemplate>
+                <asp:Panel ID="pnlEstudianteUNACH_RegMatricula" runat="server" Visible="False">
                     <div class="row">
                         <div class="col-md-2">
                             <asp:Label ID="lblMatricula" runat="server"
@@ -418,7 +423,7 @@
                         </div>
                         <div class="col-md-7">
                             <div class="alert alert-warning">
-                                <asp:Label ID="lblMsjUsu" runat="server" Text="IMPORTANTES: Favor de usar no. de ficha, matricula o id sysweb, que se te asigno (para no duplicar tu registro), caso contrario da click en la LUPA para registrarte, sino recuerdas tu ID (num. de ficha, matricula o ID de cliente) comunicate al 961 6178000 ext 5108 para consulta." Font-Size="13px"></asp:Label>
+                                <asp:Label ID="lblMsjUsu" runat="server" Text="IMPORTANTE: Favor de usar no. de ficha, matricula o id sysweb, que se te asigno (para no duplicar tu registro), caso contrario da click en la LUPA para registrarte, sino recuerdas tu ID (num. de ficha, matricula o ID de cliente) comunicate al 961 6178000 ext 5108 para consulta." Font-Size="13px"></asp:Label>
                             </div>
                         </div>
                     </div>
@@ -479,14 +484,12 @@
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ControlToValidate="ddlNivel" Display="Dynamic" ErrorMessage="Seleccionar Nivel" ForeColor="Red" InitialValue="Z" ValidationGroup="gpoBusca">* Seleccionar Nivel</asp:RequiredFieldValidator>
                         </div>
                     </div>
-                </div>
-            </asp:Panel>
-        </ContentTemplate>
-    </asp:UpdatePanel>
-    <asp:UpdatePanel ID="updPnlEstudianteUNACH" runat="server">
-        <ContentTemplate>
-            <asp:Panel ID="pnlEstudianteUNACH" runat="server" Visible="False">
-                <div class="container-fluid">
+                </asp:Panel>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <asp:UpdatePanel ID="updPnlEstudianteUNACH" runat="server">
+            <ContentTemplate>
+                <asp:Panel ID="pnlEstudianteUNACH" runat="server" Visible="False">
                     <div class="row">
                         <div class="col-md-2">
                             <asp:Label ID="lblNombreReg" runat="server" Text="Nombre"></asp:Label>
@@ -539,7 +542,6 @@
                             </asp:DropDownList>
                         </div>
                     </div>
-                    <br />
                     <div class="row">
                         <div class="col-md-2">
                             <asp:Label ID="lblOtraCarrera" runat="server" Text="Especificar" Visible="False"></asp:Label>
@@ -553,7 +555,7 @@
                         <div class="col-md-2">
                             <asp:Label ID="lblSemestre" runat="server" Text="Semestre"></asp:Label>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <asp:TextBox ID="txtSemestre" runat="server" CssClass="form-control" Enabled="False" TabIndex="8"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequreqPatAlumiredFieldValidator13" runat="server" ControlToValidate="txtSemestre"
                                 ErrorMessage="*Semestre" ForeColor="Red" ValidationGroup="gpoInterno">*Requerido</asp:RequiredFieldValidator>
@@ -563,14 +565,13 @@
                         <div class="col-md-1">
                             <asp:Label ID="lblGrupo0" runat="server" Text="Grupo"></asp:Label>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-2">
                             <asp:TextBox ID="txtGrupo" runat="server" CssClass="form-control" Enabled="False" TabIndex="9"
                                 MaxLength="1"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ControlToValidate="txtGrupo"
                                 ErrorMessage="*Grupo" ForeColor="Red" ValidationGroup="gpoInterno">*Requerido</asp:RequiredFieldValidator>
                         </div>
-                    </div>
-                    <div class="row">
+
                         <div class="col-md-2">
                             <asp:Label ID="lblPeriodo_Pago_I" runat="server" Text="Periodo de Pago (Ciclo)"></asp:Label>
                         </div>
@@ -579,7 +580,9 @@
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator21" runat="server" ControlToValidate="ddlPeriodo_Pago_I" ErrorMessage="*Periodo Pago" ForeColor="Red" InitialValue="0" ValidationGroup="gpoInterno">*Requerido</asp:RequiredFieldValidator>
                         </div>
-                        <div class="col-md-1">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
                             <asp:Label ID="Label4" runat="server" Text="Género"></asp:Label>
                         </div>
                         <div class="col-md-2">
@@ -588,25 +591,23 @@
                                 <asp:ListItem Value="F">Femenino</asp:ListItem>
                                 <asp:ListItem Value="M" Selected="True">Masculino</asp:ListItem>
                             </asp:RadioButtonList>
-                        </div>                    
+                        </div>
                         <div class="col-md-1">
                             <asp:Label ID="lblCorreo0" runat="server" Text="EMail"></asp:Label>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <asp:TextBox ID="txtCorreo0" runat="server" CssClass="form-control" TabIndex="12"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="CampoReqCorreo0" runat="server" ControlToValidate="txtCorreo0" ErrorMessage="*Correo" ForeColor="Red" ValidationGroup="gpoInterno">*Requerido</asp:RequiredFieldValidator>
                             &nbsp;<asp:RegularExpressionValidator runat="server" ControlToValidate="txtCorreo0" ErrorMessage="*Este correo no es válido"
                                 ValidationExpression="^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$" ValidationGroup="gpoInterno" ForeColor="Red" ID="ExpRegCorreo" />
                         </div>
                     </div>
-                </div>
-            </asp:Panel>
-        </ContentTemplate>
-    </asp:UpdatePanel>
-    <asp:UpdatePanel ID="UpdatePanel3" runat="server">
-        <ContentTemplate>
-            <asp:Panel ID="pnlEstudianteExterno" runat="server" Visible="False">
-                <div class="container-fluid">
+                </asp:Panel>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+            <ContentTemplate>
+                <asp:Panel ID="pnlEstudianteExterno" runat="server" Visible="False">
                     <div class="row">
                         <div class="col-md-2">
                             <asp:Label ID="Label2" runat="server" Text="Nombre"></asp:Label>
@@ -709,14 +710,12 @@
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator25" runat="server" ControlToValidate="txtCorreoEst_Ext" ErrorMessage="*Correo" ForeColor="Red" ValidationGroup="gpoInternoSM">*Requerido</asp:RequiredFieldValidator>
                         </div>
                     </div>
-                </div>
-            </asp:Panel>
-        </ContentTemplate>
-    </asp:UpdatePanel>
-    <asp:UpdatePanel ID="UpdatePanel5" runat="server">
-        <ContentTemplate>
-            <asp:Panel ID="pnlPonente" runat="server" Visible="False">
-                <div class="container-fluid">
+                </asp:Panel>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <asp:UpdatePanel ID="UpdatePanel5" runat="server">
+            <ContentTemplate>
+                <asp:Panel ID="pnlPonente" runat="server" Visible="False">
                     <div class="row">
                         <div class="col-md-2">
                             <asp:Label ID="lblPonencia1" runat="server" Text="Ponencia 1"></asp:Label>
@@ -733,66 +732,67 @@
                             <asp:TextBox ID="txtPonencia2" runat="server" CssClass="form-control" TextMode="MultiLine" TabIndex="502"></asp:TextBox>
                         </div>
                     </div>
-                </div>
-            </asp:Panel>
-        </ContentTemplate>
-    </asp:UpdatePanel>
-    <asp:UpdatePanel ID="UpdatePanel8" runat="server">
-        <ContentTemplate>
-            <asp:Panel ID="pnlConstancia" runat="server" Visible="false">
+                </asp:Panel>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <asp:UpdatePanel ID="UpdatePanel8" runat="server">
+            <ContentTemplate>
+                <asp:Panel ID="pnlConstancia" runat="server" Visible="false">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <asp:Label ID="lblConstancia" runat="server" Text="Nombre para Constancia"></asp:Label>
+                        </div>
+                        <div class="col-md-9">
+                            <asp:TextBox ID="txtConstancia" runat="server" CssClass="form-control" TabIndex="17"></asp:TextBox>
+                        </div>
+                    </div>
+                </asp:Panel>
+                &nbsp;
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <asp:UpdatePanel ID="updPnlExtras" runat="server">
+            <ContentTemplate>
+                <asp:Panel ID="pnlExtras" runat="server" CssClass="alert alert-warning" Visible="false">
+                    <div class="font-weight-bold">Información Adicional</div>
+                </asp:Panel>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <asp:UpdatePanel ID="UpdatePanel6" runat="server">
+            <ContentTemplate>
                 <div class="row">
-                    <div class="col-md-3">
-                        <asp:Label ID="lblConstancia" runat="server" Text="Nombre para Constancia"></asp:Label>
-                    </div>
-                    <div class="col-md-9">
-                        <asp:TextBox ID="txtConstancia" runat="server" CssClass="form-control" TabIndex="17"></asp:TextBox>
+                    <div class="col">
+                        <asp:Label ID="lblMsj2" runat="server" Font-Bold="False" ForeColor="Red"></asp:Label>
                     </div>
                 </div>
-            </asp:Panel>
-            &nbsp;
-        </ContentTemplate>
-    </asp:UpdatePanel>
-    <asp:UpdatePanel ID="updPnlExtras" runat="server">
-        <ContentTemplate>
-            <asp:Panel ID="pnlExtras" runat="server" CssClass="alert alert-warning" Visible="false">
-                <div class="font-weight-bold">Información Adicional</div>
-            </asp:Panel>
-        </ContentTemplate>
-    </asp:UpdatePanel>
-    <asp:UpdatePanel ID="UpdatePanel6" runat="server">
-        <ContentTemplate>
-            <div class="row">
-                <div class="col">
-                    <asp:Label ID="lblMsj2" runat="server" Font-Bold="False" ForeColor="Red"></asp:Label>
+                <div class="row">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
+                        <asp:ValidationSummary ID="valInterno" CssClass="aler alert-danger" runat="server" ValidationGroup="gpoInterno" HeaderText="Estos campos son requeridos:" />
+                        <asp:ValidationSummary ID="valExterno" CssClass="aler alert-danger" runat="server" ValidationGroup="gpoExterno" HeaderText="Estos campos son requeridos:" />
+                        <asp:ValidationSummary ID="valInternoSM" CssClass="aler alert-danger" runat="server" ValidationGroup="gpoInternoSM" HeaderText="Estos campos son requeridos:" />
+                    </div>
+                    <div class="col-md-4 text-center">
+                    </div>
                 </div>
+                <div class="row">
+                    <div class="col text-center">
+                        <asp:Button ID="btnCancelar" runat="server" CssClass="btn btn-light" Text="Cancelar" OnClick="btnCancelar_Click" />
+                        &nbsp;<asp:Button ID="btnSiguiente" runat="server" CssClass="btn btn-primary" Text="Siguiente"
+                            OnClick="btnSiguiente_Click" Visible="False" TabIndex="900" />
+                    </div>
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <div class="row">
+            <div class="col text-center">
+                <asp:UpdateProgress ID="UpdateProgress3" AssociatedUpdatePanelID="UpdatePanel6" runat="server">
+                    <ProgressTemplate>
+                        <asp:Image ID="Image13" runat="server" Height="50px" ImageUrl="https://sysweb.unach.mx/resources/imagenes/ajax_loader_gray_512.gif" ToolTip="Espere un momento, por favor.." />
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
             </div>
-            <div class="row">
-                <div class="col-md-4">
-                </div>
-                <div class="col-md-4">
-                    <asp:ValidationSummary ID="valInterno" CssClass="aler alert-danger" runat="server" ValidationGroup="gpoInterno" HeaderText="Estos campos son requeridos:" />
-                    <asp:ValidationSummary ID="valExterno" CssClass="aler alert-danger" runat="server" ValidationGroup="gpoExterno" HeaderText="Estos campos son requeridos:" />
-                    <asp:ValidationSummary ID="valInternoSM" CssClass="aler alert-danger" runat="server" ValidationGroup="gpoInternoSM" HeaderText="Estos campos son requeridos:" />
-                </div>
-                <div class="col-md-4 text-center">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col text-center">
-                    <asp:Button ID="btnCancelar" runat="server" CssClass="btn btn-light" Text="Cancelar" OnClick="btnCancelar_Click" />
-                    &nbsp;<asp:Button ID="btnSiguiente" runat="server" CssClass="btn btn-primary" Text="Siguiente"
-                        OnClick="btnSiguiente_Click" Visible="False" TabIndex="900" />
-                </div>
-            </div>
-        </ContentTemplate>
-    </asp:UpdatePanel>
-    <div class="text-center">
-        <asp:UpdateProgress ID="UpdateProgress3" AssociatedUpdatePanelID="UpdatePanel6" runat="server">
-            <ProgressTemplate>
-                <asp:Image ID="Image13" runat="server" Height="50px" ImageUrl="https://sysweb.unach.mx/resources/imagenes/ajax_loader_gray_512.gif" ToolTip="Espere un momento, por favor.." />
-            </ProgressTemplate>
-        </asp:UpdateProgress>
-    </div>
+        </div>
     </div>
 
 

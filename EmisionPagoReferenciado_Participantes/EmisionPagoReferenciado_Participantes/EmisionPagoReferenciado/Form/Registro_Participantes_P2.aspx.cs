@@ -67,7 +67,7 @@ namespace EmisionPagoReferenciado.Form
                     //{
                     //    if (SesionUsu.FichaReferencia.Length < 26)
                     //        SesionUsu.FichaReferencia = GetReferencia();                    //}
-
+                    ObjFichaReferenciada.Evento = SesionUsu.UsuEvento;
                     SesionUsu.FichaReferencia = GetReferencia();
                     if (SesionUsu.ComponentesExtras == "S")
                     {
@@ -582,11 +582,12 @@ namespace EmisionPagoReferenciado.Form
                 ObjFichaReferenciada.Vigencia = ObjConcepto.DiasVigencia;
                 ObjFichaReferenciada.Importetotal = ObjConcepto.ImporteConcepto;
                 ObjFichaReferenciada.CicloEscolar = ObjConcepto.CicloEscolar;
+                ObjFichaReferenciada.Evento = SesionUsu.UsuEvento;
                 ObjFichaReferenciada.Referencia = GetReferencia();
                 ObjFichaReferenciada.ConceptoRef = "";
                 ObjFichaReferenciada.Grupo = SesionUsu.UsuGrupo;
                 ObjFichaReferenciada.Semestre = SesionUsu.UsuSemestre;
-                ObjFichaReferenciada.Evento = SesionUsu.UsuEvento;
+                //ObjFichaReferenciada.Evento = SesionUsu.UsuEvento;
                 ObjFichaReferenciada.Correo = SesionUsu.UsuCorreo;
                 CNFichaReferenciada.InsertarFichaReferenciada(ref ObjFichaReferenciada, SesionUsu.UsuCorreo, SesionUsu.UsuWXI, ref Verificador);
 

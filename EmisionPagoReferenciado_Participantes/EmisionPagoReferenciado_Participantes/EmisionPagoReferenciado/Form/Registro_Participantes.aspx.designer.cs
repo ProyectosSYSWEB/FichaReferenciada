@@ -60,13 +60,13 @@ namespace EmisionPagoReferenciado.Form
         protected global::System.Web.UI.WebControls.Label lblEspecificaciones;
 
         /// <summary>
-        /// Control UpdatePanel7.
+        /// Control updPnlError.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel7;
+        protected global::System.Web.UI.UpdatePanel updPnlError;
 
         /// <summary>
         /// Control rowError.
@@ -139,6 +139,42 @@ namespace EmisionPagoReferenciado.Form
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqInterno;
+
+        /// <summary>
+        /// Control updPgrEspTipoPart.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdateProgress updPgrEspTipoPart;
+
+        /// <summary>
+        /// Control updPnlEspTipoPart.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updPnlEspTipoPart;
+
+        /// <summary>
+        /// Control rowEspecificacionesTipoPart.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl rowEspecificacionesTipoPart;
+
+        /// <summary>
+        /// Control lblEspecificacionesTipoPart.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEspecificacionesTipoPart;
 
         /// <summary>
         /// Control updPnlEmpUNACH.
