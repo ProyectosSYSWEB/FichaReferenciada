@@ -1,45 +1,36 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Registro_Participantes_Extra.aspx.cs" Inherits="EmisionPagoReferenciado.Form.Registro_Participantes_Extra" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    <style type="text/css">
-        .auto-style1 {
-            position: relative;
-            width: 100%;
-            -ms-flex: 0 0 50%;
-            flex: 0 0 50%;
-            max-width: 50%;
-            left: 0px;
-            top: 0px;
-            padding-left: 15px;
-            padding-right: 15px;
-        }
-    </style>
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">   
-<div class="container">
-    <div class="content_main">
-        <div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title"><asp:Label ID="lblEvento"  runat="server"></asp:Label>
-            INFORMACIÓN EXTRA PARA EL EVENTO</h3>
-  </div>
-  <div class="panel-body">
-      <asp:Panel ID="pnlExtras" runat="server">
 
-    <asp:PlaceHolder ID="placeHolderDin" runat="server"></asp:PlaceHolder>
-    <div align="center">
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="container">
+        <br />
         <div class="row">
-            <div class="auto-style1">
-                <asp:Button ID="btnAnterior" runat="server" CssClass="btn btn-secondary" Text="Anterior" OnClick="btnAnterior_Click" />
-                <br />
-            </div>
-            <div class="auto-style1">
-                <asp:Button ID="btnSiguiente" runat="server" CssClass="btn btn-primary" Text="Siguiente" OnClick="btnSiguiente_Click" />
+            <div class="col">
+                <asp:Panel ID="pnlExtras" runat="server" ScrollBars="Vertical" Height="450px">
+                    <p class="note note-warning">
+                        <strong>
+                            <asp:Label ID="lblTitulo0" runat="server" Text="INFORMACIÓN ADICIONAL"></asp:Label>
+                        </strong>
+                    </p>
+                </asp:Panel>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-4">
+                <asp:ValidationSummary ID="valCamposExtras" CssClass="alert alert-danger" runat="server" ValidationGroup="next" HeaderText="Estos campos son requeridos:" />
+            </div>
+            <div class="col-md-4 text-center">
+                <asp:UpdatePanel ID="UpdatePanel6" runat="server">
+                    <ContentTemplate>
+                        <asp:Button ID="btnAnterior" runat="server" CssClass="btn btn-light" Text="Anterior" OnClick="btnAnterior_Click" />
+                        &nbsp;<asp:Button ID="btnSiguiente" runat="server" CssClass="btn btn-primary" Text="Siguiente"
+                            OnClick="btnSiguiente_Click" ValidationGroup="next" />
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+            <div class="col-md-4">
+            </div>
         </div>
-          </asp:Panel>
     </div>
-    </div>
-    </div>
-</div>
 </asp:Content>

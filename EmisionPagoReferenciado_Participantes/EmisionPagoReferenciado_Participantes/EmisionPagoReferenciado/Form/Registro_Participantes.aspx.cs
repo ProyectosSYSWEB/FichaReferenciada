@@ -11,7 +11,7 @@ using CapaNegocio;
 //Correo:      lis_go82@hotmail.com
 //Institución: Unach
 #endregion
-    
+
 namespace EmisionPagoReferenciado.Form
 {
     public partial class Registro_Participantes : System.Web.UI.Page
@@ -35,27 +35,60 @@ namespace EmisionPagoReferenciado.Form
             if (!IsPostBack)
             {
                 Inicializar();
-                
+
                 if (SesionUsu.UsuEvento == "FINANZAS_2016" || SesionUsu.UsuEvento == "RENDIMIENTOS")
                 {
                     ClientScript.RegisterStartupScript(GetType(), "Mensaje", "MensajeCaja();", true);
                     reqPatAlum.ValidationGroup = string.Empty;
                 }
-                else if(SesionUsu.UsuEvento=="ALUMNO")                
-                    ClientScript.RegisterStartupScript(GetType(), "MensajeAlumnos", "MensajeAlumnos();", true);                
+                else if (SesionUsu.UsuEvento == "ALUMNO")
+                    ClientScript.RegisterStartupScript(GetType(), "MensajeAlumnos", "MensajeAlumnos();", true);
                 else
                     reqPatAlum.ValidationGroup = "gpoInterno";
             }
 
             if (SesionUsu != null)
             {
-                if (SesionUsu.ComponentesExtras == "S")
-                    CargarComponentesExtras();
-                else
+                if (SesionUsu.UsuEvento == "ALUMNO" || SesionUsu.UsuEvento == "SUPERADMON" || SesionUsu.UsuEvento == "ADMON")
+                {
+                    SesionUsu.ComponentesExtras = "N";
                     pnlExtras.Visible = false;
+                    Session["ComponentesExtras"] = null;
+                    Session["ValoresComponentesExtras"] = null;
+                }
             }
             else
                 Response.Redirect("https://sysweb.unach.mx/");
+
+
+
+            //if (SesionUsu != null)
+            //{
+            //    if (SesionUsu.UsuEvento != "ALUMNO" && SesionUsu.ComponentesExtras == "S")
+            //    {
+            //        if (ddlTipo_Participante.SelectedValue != "0")
+            //        {
+            //            if (SesionUsu.TipoParticipante != "")
+            //            {
+            //                //pnlExtras.Visible = true;
+            //                CargarComponentesExtras();
+            //            }
+            //            else
+            //                pnlExtras.Visible = false;
+            //        }
+            //        else
+            //            pnlExtras.Visible = false;
+            //    }
+            //    else
+            //    {
+            //        SesionUsu.ComponentesExtras = "N";
+            //        pnlExtras.Visible = false;
+            //        Session["ComponentesExtras"] = null;
+            //        Session["ValoresComponentesExtras"] = null;
+            //    }
+            //}
+            //else
+            //    Response.Redirect("https://sysweb.unach.mx/");
 
 
 
@@ -70,7 +103,7 @@ namespace EmisionPagoReferenciado.Form
             lstTipoPersonal.Items.Clear();
             lstTipoPersonal.Items.Insert(0, new ListItem("NINGUNO", "0"));
             LimpiarDatosPublicoGral();
-
+            pnlExtras.Visible = false;
             pnlEstudianteUNACH_RegMatricula.Visible = false;
             pnlEmpUNACH.Visible = false;
             pnlParticipante_Gral.Visible = false;
@@ -82,14 +115,14 @@ namespace EmisionPagoReferenciado.Form
             txtPaterno_Gral.Enabled = true;
             txtMaterno_Gral.Enabled = true;
             rowEspecificacionesTipoPart.Visible = false;
-            lblEspecificacionesTipoPart.Text=string.Empty;
+            lblEspecificacionesTipoPart.Text = string.Empty;
             if (Session["ConfTipoPart"] != null)
             {
                 ListTipoPartcipante = (List<Comun>)Session["ConfTipoPart"];
                 SesionUsu.TipoParticipante = ListTipoPartcipante[ddlTipo_Participante.SelectedIndex].EtiquetaTres;
                 SesionUsu.Ponente = ListTipoPartcipante[ddlTipo_Participante.SelectedIndex].EtiquetaCuatro;
                 SesionUsu.RequiereConstancia = ListTipoPartcipante[ddlTipo_Participante.SelectedIndex].EtiquetaCinco;
-                if (ListTipoPartcipante[ddlTipo_Participante.SelectedIndex].EtiquetaOcho.Length>1)
+                if (ListTipoPartcipante[ddlTipo_Participante.SelectedIndex].EtiquetaOcho.Length > 1)
                 {
                     rowEspecificacionesTipoPart.Visible = true;
                     lblEspecificacionesTipoPart.Text = ListTipoPartcipante[ddlTipo_Participante.SelectedIndex].EtiquetaOcho;
@@ -155,7 +188,7 @@ namespace EmisionPagoReferenciado.Form
                         //txtMaterno_Gral.Text = string.Empty;
                     }
                     else
-                    { 
+                    {
                         txtNombre_Gral.Enabled = false;
                         txtPaterno_Gral.Enabled = false;
                         txtMaterno_Gral.Enabled = false;
@@ -174,7 +207,7 @@ namespace EmisionPagoReferenciado.Form
                     //pnlParticipante_Gral.Visible = true;
                     txtNombreEst_Ext.Focus();
                     btnSiguiente.ValidationGroup = "gpoInternoSM";
-                }                
+                }
                 else if (SesionUsu.TipoParticipante == "X")
                 {
                     pnlParticipante_Gral.Visible = true;
@@ -191,15 +224,33 @@ namespace EmisionPagoReferenciado.Form
 
             }
             if (SesionUsu.UsuEvento == "ADMON" || SesionUsu.UsuEvento == "SUPERADMON" || SesionUsu.UsuEvento == "RENDIMIENTOS" || SesionUsu.UsuEvento == "FINANZAS_2016")
+            {
+                if (Request.QueryString["WXI"] != null)
                 {
-                    if (Request.QueryString["WXI"] != null)
-                    {
-                        SesionUsu.UsuWXI = Request.QueryString["WXI"];
-                        ExpRegCorreo.ValidationGroup = string.Empty;
-                        CampoReqCorreo0.ValidationGroup = string.Empty;
-                    }
+                    SesionUsu.UsuWXI = Request.QueryString["WXI"];
+                    ExpRegCorreo.ValidationGroup = string.Empty;
+                    CampoReqCorreo0.ValidationGroup = string.Empty;
                 }
-            
+            }
+            //else
+            //{
+            //    if (SesionUsu.ComponentesExtras == "S")
+            //    {
+            //        if (ddlTipo_Participante.SelectedValue != "0")
+            //        {
+            //            if (SesionUsu.TipoParticipante != "")
+            //                CargarComponentesExtras();
+            //            else
+            //                pnlExtras.Visible = false;
+            //        }
+            //        else
+            //            pnlExtras.Visible = false;
+            //    }
+
+
+
+            //}
+
         }
 
         //protected void txtMaterno0_TextChanged(object sender, EventArgs e)
@@ -360,7 +411,7 @@ namespace EmisionPagoReferenciado.Form
                                 txtCorreo0.Text = ObjAlumno.Correo;
                                 rowError.Visible = true;
                                 EnviarCorreoActivacion(txtMatricula.Text.ToUpper(), ddlNivel.SelectedValue);
-                                lblMsj.Text = "Tu clave "+txtMatricula.Text+" aún no ha sido activada, para realizar la activación deberas consultar tu correo "+txtCorreo0.Text;
+                                lblMsj.Text = "Tu clave " + txtMatricula.Text + " aún no ha sido activada, para realizar la activación deberas consultar tu correo " + txtCorreo0.Text;
                             }
                         }
                         else
@@ -528,7 +579,7 @@ namespace EmisionPagoReferenciado.Form
                         SesionUsu.UsuCarrera = ddlCarrera.SelectedValue;
                         SesionUsu.UsuMatricula = ObjAlumno.Matricula;
                     }
-                    else                    
+                    else
                         CNAlumno.AlumnoEditar(ref ObjAlumno, ref Verificador);
 
                     if (SesionUsu.Ponente == "S")
@@ -665,7 +716,13 @@ namespace EmisionPagoReferenciado.Form
                     {
                         if (SesionUsu.UsuEvento != string.Empty)
                         {
-                            if (SesionUsu.UsuWXI != "X")
+                            if (SesionUsu.ComponentesExtras == "S")
+                            {
+                                Response.Redirect("Registro_Participantes_Extra.aspx" + "?Evento=" + SesionUsu.UsuEvento);
+
+                                //ObtenerValoresComponentesExtras();
+                            }
+                            else if (SesionUsu.UsuWXI != "X")
                                 Response.Redirect("Registro_Participantes_P2.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXI=" + SesionUsu.UsuWXI);
                             else if (SesionUsu.UsuWXIAdmon != "X")
                                 Response.Redirect("Registro_Participantes_P2.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXIEvento=" + SesionUsu.UsuWXIAdmon);
@@ -687,19 +744,12 @@ namespace EmisionPagoReferenciado.Form
                             }
                             else
                             {
-                                /*
-                                if(SesionUsu.ComponentesExtras == "S")
-                                    Response.Redirect("Registro_Participantes_Extra.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXI=" + SesionUsu.UsuWXI);
-                                else
-                                    Response.Redirect("Registro_Participantes_P2.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXI=" + SesionUsu.UsuWXI);*/
+                                //if (SesionUsu.ComponentesExtras == "S")
+                                //    ObtenerValoresComponentesExtras();
 
-                                //TextBox txt = pnlExtras.FindControl("txtEdad") as TextBox;
-                                //var valor = txt.Text;
-                                if(SesionUsu.ComponentesExtras == "S")
-                                    ObtenerValoresComponentesExtras();
-
-
-                                if (SesionUsu.UsuWXI != "X")
+                                if (SesionUsu.ComponentesExtras == "S")                                
+                                    Response.Redirect("Registro_Participantes_Extra.aspx" + "?Evento=" + SesionUsu.UsuEvento);
+                                else if (SesionUsu.UsuWXI != "X")
                                     Response.Redirect("Registro_Participantes_P2.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXI=" + SesionUsu.UsuWXI);
                                 else if (SesionUsu.UsuWXIAdmon != "X")
                                     Response.Redirect("Registro_Participantes_P2.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXIEvento=" + SesionUsu.UsuWXIAdmon);
@@ -915,7 +965,7 @@ namespace EmisionPagoReferenciado.Form
                 //    Session["SesionFicha"] = SesionUsu;
                 //    Session.Timeout = 20;
                 //}
-                
+
                 //txtMatricula.Focus();
             }
             catch (Exception ex)
@@ -1007,18 +1057,18 @@ namespace EmisionPagoReferenciado.Form
                             EnsureChildControls();
                             //panel2.Controls.Add(lblDinamico1);
                             pnlExtras.Controls.Add(lblDinamico1);
-                            lblDinamico1.Text = lst.Text;                            
+                            lblDinamico1.Text = lst.Text;
                             break;
                         case "TEXTBOX":
                             TextBox txtDinamico1 = new TextBox();
-                            txtDinamico1.ID = lst.IdControl;                            
-                            if (lst.Style_Key!=string.Empty && lst.Style_Value != string.Empty)
+                            txtDinamico1.ID = lst.IdControl;
+                            if (lst.Style_Key != string.Empty && lst.Style_Value != string.Empty)
                                 txtDinamico1.Style.Add(lst.Style_Key, lst.Style_Value);
                             EnsureChildControls();
                             panel2.Controls.Add(txtDinamico1);
                             pnlExtras.Controls.Add(panel2);
 
-                            break;                        
+                            break;
                         case "SELECT":
                             DropDownList ddlDinamico1 = new DropDownList();
                             ddlDinamico1.ID = lst.IdControl;
@@ -1032,11 +1082,13 @@ namespace EmisionPagoReferenciado.Form
                             requerido1.ID = lst.IdControl;
                             requerido1.ControlToValidate = lst.IdControlValida;
                             requerido1.Text = "*Requerido";
-                            requerido1.ErrorMessage = "*Requerido";
+                            requerido1.ErrorMessage = lst.MsgControlValida;
                             requerido1.ForeColor = System.Drawing.Color.Red;
                             //requerido1.ForeColor = "Red";
                             if (SesionUsu.TipoParticipante == "SX")
                                 requerido1.ValidationGroup = "gpoInternoSM";
+                            else if (SesionUsu.TipoParticipante == "S")
+                                requerido1.ValidationGroup = "gpoInterno"; //"gpoExterno"; //"gpoInterno";
 
                             EnsureChildControls();
                             panel2.Controls.Add(requerido1);
@@ -1093,10 +1145,10 @@ namespace EmisionPagoReferenciado.Form
 
             //if(lstComponentesGuardar.Count>0)            
             //    Session["ComponentesExtras"] = lstComponentesGuardar;
-            
-        }    
-    
-    private void CargarCombos()
+
+        }
+
+        private void CargarCombos()
         {
             rowError.Visible = false;
             lblMsj.Text = string.Empty;
@@ -1235,7 +1287,7 @@ namespace EmisionPagoReferenciado.Form
             try
             {
                 CNComun.LlenaLista("pkg_pagos_2016.Obt_Combo_Nivel_Alumno", ref ddlNivel, "p_matricula", "p_evento", txtMatricula.Text.ToUpper(), SesionUsu.UsuEvento);
-                if (ddlNivel.Items.Count == 1 && SesionUsu.UsuEvento_Exclusivo=="N")
+                if (ddlNivel.Items.Count == 1 && SesionUsu.UsuEvento_Exclusivo == "N")
                 {
                     btnRegistrar.Visible = true;
                     pnlMsjReg.Visible = true;
@@ -1374,7 +1426,7 @@ namespace EmisionPagoReferenciado.Form
             rowError.Visible = false;
             lblMsj.Text = string.Empty;
             try
-            {                
+            {
                 SesionUsu = (Sesion)Session["SesionFicha"];
                 ObjParticipante.APaterno = txtPaternoEst_Ext.Text;
                 ObjParticipante.AMaterno = txtMaternoEst_Ext.Text;
@@ -1449,7 +1501,7 @@ namespace EmisionPagoReferenciado.Form
                 if (SesionUsu.UsuEvento == "202100043" && ddlTipo_Participante.SelectedValue == "1400")
                 {
                     divMsjParticipante.Visible = true;
-                    lblMsjParticipante.Text = ObjParticipante.Nombre.ToUpper() + " " + ObjParticipante.APaterno.ToUpper() + " "+ ObjParticipante.AMaterno.ToUpper() + "<br/><strong>NOTA:</strong> Favor de llenar los campos con los datos del beneficiario(hijo) para poder realizar el registro de forma correcta.";
+                    lblMsjParticipante.Text = ObjParticipante.Nombre.ToUpper() + " " + ObjParticipante.APaterno.ToUpper() + " " + ObjParticipante.AMaterno.ToUpper() + "<br/><strong>NOTA:</strong> Favor de llenar los campos con los datos del beneficiario(hijo) para poder realizar el registro de forma correcta.";
 
                     txtNombre_Gral.Text = string.Empty;
                     txtPaterno_Gral.Text = string.Empty;
@@ -1529,7 +1581,7 @@ namespace EmisionPagoReferenciado.Form
             rowError.Visible = false;
             lblMsj.Text = string.Empty;
             try
-            {                
+            {
                 SesionUsu = (Sesion)Session["SesionFicha"];
                 ObjParticipante.APaterno = txtPaternoReg.Text;
                 ObjParticipante.AMaterno = txtMaternoReg.Text;
@@ -1576,7 +1628,37 @@ namespace EmisionPagoReferenciado.Form
 
         protected void linkBttnBuscar_Click(object sender, EventArgs e)
         {
-
+            rowError.Visible = false;
+            lblMsj.Text = string.Empty;
+            try
+            {
+                CNComun.LlenaLista("pkg_pagos_2016.Obt_Combo_Nivel_Alumno", ref ddlNivel, "p_matricula", "p_evento", txtMatricula.Text.ToUpper(), SesionUsu.UsuEvento);
+                if (ddlNivel.Items.Count == 1 && SesionUsu.UsuEvento_Exclusivo == "N")
+                {
+                    btnRegistrar.Visible = true;
+                    pnlMsjReg.Visible = true;
+                    //lblMsjReg.Text = "Dato no encontrado, si deseas registralo dar click por única vez.";
+                    lblNivel.Visible = false;
+                    ddlNivel.Visible = false;
+                    //btnSiguiente.Visible = false;
+                    ddlNivel.DataSource = null;
+                    ddlNivel.DataBind();
+                }
+                else
+                {
+                    btnRegistrar.Visible = false;
+                    pnlMsjReg.Visible = false;
+                    //lblMsjReg.Text = string.Empty;
+                    lblNivel.Visible = true;
+                    ddlNivel.Visible = true;
+                    //btnSiguiente.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                rowError.Visible = true;
+                lblMsj.Text = ex.Message;
+            }
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)

@@ -1,0 +1,191 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site4.master.cs" Inherits="EmisionPagoReferenciado.Site4" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="Styles/Plantilla3.css" rel="stylesheet" />
+    <link href="Styles/mdb.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <script src="../Scripts/jMenu.js"></script>
+    <title></title>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <style type="text/css">
+        .auto-style1 {
+            width: 165px;
+            height: 128px;
+        }
+    </style>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="page-wrapper chiller-theme toggled">
+            <%-- <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+                <i class="fas fa-bars"></i>
+            </a>--%>
+
+            <nav id="navbarNavAltMarkup" class="sidebar-wrapper">
+                <div class="sidebar-content">
+                    <div class="sidebar-brand">
+                        <img src="../Images/sysweb2018230-2.png" />
+                        <div id="close-sidebar">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="sidebar-header">
+                        <div class="user-pic">
+                            <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                                alt="User picture">
+                        </div>
+                        <div class="user-info">
+                            <span class="user-name">Jhon
+           
+                                <strong>Smith</strong>
+                            </span>
+                            <span class="user-role">Administrator</span>
+                            <span class="user-status">
+                                <i class="fa fa-circle"></i>
+                                <span>Online</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="sidebar-menu">
+                        <ul>
+                            <li class="header-menu">
+                                <span>General</span>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fas fa-phone mr-3"></i>
+                                    <span>Contacto</span>
+<%--                                    <span class="badge badge-pill badge-primary">Beta</span>--%>
+                                </a>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="fa fa-chart-line"></i>
+                                    <span>Eventos</span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="#">Especiales</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Extraordinarios</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+
+                                    <span>Guía de Pago</span>
+                                    <%--<span class="badge badge-pill badge-warning">New</span>--%>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="#">Clabe Interbancaria
+                   
+                                                <span class="badge badge-pill badge-success">Pro</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Transferencia vía SPEI (CIE Interbancario)</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Ventanilla Bancaria</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="fa fa-globe"></i>
+                                    <span>Comprobante de Pago</span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="#">Concepto escolar (exámen de selección, inscripción, reincripción, otros)</a>
+                                        </li>                                       
+                                        <li>
+                                            <a href="#">Evento</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="sidebar-menu">
+                        <br />
+                        <img src="../Images/unach.jpg" />
+                    </div>
+                    <!-- sidebar-menu  -->
+                </div>
+                <!-- sidebar-content  -->
+                <div class="sidebar-footer">
+                    <a href="#">
+                        <i class="fa fa-bell"></i>
+                        <span class="badge badge-pill badge-warning notification">3</span>
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-envelope"></i>
+                        <span class="badge badge-pill badge-success notification">7</span>
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-cog"></i>
+                        <span class="badge-sonar"></span>
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-power-off"></i>
+                    </a>
+                </div>
+            </nav>
+            <!-- sidebar-wrapper  -->
+            <main class="page-content">
+                <div class="container-fluid">
+                    <%-- <h5>Pro Sidebar</h5>
+                    <hr>--%>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+
+                        </div>
+                    </div>
+                    <footer class="text-center">
+                        <div class="mb-2">
+                            <small>© 2020 made with <i class="fa fa-heart" style="color: red"></i>by - <a target="_blank" rel="noopener noreferrer" href="https://azouaoui.netlify.com">Mohamed Azouaoui
+                            </a>
+                            </small>
+                        </div>
+                        <div>
+                            <a href="https://github.com/azouaoui-med" target="_blank">
+                                <img alt="GitHub followers" src="https://img.shields.io/github/followers/azouaoui-med?label=github&style=social" />
+                            </a>
+                            <a href="https://twitter.com/azouaoui_med" target="_blank">
+                                <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/azouaoui_med?label=twitter&style=social" />
+                            </a>
+                        </div>
+                    </footer>
+                </div>
+            </main>
+            <!-- page-content" -->
+        </div>
+    </form>
+</body>
+</html>

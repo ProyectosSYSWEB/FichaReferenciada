@@ -63,6 +63,13 @@ namespace CapaEntidad
             set { _IdControlValida = value; }
         }
 
+        private string _MsgControlValida= "*Requerido";
+        public string MsgControlValida
+        {
+            get { return _MsgControlValida; }
+            set { _MsgControlValida = value; }
+        }
+
         private string _Style_Key=string.Empty;
         public string Style_Key
         {

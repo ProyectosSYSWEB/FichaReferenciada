@@ -2,11 +2,18 @@
     CodeBehind="Registro_Participantes_P2.aspx.cs" Inherits="EmisionPagoReferenciado.Form.Registro_Participantes_P2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <style type="text/css">
+        .auto-style2 {
+            width: 174px;
+            height: 129px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="container-fluid">
+                <img src="../Images/payment.png" width="50px" height="50px"/>
                 <div class="row d-none d-sm-none d-md-block">
                     <div class="col">
                         <ul class="stepper stepper-horizontal">
@@ -71,7 +78,7 @@
                     <b>MXN</b>
                 </div>
                 <div class="row">
-                    <div class="col-sm-10">
+                    <div class="col-md-9">
                         <p class="note note-warning">
                             <strong>
                                 <asp:Label ID="lblTitulo0" runat="server" Text="CONCEPTOS DE PAGO"></asp:Label></strong>
@@ -79,7 +86,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-10">
+                    <div class="col-md-9">
                         <asp:ListBox ID="lstMaterias_Disponibles" CssClass="custom-select" runat="server" Height="200px"
                             Width="100%" OnSelectedIndexChanged="lstMaterias_Disponibles_SelectedIndexChanged"
                             AutoPostBack="True" ValidationGroup="MateriaDis"></asp:ListBox>
@@ -92,25 +99,39 @@
                             ValidationGroup="MateriaDis" InitialValue="0"></asp:RequiredFieldValidator>
                         <br />
                     </div>
-                    <div class="col-sm-2">
-
-                        <asp:Label ID="lblImporteAdd" runat="server" Font-Bold="True" ForeColor="#194169"
-                            Text="Ingresa importe indicado por tu Facultad ó Dependencia" Visible="false"></asp:Label>
-                        <br />
-                        <asp:TextBox ID="txtImporteAdd" runat="server" CausesValidation="True" Visible="false"
-                            Width="100px">0</asp:TextBox><br />
-                        <br />
-                        <asp:Button ID="btnAgregar_Materia" runat="server" Text="Agregar" CssClass="btn" Style="background-color: #d2af47; color: #fff"
-                            OnClick="btnAgregar_Materia_Click" ValidationGroup="MateriaDis" ToolTip="AGREGAR" /><br />
-                        <asp:Label ID="lblMsj" runat="server" ForeColor="Red" Font-Size="Small"></asp:Label>
-
-                        <br />
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtImporteAdd"
-                            ErrorMessage="*Agregar Importe" ForeColor="Red" SetFocusOnError="True" ValidationGroup="MateriaDis"></asp:RequiredFieldValidator>
+                    <div class="col-md-3">
+                        <div class="row">
+                            <div class="col">
+                                <asp:Label ID="lblImporteAdd" runat="server" Font-Bold="True" ForeColor="#194169"
+                                    Text="Ingresa importe indicado por tu Facultad ó Dependencia" Visible="false"></asp:Label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <asp:TextBox ID="txtImporteAdd" runat="server" CausesValidation="True" Visible="false"
+                                    Width="100px">0</asp:TextBox><br />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <asp:Button ID="btnAgregar_Materia" runat="server" Text="Agregar" CssClass="btn btn-grey" OnClick="btnAgregar_Materia_Click" ValidationGroup="MateriaDis" ToolTip="AGREGAR" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <asp:Label ID="lblMsj" runat="server" CssClass="alert alert-danger" Width="100%"></asp:Label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtImporteAdd"
+                                    ErrorMessage="*Agregar Importe" ForeColor="Red" SetFocusOnError="True" ValidationGroup="MateriaDis"></asp:RequiredFieldValidator>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-10">
+                    <div class="col-md-9">
                         <asp:ListBox ID="lstMaterias_Asignadas" runat="server" CssClass="custom-select" Height="200px" Width="100%" AutoPostBack="True" OnSelectedIndexChanged="lstMaterias_Asignadas_SelectedIndexChanged"></asp:ListBox>
                         <br />
                         <div class="alert alert-dark" role="alert">
@@ -120,16 +141,16 @@
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="lstMaterias_Asignadas"
                             ErrorMessage="*Seleccionar elemento de la lista" ForeColor="Red" ValidationGroup="MateriaAsig"></asp:RequiredFieldValidator>
                     </div>
-                    <div class="col-sm-2">
-                        <asp:Button ID="btnEliminar_Materia" runat="server" Text="Eliminar" CssClass="btn btn-light"
+                    <div class="col-md-3">
+                        <asp:Button ID="btnEliminar_Materia" runat="server" Text="Eliminar" CssClass="btn btn-danger"
                             OnClick="btnEliminar_Materia_Click" ValidationGroup="MateriaAsig" ToolTip="ELIMINAR" />
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-3">
+                    <div class="col-md-3">
                         <asp:Label ID="Label10" runat="server" Text="Especificar requerimientos(OPCIONAL)"></asp:Label>
                     </div>
-                    <div class="col-sm-9">
+                    <div class="col-md-9">
                         <asp:TextBox ID="txtObservaciones2" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>

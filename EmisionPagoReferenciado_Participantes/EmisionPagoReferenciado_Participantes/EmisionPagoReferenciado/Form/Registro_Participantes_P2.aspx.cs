@@ -42,8 +42,8 @@ namespace EmisionPagoReferenciado.Form
             SesionUsu = (Sesion)Session["SesionFicha"];
             if (SesionUsu != null)
             {
-                if (!IsPostBack)                
-                    Inicializar();                
+                if (!IsPostBack)
+                    Inicializar();
             }
             else
                 Response.Redirect("https://sysweb.unach.mx/");
@@ -51,6 +51,7 @@ namespace EmisionPagoReferenciado.Form
         #region <Botones y Eventos>
         protected void btnSiguiente_Click(object sender, EventArgs e)
         {
+            lblMsj.Visible = false;
             try
             {
                 if (lstMaterias_Asignadas.Items.Count > 1) // SE CARGAN ESTOS DATOS PARA GENERAR LA REFERENCIA FINAL
@@ -78,6 +79,7 @@ namespace EmisionPagoReferenciado.Form
                         if (Verificador != "0")
                         {
                             //SesionUsu.Operacion = "I";
+                            lblMsj.Visible = true;
                             lblMsj.Text = Verificador;
                         }
                     }
@@ -101,11 +103,14 @@ namespace EmisionPagoReferenciado.Form
                         Response.Redirect("Registro_Participantes_P3.aspx");
                 }
                 else
-
+                {
+                    lblMsj.Visible = true;
                     lblMsj.Text = "Debe agregar al menos un elemento a lista de --Seleccionados--";
+                }
             }
             catch (Exception ex)
             {
+                lblMsj.Visible = true;
                 lblMsj.Text = ex.Message;
             }
 
@@ -114,7 +119,9 @@ namespace EmisionPagoReferenciado.Form
         {
             if (SesionUsu.UsuEvento != string.Empty)
             {
-                if (SesionUsu.UsuWXI != "X")
+                if (SesionUsu.ComponentesExtras == "S")
+                    Response.Redirect("Registro_Participantes_Extra.aspx" + "?Evento=" + SesionUsu.UsuEvento);
+                else if (SesionUsu.UsuWXI != "X")
                     Response.Redirect("Registro_Participantes.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXI=" + SesionUsu.UsuWXI);
                 else if (SesionUsu.UsuWXIAdmon != "X")
                     Response.Redirect("Registro_Participantes.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXIEvento=" + SesionUsu.UsuWXIAdmon);
@@ -126,6 +133,7 @@ namespace EmisionPagoReferenciado.Form
         }
         protected void btnAgregar_Materia_Click(object sender, EventArgs e)
         {
+            lblMsj.Visible = false;
             try
             {
 
@@ -165,6 +173,7 @@ namespace EmisionPagoReferenciado.Form
                     }
                     else
                     {
+                        lblMsj.Visible = true;
                         lblMsj.Text = Verificador;
                     }
                 }
@@ -174,17 +183,20 @@ namespace EmisionPagoReferenciado.Form
                 }
                 else
                 {
+                    lblMsj.Visible = true;
                     lblMsj.Text = "No se pudo agregar los datos: " + Verificador;
                 }
             }
             catch (Exception ex)
             {
+                lblMsj.Visible = true;
                 lblMsj.Text = ex.Message;
             }
 
         }
         protected void btnEliminar_Materia_Click(object sender, EventArgs e)
         {
+            lblMsj.Visible = false;
             try
             {
                 lblMsj.Text = string.Empty;
@@ -212,16 +224,19 @@ namespace EmisionPagoReferenciado.Form
                 }
                 else
                 {
+                    lblMsj.Visible = true;
                     lblMsj.Text = Verificador;
                 }
             }
             catch (Exception ex)
             {
+                lblMsj.Visible = true;
                 lblMsj.Text = ex.Message;
             }
         }
         protected void lstMaterias_Disponibles_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lblMsj.Visible = false;
             lblDescMatDisp.Text = string.Empty;
             try
             {
@@ -244,6 +259,7 @@ namespace EmisionPagoReferenciado.Form
             }
             catch (Exception ex)
             {
+                lblMsj.Visible = true;
                 lblMsj.Text = ex.Message;
             }
 
@@ -256,7 +272,7 @@ namespace EmisionPagoReferenciado.Form
             lblDescMatDisp.Text = string.Empty;
             lblDescMatAsig.Text = string.Empty;
             lblMsj.Text = string.Empty;
-
+            lblMsj.Visible = false;
             try
             {
                 if (Request.QueryString["Evento"] != null)
@@ -267,6 +283,7 @@ namespace EmisionPagoReferenciado.Form
                     if (ObjParticipante.StatusEvento == 'N')
                     {
                         SesionUsu.UsuEvento = "ALUMNO";
+                        lblMsj.Visible = true;
                         lblMsj.Text = "El Evento no esta Vigente, favor de comunicarse con el administrador de la Dependencia";
                         btnSiguiente.Visible = false;
                     }
@@ -310,12 +327,14 @@ namespace EmisionPagoReferenciado.Form
             }
             catch (Exception ex)
             {
+                lblMsj.Visible = true;
                 lblMsj.Text = ex.Message;
 
             }
         }
         private void CargarCombos()
         {
+            lblMsj.Visible = false;
             try
             {
                 if (SesionUsu.TipoPersona == 1)
@@ -331,6 +350,7 @@ namespace EmisionPagoReferenciado.Form
             }
             catch (Exception ex)
             {
+                lblMsj.Visible = true;
                 lblMsj.Text = ex.Message;
             }
         }
@@ -398,6 +418,7 @@ namespace EmisionPagoReferenciado.Form
         }
         private void CargarComboMaterias()
         {
+            lblMsj.Visible = false;
             try
             {
                 //ListDetConceptoAsig.Clear();
@@ -432,6 +453,7 @@ namespace EmisionPagoReferenciado.Form
                     if (Convert.ToInt32(ObjConcepto.MaxMateria) == SesionUsu.ListDetConceptoAsig.Count)
                     {
                         btnAgregar_Materia.Enabled = false;
+                        lblMsj.Visible = true;
                         lblMsj.Text = "Sólo puede Agregar " + (Convert.ToInt32(ObjConcepto.MaxMateria) - 2) + " Talleres, Conferencias ó Materias";
                     }
                     else
@@ -454,12 +476,14 @@ namespace EmisionPagoReferenciado.Form
             }
             catch (Exception ex)
             {
+                lblMsj.Visible = true;
                 lblMsj.Text = ex.Message;
             }
         }
         private int GetID()
         {
             int ID = 0;
+            lblMsj.Visible = false;
             try
             {
                 ObjFichaReferenciada = new FichaReferenciada();
@@ -469,6 +493,7 @@ namespace EmisionPagoReferenciado.Form
             }
             catch (Exception ex)
             {
+                lblMsj.Visible = true;
                 lblMsj.Text = ex.Message;
             }
             return ID;
@@ -477,6 +502,7 @@ namespace EmisionPagoReferenciado.Form
         private string GetReferencia()
         {
             string Referencia = "";
+            lblMsj.Visible = false;
             try
             {
                 CNFichaReferenciada.GenerarReferencia(ref ObjFichaReferenciada);
@@ -484,12 +510,14 @@ namespace EmisionPagoReferenciado.Form
             }
             catch (Exception ex)
             {
+                lblMsj.Visible = true;
                 lblMsj.Text = ex.Message;
             }
             return Referencia;
         }
         private void GetConfigurarConcepto(int idConcepto)
         {
+            lblMsj.Visible = false;
             try
             {
                 ObjConcepto = new ConceptoPago();
@@ -510,12 +538,14 @@ namespace EmisionPagoReferenciado.Form
             }
             catch (Exception ex)
             {
+                lblMsj.Visible = true;
                 lblMsj.Text = ex.Message;
             }
 
         }
         private void AddConceptoPago()
         {
+            lblMsj.Visible = false;
             try
             {
                 lblMsj.Text = string.Empty;
@@ -523,6 +553,7 @@ namespace EmisionPagoReferenciado.Form
                 CNConcepto.ValidarConcepto(ref ObjConcepto, ref Verificador, ref Mensaje);
                 if (Verificador == "0")
                 {
+                    lblMsj.Visible = true;
                     lblMsj.Text = Mensaje;
                     ObjConcepto.Id = GetID();// Se creo una nueva fichareferenciada
 
@@ -544,10 +575,14 @@ namespace EmisionPagoReferenciado.Form
 
                     }
                     else
+                    {
+                        lblMsj.Visible = true;
                         lblMsj.Text = Verificador;
+                    }
                 }
                 else
                 {
+                    lblMsj.Visible = true;
                     lblMsj.Text = Mensaje;
                     SesionUsu.ConceptoID = ObjConcepto.Id;
 
@@ -555,12 +590,14 @@ namespace EmisionPagoReferenciado.Form
             }
             catch (Exception ex)
             {
+                lblMsj.Visible = true;
                 lblMsj.Text = ex.Message;
             }
 
         }
         private void AddFichaReferenciada()
         {
+            lblMsj.Visible = false;
             try
             {
 
@@ -593,6 +630,7 @@ namespace EmisionPagoReferenciado.Form
 
                 if (Verificador == "0")
                 {
+                    lblMsj.Visible = true;
                     lblMsj.Text = string.Empty;
                     SesionUsu.Operacion = "U";
                     SesionUsu.FichaRefID = ObjFichaReferenciada.IdFichaBancaria;
@@ -600,11 +638,13 @@ namespace EmisionPagoReferenciado.Form
                 else
                 {
                     SesionUsu.Operacion = "I";
+                    lblMsj.Visible = true;
                     lblMsj.Text = Verificador;
                 }
             }
             catch (Exception ex)
             {
+                lblMsj.Visible = true;
                 lblMsj.Text = ex.Message;
             }
 

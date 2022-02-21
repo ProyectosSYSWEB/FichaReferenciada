@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site4.Master" AutoEventWireup="true"
     CodeBehind="Registro_Participantes.aspx.cs" Inherits="EmisionPagoReferenciado.Form.Registro_Participantes" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
@@ -93,7 +93,7 @@
                     <li class="disabled">
                         <a href="#!">
                             <span class="circle">3</span>
-                            <span class="label">Comprobante Fiscal</span>
+                            <span class="label">Solicitud Factura</span>
                         </a>
                     </li>
 
@@ -172,21 +172,22 @@
                     <ProgressTemplate>
                         <asp:Image ID="imgEspTipoPart" runat="server" Height="50px" ImageUrl="https://sysweb.unach.mx/resources/imagenes/ajax_loader_gray_512.gif" ToolTip="Espere un momento, por favor.." AlternateText="Espere un momento, por favor.." />
                     </ProgressTemplate>
-                </asp:UpdateProgress>                
+                </asp:UpdateProgress>
             </div>
         </div>
         <asp:UpdatePanel ID="updPnlEspTipoPart" runat="server">
             <ContentTemplate>
                 <div class="row" runat="server" id="rowEspecificacionesTipoPart">
-                    <div class="col-md-2 font-weight-bold text-info">Nota </div>
-                    <div class="col-md-6 alert alert-info">
-                        <%--<i class="fa fa-file"></i>--%>
-                        <asp:Label ID="lblEspecificacionesTipoPart" runat="server" Style="font-weight: bold; font-size: smaller" Width="100%"></asp:Label>
+                    <div class="col-md-2 font-weight-bold">Nota </div>
+                    <div class="col-md-6 font-weight-bold">
+                        <div class="note note-warning" style="font-size: 14px">
+                            <asp:Label ID="lblEspecificacionesTipoPart" runat="server"></asp:Label>
+                        </div>
                     </div>
                 </div>
             </ContentTemplate>
         </asp:UpdatePanel>
-
+        <hr />
         <asp:UpdatePanel ID="updPnlEmpUNACH" runat="server">
             <ContentTemplate>
                 <asp:Panel ID="pnlEmpUNACH" runat="server" Visible="False">
@@ -410,18 +411,20 @@
                                     ValidationGroup="gpoBusca" OnTextChanged="txtMatricula_TextChanged"></asp:TextBox>
                                 <asp:UpdatePanel ID="UpdMatricula" runat="server">
                                     <ContentTemplate>
-                                        <span class="input-group-addon">
-                                            <%--<asp:LinkButton ID="linkBttnBuscar" runat="server" Height="40px" CssClass="btnBuscar btn-blue-grey" OnClick="linkBttnBuscar_Click">
+                                        <span class="input-group-prepend">
+                                            <asp:LinkButton ID="imgBttnBuscar" runat="server" CssClass="btn btn-blue-grey" OnClick="linkBttnBuscar_Click">
                                                                     <i class="fa fa-search" aria-hidden="true"></i>
-                                                                    </asp:LinkButton>--%>
-                                            <asp:ImageButton ID="imgBttnBuscar" CssClass="btnBuscar" runat="server" ImageUrl="https://sysweb.unach.mx/resources/imagenes/buscar.png" OnClick="imgBttnBuscar_Click" />
+                                                                    </asp:LinkButton>
+                                            <%--<asp:ImageButton ID="imgBttnBuscar" CssClass="btnBuscar" runat="server" ImageUrl="https://sysweb.unach.mx/resources/imagenes/buscar.png" OnClick="imgBttnBuscar_Click" />--%>
                                         </span>
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
 
                             </div>
                         </div>
-                        <div class="col-md-7">
+                        </div>
+                    <div class="row">
+                        <div class="col">
                             <div class="alert alert-warning">
                                 <asp:Label ID="lblMsjUsu" runat="server" Text="IMPORTANTE: Favor de usar no. de ficha, matricula o id sysweb, que se te asigno (para no duplicar tu registro), caso contrario da click en la LUPA para registrarte, sino recuerdas tu ID (num. de ficha, matricula o ID de cliente) comunicate al 961 6178000 ext 5108 para consulta." Font-Size="13px"></asp:Label>
                             </div>
@@ -471,7 +474,7 @@
                         <div class="col-md-3">
                             <asp:UpdatePanel ID="updPnlNivel" runat="server">
                                 <ContentTemplate>
-                                    <asp:ListBox ID="ddlNivel" runat="server" CssClass="custom-select" AutoPostBack="True" CausesValidation="True" Height="100px" OnSelectedIndexChanged="ddlNivel_SelectedIndexChanged" ValidationGroup="gpoBusca" Visible="False"></asp:ListBox>
+                                    <asp:ListBox ID="ddlNivel" runat="server" CssClass="form-control" AutoPostBack="True" CausesValidation="True" Height="100px" OnSelectedIndexChanged="ddlNivel_SelectedIndexChanged" ValidationGroup="gpoBusca" Visible="False"></asp:ListBox>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                             <asp:UpdateProgress ID="updProgNivel" AssociatedUpdatePanelID="updPnlNivel" runat="server">
@@ -522,8 +525,8 @@
                             <asp:Label ID="lblEscuela" runat="server" Text="Escuela"></asp:Label>
                         </div>
                         <div class="col-md-10">
-                            <asp:DropDownList ID="ddlDependencia_D" Enabled="False" runat="server" CssClass="custom-select" TabIndex="6"
-                                ClientIDMode="Predictable" OnSelectedIndexChanged="ddlDependencia_D_SelectedIndexChanged" AutoPostBack="True">
+                            <asp:DropDownList ID="ddlDependencia_D" Enabled="False" runat="server" CssClass="form-control" TabIndex="6"
+                                ClientIDMode="Predictable" OnSelectedIndexChanged="ddlDependencia_D_SelectedIndexChanged" AutoPostBack="True" Width="100%">
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server"
                                 ControlToValidate="ddlDependencia_D" ErrorMessage="*Depependencia" ForeColor="Red"
@@ -536,8 +539,8 @@
                             <asp:Label ID="lblCarrera" runat="server" Text="Carrera"></asp:Label>
                         </div>
                         <div class="col-md-10">
-                            <asp:DropDownList ID="ddlCarrera" runat="server" CssClass="custom-select" ClientIDMode="Predictable" Enabled="False"
-                                TabIndex="7" AutoPostBack="True"
+                            <asp:DropDownList ID="ddlCarrera" runat="server" CssClass="form-control" ClientIDMode="Predictable" Enabled="False"
+                                TabIndex="7" AutoPostBack="True" Width="100%"
                                 OnSelectedIndexChanged="ddlCarrera_SelectedIndexChanged">
                             </asp:DropDownList>
                         </div>
@@ -576,7 +579,7 @@
                             <asp:Label ID="lblPeriodo_Pago_I" runat="server" Text="Periodo de Pago (Ciclo)"></asp:Label>
                         </div>
                         <div class="col-md-3">
-                            <asp:DropDownList ID="ddlPeriodo_Pago_I" runat="server" CssClass="custom-select" TabIndex="10">
+                            <asp:DropDownList ID="ddlPeriodo_Pago_I" runat="server" CssClass="form-control" TabIndex="10" Width="100%">
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator21" runat="server" ControlToValidate="ddlPeriodo_Pago_I" ErrorMessage="*Periodo Pago" ForeColor="Red" InitialValue="0" ValidationGroup="gpoInterno">*Requerido</asp:RequiredFieldValidator>
                         </div>
@@ -752,7 +755,7 @@
         </asp:UpdatePanel>
         <asp:UpdatePanel ID="updPnlExtras" runat="server">
             <ContentTemplate>
-                <asp:Panel ID="pnlExtras" runat="server" CssClass="alert alert-warning" Visible="false">
+                <asp:Panel ID="pnlExtras" runat="server" CssClass="alert alert-warning" ScrollBars="Vertical" Height="350px" Visible="false">
                     <div class="font-weight-bold">Información Adicional</div>
                 </asp:Panel>
             </ContentTemplate>
@@ -764,22 +767,18 @@
                         <asp:Label ID="lblMsj2" runat="server" Font-Bold="False" ForeColor="Red"></asp:Label>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row">                   
                     <div class="col-md-4">
-                    </div>
-                    <div class="col-md-4">
-                        <asp:ValidationSummary ID="valInterno" CssClass="aler alert-danger" runat="server" ValidationGroup="gpoInterno" HeaderText="Estos campos son requeridos:" />
-                        <asp:ValidationSummary ID="valExterno" CssClass="aler alert-danger" runat="server" ValidationGroup="gpoExterno" HeaderText="Estos campos son requeridos:" />
-                        <asp:ValidationSummary ID="valInternoSM" CssClass="aler alert-danger" runat="server" ValidationGroup="gpoInternoSM" HeaderText="Estos campos son requeridos:" />
+                        <asp:ValidationSummary ID="valInterno" CssClass="alert alert-danger" runat="server" ValidationGroup="gpoInterno" HeaderText="Estos campos son requeridos:" />
+                        <asp:ValidationSummary ID="valExterno" CssClass="alert alert-danger" runat="server" ValidationGroup="gpoExterno" HeaderText="Estos campos son requeridos:" />
+                        <asp:ValidationSummary ID="valInternoSM" CssClass="alert alert-danger" runat="server" ValidationGroup="gpoInternoSM" HeaderText="Estos campos son requeridos:" />
                     </div>
                     <div class="col-md-4 text-center">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col text-center">
                         <asp:Button ID="btnCancelar" runat="server" CssClass="btn btn-light" Text="Cancelar" OnClick="btnCancelar_Click" />
                         &nbsp;<asp:Button ID="btnSiguiente" runat="server" CssClass="btn btn-primary" Text="Siguiente"
                             OnClick="btnSiguiente_Click" Visible="False" TabIndex="900" />
+                    </div>
+                     <div class="col-md-4">
                     </div>
                 </div>
             </ContentTemplate>

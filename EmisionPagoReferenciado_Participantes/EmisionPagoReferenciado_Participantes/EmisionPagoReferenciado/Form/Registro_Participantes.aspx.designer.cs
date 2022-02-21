@@ -714,7 +714,7 @@ namespace EmisionPagoReferenciado.Form
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgBttnBuscar;
+        protected global::System.Web.UI.WebControls.LinkButton imgBttnBuscar;
 
         /// <summary>
         /// Control lblMsjUsu.

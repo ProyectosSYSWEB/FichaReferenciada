@@ -355,6 +355,7 @@ namespace CapaDatos
                     objComponentes.Style_Key = Convert.ToString(dr[4]);
                     objComponentes.Style_Value = Convert.ToString(dr[5]);
                     objComponentes.IdControlValida = Convert.ToString(dr[6]);
+                    objComponentes.MsgControlValida = Convert.ToString(dr[7]);
                     List.Add(objComponentes);
                 }
 
