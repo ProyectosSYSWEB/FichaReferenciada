@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Registro_Participantes_P5.aspx.cs" Inherits="EmisionPagoReferenciado.Form.Registro_Participantes_P5" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site4.Master" AutoEventWireup="true" CodeBehind="Registro_Participantes_P5.aspx.cs" Inherits="EmisionPagoReferenciado.Form.Registro_Participantes_P5" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
@@ -83,12 +83,12 @@
                     </li>
 
                     <!-- Third Step -->
-                    <li class="disabled">
+                   <%-- <li class="disabled">
                         <a href="#!">
                             <span class="circle">3</span>
                             <span class="label">Comprobante Fiscal</span>
                         </a>
-                    </li>
+                    </li>--%>
 
                     <li class="active">
                         <a href="#!">
@@ -106,9 +106,9 @@
                     <small>Usuario</small></a></li>
                 <li class="nav-item disabled"><a href="" class="nav-link">Paso 2<br>
                     <small>Servicios</small></a></li>
-                <li class="nav-item disabled"><a href="" class="nav-link">Paso 3<br>
-                    <small>Comprobante Fiscal</small></a></li>
-                <li class="nav-item active font-weight-bold" style="background-color: #d2d2d2"><a href="" class="nav-link">Paso 4<br>
+<%--                <li class="nav-item disabled"><a href="" class="nav-link">Paso 3<br>
+                    <small>Comprobante Fiscal</small></a></li>--%>
+                <li class="nav-item active font-weight-bold" style="background-color: #d2d2d2"><a href="" class="nav-link">Paso 3<br>
                     <small>Método de Pago</small></a></li>
             </ul>
         </div>
@@ -150,19 +150,19 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-1">
                 <asp:Label ID="lblNombre" runat="server" Text="Nombre"></asp:Label>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-11">
                 <asp:Label ID="lblNombre_l" runat="server" CssClass="form-control" ForeColor="#5d5d62"></asp:Label>
             </div>
         </div>
         <br />
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-1">
                 Referencia
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <asp:Label ID="lblReferencia_l" runat="server" CssClass="form-control text-dark font-weight-bold"></asp:Label>
             </div>
             <div class="col-md-1">
@@ -185,16 +185,16 @@
         </div>
         <br />
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-1">
                 <asp:Label ID="lblConcepto" runat="server" Text="Concepto"></asp:Label>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-11">
                 <asp:Label ID="lblConcepto_l" runat="server" CssClass="form-control text-dark" Height="100%" Width="100%"></asp:Label>
             </div>
         </div>
         <br />
         <div class="row" id="divGenLink" runat="server">
-            <div class="col-md-2">
+            <div class="col-md-1">
                 Generar link
             </div>
             <div class="col-md-2">
@@ -205,7 +205,7 @@
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <asp:UpdatePanel ID="updPnlPagoo" runat="server">
                     <ContentTemplate>
                         <asp:HyperLink ID="linkPago" runat="server"></asp:HyperLink>
@@ -240,10 +240,12 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-md-1">Formas de Pago</div>
             <div class="col-md-11">
                 <asp:UpdatePanel ID="updPnlFormaPago" runat="server">
                     <ContentTemplate>
-                        <asp:RadioButtonList ID="rbtFormaPago" runat="server" RepeatDirection="Horizontal" Width="100%" Height="105px" CssClass="font-weight-bold" Font-Bold="True" OnSelectedIndexChanged="rbtFormaPago_SelectedIndexChanged" AutoPostBack="True">
+                        <%--<asp:DropDownList ID="rbtFormaPago" runat="server" CssClass="form-control" Width="100%"></asp:DropDownList>--%>
+                        <asp:RadioButtonList ID="rbtFormaPago" runat="server" RepeatDirection="Horizontal" Width="100%" Height="105px" CssClass="form-control" Font-Bold="True" OnSelectedIndexChanged="rbtFormaPago_SelectedIndexChanged" AutoPostBack="True">
                             <asp:ListItem Value="1" Selected="True">Efectivo   <img src="../Images/efectivo.png"  /></asp:ListItem>
                             <asp:ListItem Value="2">Pago con tarjeta de Crédito  <img src="https://sysweb.unach.mx/resources/imagenes/visa-master.png"  /></asp:ListItem>
                             <asp:ListItem Value="3">Pago con tarjeta de Débito  <img src="https://sysweb.unach.mx/resources/imagenes/visa-master.png"  /></asp:ListItem>
@@ -255,12 +257,12 @@
                 <asp:HiddenField ID="hddnObservaciones" runat="server" />
                 <asp:HiddenField ID="hddnConceptos" runat="server" />
             </div>
-            <div class="col-md-1">
+            <%--<div class="col-md-1">
                 <button type="button" class="btn-floating btn-primary" style="border-color: #4285f4; border-style: solid;" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
                     <i class="fa fa-question-circle" aria-hidden="true"></i>
-                    </i></button>
+                    </button>
 
-            </div>
+            </div>--%>
         </div>
         <div class="row">
             <div class="col" id="divMensajeEventos" runat="server" visible="false">

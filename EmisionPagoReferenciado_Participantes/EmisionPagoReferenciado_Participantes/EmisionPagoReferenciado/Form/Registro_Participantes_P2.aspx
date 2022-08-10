@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site4.Master" AutoEventWireup="true"
     CodeBehind="Registro_Participantes_P2.aspx.cs" Inherits="EmisionPagoReferenciado.Form.Registro_Participantes_P2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
@@ -13,7 +13,6 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="container-fluid">
-                <img src="../Images/payment.png" width="50px" height="50px"/>
                 <div class="row d-none d-sm-none d-md-block">
                     <div class="col">
                         <ul class="stepper stepper-horizontal">
@@ -35,16 +34,16 @@
                             </li>
 
                             <!-- Third Step -->
-                            <li class="disabled">
+                            <%--<li class="disabled">
                                 <a href="#!">
                                     <span class="circle">3</span>
                                     <span class="label">Comprobante Fiscal</span>
                                 </a>
-                            </li>
+                            </li>--%>
 
                             <li class="disabled">
                                 <a href="#!">
-                                    <span class="circle">4</span>
+                                    <span class="circle">3</span>
                                     <span class="label">Método de Pago</span>
                                 </a>
                             </li>
@@ -114,7 +113,8 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <asp:Button ID="btnAgregar_Materia" runat="server" Text="Agregar" CssClass="btn btn-grey" OnClick="btnAgregar_Materia_Click" ValidationGroup="MateriaDis" ToolTip="AGREGAR" />
+                                <%--<asp:Button ID="btnAgregar_Materia" runat="server" Text="Agregar" CssClass="btn btn-grey" OnClick="btnAgregar_Materia_Click" ValidationGroup="MateriaDis" ToolTip="AGREGAR" />--%>
+                                <asp:LinkButton ID="linkBttnAgregar" runat="server"  CssClass="btn btn-grey" ValidationGroup="MateriaDis" ToolTip="AGREGAR" OnClick="linkBttnAgregar_Click"><i class="fa fa-plus"></i> Agregar</asp:LinkButton>
                             </div>
                         </div>
                         <div class="row">
@@ -142,13 +142,14 @@
                             ErrorMessage="*Seleccionar elemento de la lista" ForeColor="Red" ValidationGroup="MateriaAsig"></asp:RequiredFieldValidator>
                     </div>
                     <div class="col-md-3">
-                        <asp:Button ID="btnEliminar_Materia" runat="server" Text="Eliminar" CssClass="btn btn-danger"
-                            OnClick="btnEliminar_Materia_Click" ValidationGroup="MateriaAsig" ToolTip="ELIMINAR" />
+                        <%--<asp:Button ID="btnEliminar_Materia" runat="server" Text="Eliminar" CssClass="btn btn-danger"
+                            OnClick="btnEliminar_Materia_Click" ValidationGroup="MateriaAsig" ToolTip="ELIMINAR" />--%>
+                        <asp:LinkButton ID="linkBttnEliminar_Materia" runat="server"  CssClass="btn btn-danger" ValidationGroup="MateriaAsig" OnClick="linkBttnEliminar_Materia_Click"><i class="fa fa-trash"></i> Eliminar</asp:LinkButton>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        <asp:Label ID="Label10" runat="server" Text="Especificar requerimientos(OPCIONAL)"></asp:Label>
+                        <asp:Label ID="Label10" runat="server" CssClass="font-weight-bold" Text="Especificar requerimientos(OPCIONAL)"></asp:Label>
                     </div>
                     <div class="col-md-9">
                         <asp:TextBox ID="txtObservaciones2" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>

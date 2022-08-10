@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Registro_Participantes_Extra.aspx.cs" Inherits="EmisionPagoReferenciado.Form.Registro_Participantes_Extra" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site4.Master" AutoEventWireup="true" CodeBehind="Registro_Participantes_Extra.aspx.cs" Inherits="EmisionPagoReferenciado.Form.Registro_Participantes_Extra" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>

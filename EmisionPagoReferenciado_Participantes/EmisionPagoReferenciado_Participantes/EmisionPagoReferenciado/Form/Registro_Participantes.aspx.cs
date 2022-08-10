@@ -348,7 +348,10 @@ namespace EmisionPagoReferenciado.Form
                                 SesionUsu.Id_Comprobante = 1;
                                 pnlEstudianteUNACH.Visible = true;
                                 btnRegistrar.Visible = false;
-                                ddlDependencia_D.Enabled = false;
+                                if(SesionUsu.UsuEvento== "SUPERADMON")
+                                    ddlDependencia_D.Enabled = true;
+                                else
+                                    ddlDependencia_D.Enabled = false;
                                 //ddlCarrera.Enabled = false;
                                 txtNombreReg.Enabled = false;
                                 txtPaternoReg.Enabled = false;
@@ -390,8 +393,12 @@ namespace EmisionPagoReferenciado.Form
                                 if (ddlNivel.SelectedValue == "N")
                                     ddlCarrera.Enabled = true;
                                 else
-                                    ddlCarrera.Enabled = false;
-
+                                {
+                                    if (SesionUsu.UsuEvento == "SUPERADMON")
+                                        ddlCarrera.Enabled = true;
+                                    else
+                                        ddlCarrera.Enabled = false;
+                                }
                                 txtSemestre.Text = ObjAlumno.Semestre;
                                 txtGrupo.Text = ObjAlumno.Grupo;
                                 txtCorreo0.Text = ObjAlumno.Correo;
@@ -580,7 +587,11 @@ namespace EmisionPagoReferenciado.Form
                         SesionUsu.UsuMatricula = ObjAlumno.Matricula;
                     }
                     else
+                    {
+                        SesionUsu.UsuDependencia = ddlDependencia_D.SelectedValue;
+                        SesionUsu.UsuCarrera = ddlCarrera.SelectedValue;
                         CNAlumno.AlumnoEditar(ref ObjAlumno, ref Verificador);
+                    }
 
                     if (SesionUsu.Ponente == "S")
                     {

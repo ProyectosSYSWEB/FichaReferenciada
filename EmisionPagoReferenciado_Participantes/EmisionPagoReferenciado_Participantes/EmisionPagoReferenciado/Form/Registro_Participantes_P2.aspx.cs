@@ -61,13 +61,7 @@ namespace EmisionPagoReferenciado.Form
                     ObjFichaReferenciada.Nivel = SesionUsu.UsuNivel;
                     ObjFichaReferenciada.Dependencia = SesionUsu.UsuDependencia;
                     ObjFichaReferenciada.Vigencia = SesionUsu.FichaVigencia;
-                    ObjFichaReferenciada.Importetotal = SesionUsu.ImpDetalleConcep;
-                    //if (string.IsNullOrEmpty(SesionUsu.FichaReferencia)==true)
-                    //    SesionUsu.FichaReferencia = GetReferencia();
-                    //else
-                    //{
-                    //    if (SesionUsu.FichaReferencia.Length < 26)
-                    //        SesionUsu.FichaReferencia = GetReferencia();                    //}
+                    ObjFichaReferenciada.Importetotal = SesionUsu.ImpDetalleConcep;                    
                     ObjFichaReferenciada.Evento = SesionUsu.UsuEvento;
                     SesionUsu.FichaReferencia = GetReferencia();
                     if (SesionUsu.ComponentesExtras == "S")
@@ -89,18 +83,23 @@ namespace EmisionPagoReferenciado.Form
                     else
                         SesionUsu.Anexo = " REQUERIMIENTOS: " + txtObservaciones2.Text; //+ " --PERIDO DE PAGO:" + SesionUsu.Observaciones;
 
-
-                    if (SesionUsu.UsuEvento != string.Empty)
+                    UpdateFichaReferenciada(ref Verificador);
+                    if (Verificador == "0")
                     {
-                        if (SesionUsu.UsuWXI != "X")
-                            Response.Redirect("Registro_Participantes_P3.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXI=" + SesionUsu.UsuWXI);
-                        else if (SesionUsu.UsuWXIAdmon != "X")
-                            Response.Redirect("Registro_Participantes_P3.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXIEvento=" + SesionUsu.UsuWXIAdmon);
+                        if (SesionUsu.UsuEvento != string.Empty)
+                        {
+                            if (SesionUsu.UsuWXI != "X")
+                                Response.Redirect("Registro_Participantes_P5.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXI=" + SesionUsu.UsuWXI);
+                            else if (SesionUsu.UsuWXIAdmon != "X")
+                                Response.Redirect("Registro_Participantes_P5.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXIEvento=" + SesionUsu.UsuWXIAdmon);
+                            else
+                                Response.Redirect("Registro_Participantes_P5.aspx" + "?Evento=" + SesionUsu.UsuEvento);
+                        }
                         else
-                            Response.Redirect("Registro_Participantes_P3.aspx" + "?Evento=" + SesionUsu.UsuEvento);
+                            Response.Redirect("Registro_Participantes_P5.aspx");
                     }
                     else
-                        Response.Redirect("Registro_Participantes_P3.aspx");
+                        lblMsj.Text = Verificador;
                 }
                 else
                 {
@@ -115,6 +114,51 @@ namespace EmisionPagoReferenciado.Form
             }
 
         }
+
+        private void UpdateFichaReferenciada(ref string MsjVerificador)
+        {
+            try
+            {
+
+                ObjFichaReferenciada.IdFichaBancaria = SesionUsu.FichaRefID;
+                ObjFichaReferenciada.Importetotal = SesionUsu.ImpDetalleConcep;
+                ObjFichaReferenciada.Referencia = SesionUsu.FichaReferencia;
+                if (SesionUsu.UsuEvento == "FINANZAS_2016")
+                    ObjFichaReferenciada.ConceptoRef = SesionUsu.Observaciones + " PERIDO_PAGO:" + SesionUsu.PeriodoPago + SesionUsu.Anexo;
+                else
+                    ObjFichaReferenciada.ConceptoRef = SesionUsu.Observaciones + SesionUsu.Anexo;
+
+
+
+                ObjFichaReferenciada.Evento = SesionUsu.UsuEvento;
+                ObjFichaReferenciada.NoControl = SesionUsu.UsuMatricula;
+                ObjFichaReferenciada.Correo = SesionUsu.UsuCorreo;
+                if (SesionUsu.TipoPersona == 1)
+                    ObjFichaReferenciada.Nombre = SesionUsu.UsuNombre + " " + SesionUsu.UsuApaterno + " " + SesionUsu.UsuAMaterno;
+
+                else
+                    ObjFichaReferenciada.Nombre = SesionUsu.UsuNombre + " " + SesionUsu.UsuApaterno + " " + SesionUsu.UsuAMaterno;
+
+                CNFichaReferenciada.ActualizarFichaReferenciada(ref ObjFichaReferenciada, ref Verificador);
+
+                if (Verificador == "0")
+                {
+                    lblMsj.Text = string.Empty;
+                    SesionUsu.FichaOpcion = 1;
+                }
+                else
+                {
+
+                    MsjVerificador = Verificador;
+                }
+            }
+            catch (Exception ex)
+            {
+                MsjVerificador = ex.Message;
+            }
+
+        }
+
         protected void btnAnterior_Click(object sender, EventArgs e)
         {
             if (SesionUsu.UsuEvento != string.Empty)
@@ -192,7 +236,6 @@ namespace EmisionPagoReferenciado.Form
                 lblMsj.Visible = true;
                 lblMsj.Text = ex.Message;
             }
-
         }
         protected void btnEliminar_Materia_Click(object sender, EventArgs e)
         {
@@ -452,13 +495,15 @@ namespace EmisionPagoReferenciado.Form
 
                     if (Convert.ToInt32(ObjConcepto.MaxMateria) == SesionUsu.ListDetConceptoAsig.Count)
                     {
-                        btnAgregar_Materia.Enabled = false;
+                        //btnAgregar_Materia.Enabled = false; MOD VERSION ACT TEMPLATE
+                        linkBttnAgregar.Enabled = false;
                         lblMsj.Visible = true;
                         lblMsj.Text = "Sólo puede Agregar " + (Convert.ToInt32(ObjConcepto.MaxMateria) - 2) + " Talleres, Conferencias ó Materias";
                     }
                     else
                     {
-                        btnAgregar_Materia.Enabled = true;
+                        //btnAgregar_Materia.Enabled = true; MOD VERSION ACT TEMPLATE
+                        linkBttnAgregar.Enabled = true;
                         // lblMsj.Text = string.Empty;
                     }
                 }
@@ -715,6 +760,111 @@ namespace EmisionPagoReferenciado.Form
         {
             lblDescMatAsig.Text = string.Empty;
             lblDescMatAsig.Text = lstMaterias_Asignadas.SelectedItem.Text;
+        }
+
+       
+        protected void linkBttnEliminar_Materia_Click(object sender, EventArgs e)
+        {
+            lblMsj.Visible = false;
+            try
+            {
+                lblMsj.Text = string.Empty;
+                ObjDetConcepto.TipoRegistro = SesionUsu.ListDetConceptoAsig[lstMaterias_Asignadas.SelectedIndex].EtiquetaTres;
+                if (ObjDetConcepto.TipoRegistro == "M")
+                {
+                    ObjDetConcepto.IdConcepto = SesionUsu.ConceptoID;
+                    ObjDetConcepto.IdDetConcepto = Convert.ToInt32(lstMaterias_Asignadas.SelectedValue);
+                }
+                else if (ObjDetConcepto.TipoRegistro == "C")
+                {
+                    ObjDetConcepto.IdConcepto = Convert.ToInt32(lstMaterias_Asignadas.SelectedValue);
+                    ObjDetConcepto.IdDetConcepto = 0;
+                }
+                else
+                {
+                    ObjDetConcepto.IdConcepto = SesionUsu.ConceptoID;
+                    ObjDetConcepto.IdDetConcepto = Convert.ToInt32(lstMaterias_Asignadas.SelectedValue);
+                }
+                CNDetConcepto.EliminarDetConcepto(ref Verificador, ref ObjDetConcepto);
+                if (Verificador == "0")
+                {
+                    CargarComboMaterias();
+                    txtImporteAdd.Text = "";
+                }
+                else
+                {
+                    lblMsj.Visible = true;
+                    lblMsj.Text = Verificador;
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMsj.Visible = true;
+                lblMsj.Text = ex.Message;
+            }
+        }
+
+        protected void linkBttnAgregar_Click(object sender, EventArgs e)
+        {
+            lblMsj.Visible = false;
+            try
+            {
+
+                if (SesionUsu.ListDetConceptoDisp[lstMaterias_Disponibles.SelectedIndex].EtiquetaTres == "C")//tipo registro: C=Concepto, M= Materia, I=nada
+                {
+                    GetConfigurarConcepto(Convert.ToInt32(lstMaterias_Disponibles.SelectedValue));
+                    if (SesionUsu.Operacion == "I")
+                    {
+                        AddFichaReferenciada();
+                    }
+                    AddConceptoPago();
+
+                }
+                else if (SesionUsu.ListDetConceptoDisp[lstMaterias_Disponibles.SelectedIndex].EtiquetaTres == "M")
+                {
+                    GetConfigurarConcepto(Convert.ToInt32(SesionUsu.ListDetConceptoDisp[lstMaterias_Disponibles.SelectedIndex].EtiquetaCuatro));
+                    if (SesionUsu.Operacion == "I")
+                    {
+                        AddFichaReferenciada();
+                    }
+                    AddConceptoPago();
+
+
+                    ObjDetConcepto.IdConcepto = SesionUsu.ConceptoID;
+                    ObjDetConcepto.IdDetConcepto = Convert.ToInt32(lstMaterias_Disponibles.SelectedValue);
+
+                    CNDetConcepto.ValidarMateria(ref Verificador, ref ObjDetConcepto);
+                    if (Verificador == "0")
+                    {
+                        ObjDetConcepto.CicloEscolar = ObjConcepto.CicloEscolar;
+                        ObjDetConcepto.Semestre = SesionUsu.UsuSemestre;
+                        ObjDetConcepto.Grupo = SesionUsu.UsuGrupo;
+                        ObjDetConcepto.Evento = SesionUsu.UsuEvento;
+                        ObjDetConcepto.ImporteDetalle = Convert.ToDouble(SesionUsu.ListDetConceptoDisp[lstMaterias_Disponibles.SelectedIndex].EtiquetaDos);
+                        CNDetConcepto.InsertarDetConcepto(ref Verificador, ref ObjDetConcepto);
+
+                    }
+                    else
+                    {
+                        lblMsj.Visible = true;
+                        lblMsj.Text = Verificador;
+                    }
+                }
+                if (Verificador == "0")
+                {
+                    CargarComboMaterias();
+                }
+                else
+                {
+                    lblMsj.Visible = true;
+                    lblMsj.Text = "No se pudo agregar los datos: " + Verificador;
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMsj.Visible = true;
+                lblMsj.Text = ex.Message;
+            }
         }
     }
 }

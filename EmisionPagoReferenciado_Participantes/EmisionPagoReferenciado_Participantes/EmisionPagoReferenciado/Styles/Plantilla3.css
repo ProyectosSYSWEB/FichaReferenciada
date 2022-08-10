@@ -178,7 +178,7 @@ body {
         padding: 2px;
         border-radius: 12px;
         margin-right: 15px;
-        overflow: hidden;
+        /*overflow: hidden;*/
     }
 
         .sidebar-wrapper .sidebar-header .user-pic img {
@@ -208,6 +208,12 @@ body {
                 font-size: 8px;
                 margin-right: 4px;
                 color: #5cb85c;
+            }
+
+            .sidebar-wrapper .sidebar-header .user-info .user-status-offline i {
+                font-size: 8px;
+                margin-right: 4px;
+                color: red;
             }
 
 /*-----------------------sidebar-search------------------------*/
@@ -366,7 +372,7 @@ body {
     display: inline-block;
     width: 100%;
     padding-left: 0px;
-    /*padding-top: 20px;*/
+    padding-top: 30px;
 }
 
     .page-wrapper .page-content > div {

@@ -272,7 +272,17 @@ namespace EmisionPagoReferenciado.Form
 
         protected void btnAnterior_Click(object sender, EventArgs e)
         {
-
+            if (SesionUsu.UsuEvento != string.Empty)
+            {
+                if (SesionUsu.UsuWXI != "X")
+                    Response.Redirect("Registro_Participantes.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXI=" + SesionUsu.UsuWXI);
+                else if (SesionUsu.UsuWXIAdmon != "X")
+                    Response.Redirect("Registro_Participantes.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXIEvento=" + SesionUsu.UsuWXIAdmon);
+                else
+                    Response.Redirect("Registro_Participantes.aspx" + "?Evento=" + SesionUsu.UsuEvento);
+            }
+            else
+                Response.Redirect("Registro_Participantes.aspx");
         }
     }
 }

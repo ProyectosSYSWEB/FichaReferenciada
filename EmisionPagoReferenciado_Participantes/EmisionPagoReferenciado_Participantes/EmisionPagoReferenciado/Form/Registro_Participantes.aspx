@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site4.Master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
     CodeBehind="Registro_Participantes.aspx.cs" Inherits="EmisionPagoReferenciado.Form.Registro_Participantes" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
@@ -90,16 +90,16 @@
                     </li>
 
                     <!-- Third Step -->
-                    <li class="disabled">
+                    <%--<li class="disabled">
                         <a href="#!">
                             <span class="circle">3</span>
                             <span class="label">Solicitud Factura</span>
                         </a>
-                    </li>
+                    </li>--%>
 
                     <li class="disabled">
                         <a href="#!">
-                            <span class="circle">4</span>
+                            <span class="circle">3</span>
                             <span class="label">Método de Pago</span>
                         </a>
                     </li>
@@ -386,7 +386,7 @@
                             </asp:DropDownList>
                         </div>
                         <div class="col-md-2">
-                            <asp:Label ID="lblCorreo" runat="server" Text="EMail"></asp:Label>
+                            <asp:Label ID="lblCorreo" runat="server" Text="Correo"></asp:Label>
                         </div>
                         <div class="col-md-4">
                             <asp:TextBox ID="txtCorreo_Gral" runat="server" TabIndex="219" CssClass="form-control" onkeypress="if (event.keyCode==13) return false;"></asp:TextBox>
@@ -525,7 +525,7 @@
                             <asp:Label ID="lblEscuela" runat="server" Text="Escuela"></asp:Label>
                         </div>
                         <div class="col-md-10">
-                            <asp:DropDownList ID="ddlDependencia_D" Enabled="False" runat="server" CssClass="form-control" TabIndex="6"
+                            <asp:DropDownList ID="ddlDependencia_D" runat="server" CssClass="form-control" TabIndex="6"
                                 ClientIDMode="Predictable" OnSelectedIndexChanged="ddlDependencia_D_SelectedIndexChanged" AutoPostBack="True" Width="100%">
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server"
@@ -539,7 +539,7 @@
                             <asp:Label ID="lblCarrera" runat="server" Text="Carrera"></asp:Label>
                         </div>
                         <div class="col-md-10">
-                            <asp:DropDownList ID="ddlCarrera" runat="server" CssClass="form-control" ClientIDMode="Predictable" Enabled="False"
+                            <asp:DropDownList ID="ddlCarrera" runat="server" CssClass="form-control" ClientIDMode="Predictable" 
                                 TabIndex="7" AutoPostBack="True" Width="100%"
                                 OnSelectedIndexChanged="ddlCarrera_SelectedIndexChanged">
                             </asp:DropDownList>
@@ -588,17 +588,17 @@
                         <div class="col-md-2">
                             <asp:Label ID="Label4" runat="server" Text="Género"></asp:Label>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-4">
                             <asp:RadioButtonList ID="rdoGeneroI" runat="server" RepeatDirection="Horizontal"
-                                TabIndex="11">
-                                <asp:ListItem Value="F">Femenino</asp:ListItem>
-                                <asp:ListItem Value="M" Selected="True">Masculino</asp:ListItem>
+                                TabIndex="11" CssClass="form-control" Width="100%">
+                                <asp:ListItem Value="F"> Femenino</asp:ListItem>
+                                <asp:ListItem Value="M" Selected="True"> Masculino</asp:ListItem>
                             </asp:RadioButtonList>
                         </div>
                         <div class="col-md-1">
-                            <asp:Label ID="lblCorreo0" runat="server" Text="EMail"></asp:Label>
+                            <asp:Label ID="lblCorreo0" runat="server" Text="Correo"></asp:Label>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <asp:TextBox ID="txtCorreo0" runat="server" CssClass="form-control" TabIndex="12"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="CampoReqCorreo0" runat="server" ControlToValidate="txtCorreo0" ErrorMessage="*Correo" ForeColor="Red" ValidationGroup="gpoInterno">*Requerido</asp:RequiredFieldValidator>
                             &nbsp;<asp:RegularExpressionValidator runat="server" ControlToValidate="txtCorreo0" ErrorMessage="*Este correo no es válido"
@@ -706,7 +706,7 @@
                         </div>
 
                         <div class="col-md-2">
-                            <asp:Label ID="Label8" runat="server" Text="EMail"></asp:Label>
+                            <asp:Label ID="Label8" runat="server" Text="Correo"></asp:Label>
                         </div>
                         <div class="col-md-4">
                             <asp:TextBox ID="txtCorreoEst_Ext" CssClass="form-control" runat="server" TabIndex="110"></asp:TextBox>
@@ -742,10 +742,10 @@
             <ContentTemplate>
                 <asp:Panel ID="pnlConstancia" runat="server" Visible="false">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <asp:Label ID="lblConstancia" runat="server" Text="Nombre para Constancia"></asp:Label>
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-10">
                             <asp:TextBox ID="txtConstancia" runat="server" CssClass="form-control" TabIndex="17"></asp:TextBox>
                         </div>
                     </div>

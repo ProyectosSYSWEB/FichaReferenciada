@@ -7,11 +7,13 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace EmisionPagoReferenciado.Form {
-    
-    
-    public partial class Registro_Participantes_P2 {
-        
+namespace EmisionPagoReferenciado.Form
+{
+
+
+    public partial class Registro_Participantes_P2
+    {
+
         /// <summary>
         /// Control UpdatePanel1.
         /// </summary>
@@ -20,7 +22,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
+
         /// <summary>
         /// Control lblEvento.
         /// </summary>
@@ -29,7 +31,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblEvento;
-        
+
         /// <summary>
         /// Control lblCostoMat0.
         /// </summary>
@@ -38,7 +40,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCostoMat0;
-        
+
         /// <summary>
         /// Control lblImporteTotal.
         /// </summary>
@@ -47,7 +49,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblImporteTotal;
-        
+
         /// <summary>
         /// Control lblTitulo0.
         /// </summary>
@@ -56,7 +58,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTitulo0;
-        
+
         /// <summary>
         /// Control lstMaterias_Disponibles.
         /// </summary>
@@ -65,7 +67,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListBox lstMaterias_Disponibles;
-        
+
         /// <summary>
         /// Control lblDescMatDisp.
         /// </summary>
@@ -74,7 +76,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDescMatDisp;
-        
+
         /// <summary>
         /// Control RequiredFieldValidator3.
         /// </summary>
@@ -83,7 +85,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
-        
+
         /// <summary>
         /// Control lblImporteAdd.
         /// </summary>
@@ -92,7 +94,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblImporteAdd;
-        
+
         /// <summary>
         /// Control txtImporteAdd.
         /// </summary>
@@ -101,16 +103,16 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtImporteAdd;
-        
+
         /// <summary>
-        /// Control btnAgregar_Materia.
+        /// Control linkBttnAgregar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregar_Materia;
-        
+        protected global::System.Web.UI.WebControls.LinkButton linkBttnAgregar;
+
         /// <summary>
         /// Control lblMsj.
         /// </summary>
@@ -119,7 +121,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMsj;
-        
+
         /// <summary>
         /// Control RequiredFieldValidator5.
         /// </summary>
@@ -128,7 +130,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
-        
+
         /// <summary>
         /// Control lstMaterias_Asignadas.
         /// </summary>
@@ -137,7 +139,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListBox lstMaterias_Asignadas;
-        
+
         /// <summary>
         /// Control lblDescMatAsig.
         /// </summary>
@@ -146,7 +148,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDescMatAsig;
-        
+
         /// <summary>
         /// Control RequiredFieldValidator4.
         /// </summary>
@@ -155,16 +157,16 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
-        
+
         /// <summary>
-        /// Control btnEliminar_Materia.
+        /// Control linkBttnEliminar_Materia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEliminar_Materia;
-        
+        protected global::System.Web.UI.WebControls.LinkButton linkBttnEliminar_Materia;
+
         /// <summary>
         /// Control Label10.
         /// </summary>
@@ -173,7 +175,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label10;
-        
+
         /// <summary>
         /// Control txtObservaciones2.
         /// </summary>
@@ -182,7 +184,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtObservaciones2;
-        
+
         /// <summary>
         /// Control btnAnterior.
         /// </summary>
@@ -191,7 +193,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAnterior;
-        
+
         /// <summary>
         /// Control btnSiguiente.
         /// </summary>
@@ -200,7 +202,7 @@ namespace EmisionPagoReferenciado.Form {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSiguiente;
-        
+
         /// <summary>
         /// Control UpdateProgress3.
         /// </summary>

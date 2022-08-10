@@ -116,7 +116,7 @@ namespace CapaEntidad
             get { return _Nivel; }
             set { _Nivel = value; }
         }
-        private string _Anexo;
+        private string _Anexo=string.Empty;
 
         public string Anexo
         {

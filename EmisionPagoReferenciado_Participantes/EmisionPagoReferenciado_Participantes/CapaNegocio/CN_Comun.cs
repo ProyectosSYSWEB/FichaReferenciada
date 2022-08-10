@@ -865,7 +865,7 @@ namespace CapaNegocio
 
             //Hay que crear las credenciales del correo emisor
             cliente.Credentials =
-                new System.Net.NetworkCredential("sysweb@unach.mx", "cfgdfsgcqsxrnioo");
+                new System.Net.NetworkCredential("sysweb@unach.mx", "wpinrutndaizejiu");
 
             cliente.Port = 587;
             cliente.EnableSsl = true;
@@ -920,7 +920,7 @@ namespace CapaNegocio
 
             //Hay que crear las credenciales del correo emisor
             cliente.Credentials =
-                new System.Net.NetworkCredential("sysweb@unach.mx", "cfgdfsgcqsxrnioo");
+                new System.Net.NetworkCredential("sysweb@unach.mx", "wpinrutndaizejiu");
 
             cliente.Port = 587; //25;
             cliente.EnableSsl = true; //false;
