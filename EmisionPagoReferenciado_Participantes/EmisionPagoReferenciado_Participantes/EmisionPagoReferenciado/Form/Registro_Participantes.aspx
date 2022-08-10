@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site4.Master" AutoEventWireup="true"
     CodeBehind="Registro_Participantes.aspx.cs" Inherits="EmisionPagoReferenciado.Form.Registro_Participantes" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
@@ -404,8 +404,8 @@
                             <asp:Label ID="lblMatricula" runat="server"
                                 Text="No. de Ficha / Matricula / Id Sysweb" Font-Bold="False"></asp:Label>
                         </div>
-                        <div class="col-md-3">
-                            <div class="input-group">
+                        <div class="col-md-10">
+                            <div class="input-group col-md-3">
                                 <asp:TextBox ID="txtMatricula" runat="server" CssClass="form-control"
                                     TabIndex="2" MaxLength="8" CausesValidation="True"
                                     ValidationGroup="gpoBusca" OnTextChanged="txtMatricula_TextChanged"></asp:TextBox>
