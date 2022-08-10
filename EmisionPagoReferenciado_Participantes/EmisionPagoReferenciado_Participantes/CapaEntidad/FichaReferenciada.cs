@@ -47,28 +47,28 @@ namespace CapaEntidad
         }
 
         //--DATOS FISCALES--//
-        private string _TipoPersonaFiscal;
+        private string _TipoPersonaFiscal=string.Empty;
         public string TipoPersonaFiscal
         {
             get { return _TipoPersonaFiscal.Trim(); }
             set { _TipoPersonaFiscal = value.Trim(); }
         }
 
-        private string _RFC;
+        private string _RFC=string.Empty;
         public string RFC
         {
             get { return _RFC.Trim(); }
             set { _RFC = value.Trim(); }
         }
 
-        private string _RazonSocial;
+        private string _RazonSocial=string.Empty;
         public string RazonSocial
         {
             get { return _RazonSocial.Trim(); }
             set { _RazonSocial = value.Trim(); }
         }
 
-        private string _Domicilio;
+        private string _Domicilio = string.Empty;
         public string Domicilio
         {
             get { return _Domicilio.Trim(); }
@@ -80,86 +80,86 @@ namespace CapaEntidad
             get { return _CalleFiscal.Trim(); }
             set { _CalleFiscal = value.Trim(); }
         }
-        private string _CalleFiscal;
+        private string _CalleFiscal=string.Empty;
 
         public string ColoniaFiscal
         {
             get { return _ColoniaFiscal.Trim(); }
             set { _ColoniaFiscal = value.Trim(); }
         }
-        private string _ColoniaFiscal;
+        private string _ColoniaFiscal = string.Empty;
 
         public string CPFiscal
         {
             get { return _CPFiscal.Trim(); }
             set { _CPFiscal = value.Trim(); }
         }
-        private string _CPFiscal;
+        private string _CPFiscal = string.Empty;
 
         public string EstadoFiscal
         {
             get { return _EstadoFiscal.Trim(); }
             set { _EstadoFiscal = value.Trim(); }
         }
-        private string _EstadoFiscal;
+        private string _EstadoFiscal = string.Empty;
 
         public string MunicipioFiscal
         {
             get { return _MunicipioFiscal.Trim(); }
             set { _MunicipioFiscal = value.Trim(); }
         }
-        private string _MunicipioFiscal;
+        private string _MunicipioFiscal = string.Empty;
 
         public string TelefonoFiscal
         {
             get { return _TelefonoFiscal.Trim(); }
             set { _TelefonoFiscal = value.Trim(); }
         }
-        private string _TelefonoFiscal;
+        private string _TelefonoFiscal = string.Empty;
 
-        private string _CorreoFiscal;
+        private string _CorreoFiscal = string.Empty;
         public string CorreoFiscal
         {
             get { return _CorreoFiscal.Trim(); }
             set { _CorreoFiscal = value.Trim(); }
         }
 
-        private string _CFDI;
+        private string _CFDI = string.Empty;
         public string CFDI
         {
             get { return _CFDI.Trim(); }
             set { _CFDI = value.Trim(); }
         }
 
-        private string _TipoServicioFiscal;
+        private string _TipoServicioFiscal = string.Empty;
         public string TipoServicioFiscal
         {
             get { return _TipoServicioFiscal.Trim(); }
             set { _TipoServicioFiscal = value.Trim(); }
         }
 
-        private string _ObsSolicitudFactura;
+        private string _ObsSolicitudFactura = string.Empty;
         public string ObsSolicitudFactura
         {
             get { return _ObsSolicitudFactura.Trim(); }
             set { _ObsSolicitudFactura = value.Trim(); }
         }
 
-        private string _FormaPagoFiscal;
+        private string _FormaPagoFiscal = string.Empty;
         public string FormaPagoFiscal
         {
             get { return _FormaPagoFiscal.Trim(); }
             set { _FormaPagoFiscal = value.Trim(); }
         }
 
-        private string _ComprobanteFiscal;
+        private string _ComprobanteFiscal="N";
         public string ComprobanteFiscal
         {
             get { return _ComprobanteFiscal.Trim(); }
             set { _ComprobanteFiscal = value.Trim(); }
         }
 
-        private string _MetodoPagoFiscal;
+        private string _MetodoPagoFiscal = string.Empty;
         public string MetodoPagoFiscal
         {
             get { return _MetodoPagoFiscal.Trim(); }
@@ -167,21 +167,21 @@ namespace CapaEntidad
         }
         //--FIN DATOS FISCALES--//
 
-        private string _Ciudad;
+        private string _Ciudad = string.Empty;
         public string Ciudad
         {
             get { return _Ciudad.Trim(); }
             set { _Ciudad = value.Trim(); }
         }
 
-        private double _Importetotal;
+        private double _Importetotal = 0;
         public double Importetotal
         {
             get { return _Importetotal; }
             set { _Importetotal = value; }
         }
 
-        private int _Vigencia;
+        private int _Vigencia = 0;
         public int Vigencia
         {
             get { return _Vigencia; }
@@ -196,7 +196,7 @@ namespace CapaEntidad
             set { _Dias_Vigencia = value; }
         }
 
-        private string _Nombre;
+        private string _Nombre = string.Empty;
 
         public string Nombre
         {

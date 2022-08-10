@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site4.Master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
     CodeBehind="Registro_Participantes_P2.aspx.cs" Inherits="EmisionPagoReferenciado.Form.Registro_Participantes_P2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
@@ -57,9 +57,9 @@
                             <small>Usuario</small></a></li>
                         <li class="nav-item active font-weight-bold" style="background-color: #d2d2d2"><a href="" class="nav-link">Paso 2<br>
                             <small>Servicios</small></a></li>
+                        <%--<li class="nav-item disabled"><a href="" class="nav-link">Paso 3<br>
+                            <small>Comprobante Fiscal</small></a></li>--%>
                         <li class="nav-item disabled"><a href="" class="nav-link">Paso 3<br>
-                            <small>Comprobante Fiscal</small></a></li>
-                        <li class="nav-item disabled"><a href="" class="nav-link">Paso 4<br>
                             <small>Método de Pago</small></a></li>
                     </ul>
                 </div>

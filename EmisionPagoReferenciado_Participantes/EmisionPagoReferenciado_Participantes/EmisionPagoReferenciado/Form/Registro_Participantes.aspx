@@ -113,9 +113,9 @@
                     <small>Usuario</small></a></li>
                 <li class="nav-item disabled"><a href="" class="nav-link">Paso 2<br>
                     <small>Servicios</small></a></li>
+                <%--<li class="nav-item disabled"><a href="" class="nav-link">Paso 3<br>
+                    <small>Comprobante Fiscal</small></a></li>--%>
                 <li class="nav-item disabled"><a href="" class="nav-link">Paso 3<br>
-                    <small>Comprobante Fiscal</small></a></li>
-                <li class="nav-item disabled"><a href="" class="nav-link">Paso 4<br>
                     <small>Método de Pago</small></a></li>
             </ul>
         </div>

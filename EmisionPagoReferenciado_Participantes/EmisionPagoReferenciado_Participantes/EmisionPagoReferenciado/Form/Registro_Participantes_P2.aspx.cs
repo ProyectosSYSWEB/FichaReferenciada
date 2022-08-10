@@ -99,7 +99,10 @@ namespace EmisionPagoReferenciado.Form
                             Response.Redirect("Registro_Participantes_P5.aspx");
                     }
                     else
+                    {
+                        lblMsj.Visible = true;
                         lblMsj.Text = Verificador;
+                    }
                 }
                 else
                 {
