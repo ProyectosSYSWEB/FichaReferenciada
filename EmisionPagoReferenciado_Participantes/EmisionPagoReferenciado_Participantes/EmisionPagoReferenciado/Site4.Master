@@ -70,7 +70,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="https://www.sysweb.unach.mx/Ingresos/acceso.aspx?tipo=solicitud">
+                                <a href="https://sysweb.unach.mx/FichaReferenciadaEventos/Factura">
                                     <i class="fa fa-file-code"></i>
                                     <span>Facturación</span>
                                 </a>
@@ -99,7 +99,7 @@
                                 </div>
                             </li>
                             <li>
-                                <a href="https://sysweb.unach.mx/FichaReferenciada/Ayuda/sysweb_Guia_Rapida.pdf">
+                                <a href="https://sysweb.unach.mx/FichaReferenciada/Ayuda/sysweb_Guia_Rapida.pdf" target="_blank">
                                     <i class="fa fa-book"></i>
                                     <span>Guia Rápida</span>
                                 </a>
@@ -114,18 +114,17 @@
 
                     </div>
                     <div class="sidebar-menu">
-                        <div class="user-info text-center" style="padding: 15px 0">
-                            <a href="https://sysweb.unach.mx/DSIA/">
-                                <img src="https://sysweb.unach.mx/FichaReferenciadaEventos/images/sysweb2018230-2.png" /></a>
-                        </div>
+                    <div class="text-center" style="padding:8px 0">                        
+                        <a href="https://sysweb.unach.mx/DSIA/"><img src="https://sysweb.unach.mx/FichaReferenciadaEventos/images/sysweb2018230-2.png" /></a>
                     </div>
                 </div>
+                </div>
                 <div class="sidebar-footer">
-                    <%-- <h7>
+                <h7>
                     4ta. Poniente Sur, 3er Piso Tuxtla Gutiérrez, Chiapas.
                     Teléfono: (961) 61 7 80 00 ext. 5508, 5503, 5509 y 5501.
-                </h7>--%>
-                </div>
+                </h7>
+            </div>
             </nav>
             <!-- sidebar-wrapper  -->
             <main class="page-content">
@@ -137,7 +136,7 @@
                             </main>
                         </div>
                     </div>
-                    <footer class="text-center">
+                    <%--<footer class="text-center">
                         <div class="row">
                             <div class="col">
                                 <small>© Dirección de Sistemas de Información Administrativa
@@ -154,7 +153,7 @@
                             </div>
                         </div>
 
-                    </footer>
+                    </footer>--%>
                 </div>
             </main>
             <!-- page-content" -->

@@ -126,7 +126,7 @@
             </div>
 
             <div class="col-md-3 text-center">
-                <asp:Button ID="btnLimpiar" runat="server" CssClass="btn" Style="background-color: #d2af47; color: #fff" Text="Borrar Datos"
+                <asp:Button ID="btnLimpiar" runat="server" CssClass="btn btn-grey" Text="Borrar Datos"
                     OnClick="btnLimpiar_Click" />
             </div>
         </div>
@@ -402,7 +402,7 @@
                     <div class="row">
                         <div class="col-md-2">
                             <asp:Label ID="lblMatricula" runat="server"
-                                Text="No. de Ficha / Matricula / Id Sysweb" Font-Bold="False"></asp:Label>
+                                Text="Ficha / Matricula / Id Sysweb" Font-Bold="False"></asp:Label>
                         </div>
                         <div class="col-md-10">
                             <div class="input-group col-md-3">
@@ -412,17 +412,16 @@
                                 <asp:UpdatePanel ID="UpdMatricula" runat="server">
                                     <ContentTemplate>
                                         <span class="input-group-prepend">
-                                            <asp:LinkButton ID="imgBttnBuscar" runat="server" CssClass="btn btn-blue-grey" OnClick="linkBttnBuscar_Click">
+                                            <asp:LinkButton ID="imgBttnBuscar" runat="server" CssClass="btn btn-primary" OnClick="linkBttnBuscar_Click">
                                                                     <i class="fa fa-search" aria-hidden="true"></i>
-                                                                    </asp:LinkButton>
-                                            <%--<asp:ImageButton ID="imgBttnBuscar" CssClass="btnBuscar" runat="server" ImageUrl="https://sysweb.unach.mx/resources/imagenes/buscar.png" OnClick="imgBttnBuscar_Click" />--%>
+                                            </asp:LinkButton>
                                         </span>
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
 
                             </div>
                         </div>
-                        </div>
+                    </div>
                     <div class="row">
                         <div class="col">
                             <div class="alert alert-warning">
@@ -539,7 +538,7 @@
                             <asp:Label ID="lblCarrera" runat="server" Text="Carrera"></asp:Label>
                         </div>
                         <div class="col-md-10">
-                            <asp:DropDownList ID="ddlCarrera" runat="server" CssClass="form-control" ClientIDMode="Predictable" 
+                            <asp:DropDownList ID="ddlCarrera" runat="server" CssClass="form-control" ClientIDMode="Predictable"
                                 TabIndex="7" AutoPostBack="True" Width="100%"
                                 OnSelectedIndexChanged="ddlCarrera_SelectedIndexChanged">
                             </asp:DropDownList>
@@ -767,7 +766,7 @@
                         <asp:Label ID="lblMsj2" runat="server" Font-Bold="False" ForeColor="Red"></asp:Label>
                     </div>
                 </div>
-                <div class="row">                   
+                <div class="row">
                     <div class="col-md-4">
                         <asp:ValidationSummary ID="valInterno" CssClass="alert alert-danger" runat="server" ValidationGroup="gpoInterno" HeaderText="Estos campos son requeridos:" />
                         <asp:ValidationSummary ID="valExterno" CssClass="alert alert-danger" runat="server" ValidationGroup="gpoExterno" HeaderText="Estos campos son requeridos:" />
@@ -778,7 +777,7 @@
                         &nbsp;<asp:Button ID="btnSiguiente" runat="server" CssClass="btn btn-primary" Text="Siguiente"
                             OnClick="btnSiguiente_Click" Visible="False" TabIndex="900" />
                     </div>
-                     <div class="col-md-4">
+                    <div class="col-md-4">
                     </div>
                 </div>
             </ContentTemplate>
