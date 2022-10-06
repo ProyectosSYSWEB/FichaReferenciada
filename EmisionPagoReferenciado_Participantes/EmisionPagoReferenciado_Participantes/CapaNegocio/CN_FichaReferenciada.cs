@@ -33,6 +33,19 @@ namespace CapaNegocio
                 throw new Exception(ex.Message);
             }
         }
+        public void InsertarHistFichaReferenciada(FichaReferenciada FichaReferenciada, ref string Verificador)
+        {
+            try
+            {
+                CD_FichaReferenciada CDFichaReferenciada = new CD_FichaReferenciada();
+                CDFichaReferenciada.InsertarHistFichaReferenciada(FichaReferenciada, ref Verificador);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public void ActualizarFichaReferenciada(ref FichaReferenciada FichaReferenciada, ref string Verificador)
         {
             try
@@ -63,6 +76,18 @@ namespace CapaNegocio
             {
                 CD_FichaReferenciada CDFichaReferenciada = new CD_FichaReferenciada();
                 CDFichaReferenciada.GenerarReferencia(ref FichaReferenciada);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public void GenerarReferencia27(ref FichaReferenciada FichaReferenciada)
+        {
+            try
+            {
+                CD_FichaReferenciada CDFichaReferenciada = new CD_FichaReferenciada();
+                CDFichaReferenciada.GenerarReferencia27(ref FichaReferenciada);
             }
             catch (Exception ex)
             {

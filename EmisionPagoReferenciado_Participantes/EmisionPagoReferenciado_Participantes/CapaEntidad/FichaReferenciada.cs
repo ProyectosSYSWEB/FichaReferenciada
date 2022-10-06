@@ -31,6 +31,14 @@ namespace CapaEntidad
             set { _ConceptoRef = value; }
         }
 
+        private string _Observaciones=string.Empty;
+        public string Observaciones
+        {
+            get { return _Observaciones; }
+            set { _Observaciones = value; }
+        }
+
+
         private string _Referencia;
 
         public string Referencia
@@ -211,11 +219,17 @@ namespace CapaEntidad
             set { _XMLCadena = value; }
         }
         private string _Evento;
-
         public string Evento
         {
             get { return _Evento.Trim(); }
             set { _Evento = value.Trim(); }
+        }
+
+        private string _Matricula;
+        public string Matricula
+        {
+            get { return _Matricula.Trim(); }
+            set { _Matricula = value.Trim(); }
         }
         private string _Dependencia;
 

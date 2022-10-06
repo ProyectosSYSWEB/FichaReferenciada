@@ -63,7 +63,7 @@ namespace EmisionPagoReferenciado.Form
                     ObjFichaReferenciada.Vigencia = SesionUsu.FichaVigencia;
                     ObjFichaReferenciada.Importetotal = SesionUsu.ImpDetalleConcep;                    
                     ObjFichaReferenciada.Evento = SesionUsu.UsuEvento;
-                    SesionUsu.FichaReferencia = GetReferencia();
+                    SesionUsu.FichaReferencia = GetReferencia();// GetReferencia();
                     if (SesionUsu.ComponentesExtras == "S")
                     {
                         Verificador = string.Empty;
@@ -554,6 +554,22 @@ namespace EmisionPagoReferenciado.Form
             try
             {
                 CNFichaReferenciada.GenerarReferencia(ref ObjFichaReferenciada);
+                Referencia = ObjFichaReferenciada.Referencia;
+            }
+            catch (Exception ex)
+            {
+                lblMsj.Visible = true;
+                lblMsj.Text = ex.Message;
+            }
+            return Referencia;
+        }
+        private string GetReferencia27()
+        {
+            string Referencia = "";
+            lblMsj.Visible = false;
+            try
+            {
+                CNFichaReferenciada.GenerarReferencia27(ref ObjFichaReferenciada);
                 Referencia = ObjFichaReferenciada.Referencia;
             }
             catch (Exception ex)

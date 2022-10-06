@@ -52,12 +52,17 @@ namespace EmisionPagoReferenciado.Form
 
                             SesionUsu.FichaRefID = objDatos.IdFichaBancaria;
                             SesionUsu.ImpConcepto = objDatos.Total;
-                            SesionUsu.UsuNombre = objDatos.Nombre;
+                          
+                            SesionUsu.UsuNombre = objDatos.Nombre.Replace("\r", "%20");
                             SesionUsu.FichaReferencia = objDatos.Referencia;
-                            lblNombre_l.Text = objDatos.Nombre;
+                            SesionUsu.UsuEvento = objDatos.Evento;
+                            SesionUsu.UsuMatricula = objDatos.Matricula;
+                            lblNombre_l.Text = objDatos.Nombre.Replace("\r", "%20");
+                            lblMatricula.Text = objDatos.Matricula;
                             lblReferencia_l.Text = objDatos.Referencia;
                             lblImporte_l.Text = Convert.ToString(objDatos.Total);
-                            lblConcepto_l.Text = objDatos.ObsSolicitudFactura;
+                            lblConcepto_l.Text = objDatos.ObsSolicitudFactura.Replace("\r", "%20");
+                            hddnObservaciones.Value = objDatos.Observaciones.Replace("\r", "%20");
                             lblVigencia_l.Text = objDatos.FechaVigencia;
                             System.Web.HttpContext.Current.Session["DatosRef"] = SesionUsu;
                             if (Convert.ToInt32(objDatos.Dias_Vigencia) > 0)
@@ -103,8 +108,20 @@ namespace EmisionPagoReferenciado.Form
 
         protected void imgBttnPagoEfec_Click(object sender, ImageClickEventArgs e)
         {
-            string ruta = "../Reportes/VisualizadorCrystal.aspx?cverep=REP_SYSWEB&idFicha=" + SesionUsu.FichaReferencia;
-            string _open = "window.open('" + ruta + "', 'miniContenedor', 'toolbar=yes', 'location=no', 'menubar=yes', 'resizable=yes');";
+            string ruta;
+            string _open;
+            if (SesionUsu.UsuEvento == "VENTA_PRODUCTOS")
+            {
+                ruta = "https://sysweb.unach.mx/Ingresos/Reportes/VisualizadorCrystal.aspx?Tipo=REP000-1&idFact=" + SesionUsu.FichaRefID;
+                _open = "window.open('" + ruta + "', 'miniContenedor', 'toolbar=yes', 'location=no', 'menubar=yes', 'resizable=yes');";
+            }
+            else
+            {
+
+                ruta = "../Reportes/VisualizadorCrystal.aspx?cverep=REP_FICHA_REF&idFact=" + SesionUsu.FichaRefID + "&Referencia=" + lblReferencia_l.Text;
+                //ruta = "../Reportes/VisualizadorCrystal.aspx?cverep=REP_FICHA_REF&Nombre=" + lblNombre_l.Text + "&Referencia=" + lblReferencia_l.Text + "&Importe=" + lblImporte_l.Text.TrimStart('$') + "&Vigencia=" + lblVigencia_l.Text + "&Concepto=" + lblConcepto_l.Text + "&Observaciones=" + hddnObservaciones.Value + "&Matricula=" + SesionUsu.UsuMatricula;
+                _open = "window.open('" + ruta + "', 'miniContenedor', 'toolbar=yes', 'location=no', 'menubar=yes', 'resizable=yes');";
+            }
             ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), _open, true);
         }
     }

@@ -32,6 +32,7 @@
 <body>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                
         <div class="page-wrapper chiller-theme toggled">
             <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
                 <i class="fas fa-bars"></i>
@@ -127,6 +128,8 @@
             </div>
             </nav>
             <!-- sidebar-wrapper  -->
+            
+            <!-- page-content" -->
             <main class="page-content">
                 <div class="container-fluid">
                     <div class="row">
@@ -156,8 +159,8 @@
                     </footer>--%>
                 </div>
             </main>
-            <!-- page-content" -->
         </div>
+        
         <script src="https://sysweb.unach.mx/FichaReferenciadaEventos/lib/jquery/dist/jquery.min.js"></script>
         <script src="https://sysweb.unach.mx/FichaReferenciadaEventos/js/site.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"

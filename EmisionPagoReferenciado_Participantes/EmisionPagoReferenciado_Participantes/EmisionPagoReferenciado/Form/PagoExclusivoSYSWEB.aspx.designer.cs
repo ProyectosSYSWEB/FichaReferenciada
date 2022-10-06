@@ -51,6 +51,15 @@ namespace EmisionPagoReferenciado.Form
         protected global::System.Web.UI.WebControls.Label lblNombre_l;
 
         /// <summary>
+        /// Control lblMatricula.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMatricula;
+
+        /// <summary>
         /// Control lblReferencia.
         /// </summary>
         /// <remarks>
@@ -87,6 +96,15 @@ namespace EmisionPagoReferenciado.Form
         protected global::System.Web.UI.WebControls.Label lblImporte_l;
 
         /// <summary>
+        /// Control lblVigencia_l.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblVigencia_l;
+
+        /// <summary>
         /// Control lblConcepto.
         /// </summary>
         /// <remarks>
@@ -102,34 +120,16 @@ namespace EmisionPagoReferenciado.Form
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblConcepto_l;
+        protected global::System.Web.UI.WebControls.TextBox lblConcepto_l;
 
         /// <summary>
-        /// Control lblVigencia.
+        /// Control hddnObservaciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblVigencia;
-
-        /// <summary>
-        /// Control lblVigencia_l.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblVigencia_l;
-
-        /// <summary>
-        /// Control lblForma_Pago.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblForma_Pago;
+        protected global::System.Web.UI.WebControls.HiddenField hddnObservaciones;
 
         /// <summary>
         /// Control lblTextformpago.
@@ -157,6 +157,15 @@ namespace EmisionPagoReferenciado.Form
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPagoTDC;
+
+        /// <summary>
+        /// Control imgBttnPagoEfec.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton imgBttnPagoEfec;
 
         /// <summary>
         /// Control imgBttnPagoTDC.

@@ -407,8 +407,8 @@
                         <div class="col-md-10">
                             <div class="input-group col-md-3">
                                 <asp:TextBox ID="txtMatricula" runat="server" CssClass="form-control"
-                                    TabIndex="2" MaxLength="8" CausesValidation="True"
-                                    ValidationGroup="gpoBusca" OnTextChanged="txtMatricula_TextChanged"></asp:TextBox>
+                                    TabIndex="2" MaxLength="9" CausesValidation="True"
+                                    ValidationGroup="gpoBusca" OnTextChanged="txtMatricula_TextChanged" onkeypress="if (event.keyCode==13) return false;"></asp:TextBox>
                                 <asp:UpdatePanel ID="UpdMatricula" runat="server">
                                     <ContentTemplate>
                                         <span class="input-group-prepend">
@@ -422,6 +422,13 @@
                             </div>
                         </div>
                     </div>
+                    <%--<div class="row">
+                        <div class="col">
+                            <div class="alert alert-danger font-weight-bold">
+                                <h6>Las matriculas de 9 digitos aun no estan permitidas, usar el número de ficha para generar referencias.</h6>
+                            </div>
+                        </div>
+                    </div>--%>
                     <div class="row">
                         <div class="col">
                             <div class="alert alert-warning">

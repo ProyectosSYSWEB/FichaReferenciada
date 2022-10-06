@@ -74,6 +74,18 @@ namespace EmisionPagoReferenciado
                 object[] v1 = { idFicha };
                 rptPDF_Ingresos(Reporte, v1, "Ficha Referenciada");
             }
+            else if (cverep == "REP_FICHA")
+            {
+                rptPDFFicha("\\Reportes\\Ficha_Referenciada_V1.rpt", Nombre, Referencia, Importe, Vigencia, Concepto, Observaciones, Matricula);
+               
+            }
+            else if (cverep == "REP_FICHA_REF")
+            {
+                rptPDFFichaRef("\\Reportes\\Ficha_Referenciada_New.rpt", idFact, Referencia);
+            }
+
+            
+
         }
 
         protected void Page_UnLoad(object sender, EventArgs e)
@@ -230,6 +242,125 @@ namespace EmisionPagoReferenciado
                 GC.Collect();
             }
         }
+        private void rptPDFFichaRef(String Reporte, int idFact, string Referencia)
+        {
+            System.Web.UI.Page p = new System.Web.UI.Page();
+            CrystalDecisions.CrystalReports.Engine.ReportDocument report = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+            ConnectionInfo connectionInfo = new ConnectionInfo();
+
+            try
+            {           
+                report.Load(p.Server.MapPath("~") + Reporte);
+                report.SetParameterValue(0, idFact);
+                report.PrintOptions.PaperSize = PaperSize.PaperLetter;
+                connectionInfo.ServerName = "dsia";
+                connectionInfo.UserID = "ingresos";
+                connectionInfo.Password = "unach09";
+                SetDBLogonForReport(connectionInfo, report);
+                report.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, false, "Referencia - " + Referencia);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+
+                CR_Reportes.ReportSource = report;
+                report.Close();
+                report.Dispose();
+                CR_Reportes.Dispose();
+                CR_Reportes = null;
+                GC.Collect();
+            }
+        }
+        private void rptPDFFicha(String Reporte, String Nombre, String Referencia, Double Importe, String Vigencia, String Concepto, String Observaciones, String Matricula)
+        {
+            System.Web.UI.Page p = new System.Web.UI.Page();
+            CrystalDecisions.CrystalReports.Engine.ReportDocument report = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+            try
+            {
+
+                // ConnectionInfo connectionInfo = new ConnectionInfo();
+                //string J = System.AppDomain.CurrentDomain.BaseDirectory + Reporte;
+                report.Load(p.Server.MapPath("~") + Reporte);
+                //report.Load(System.AppDomain.CurrentDomain.BaseDirectory + Reporte);
+                Nombre = Nombre.Replace("Í", "I");
+                Nombre = Nombre.Replace("Á", "A");
+                Observaciones = Observaciones.Replace("\r", "%20");
+                report.SetParameterValue(0, Nombre);
+                report.SetParameterValue(1, Referencia);
+                report.SetParameterValue(2, Importe);
+                report.SetParameterValue(3, Vigencia);
+                report.SetParameterValue(4, Concepto);
+                report.SetParameterValue(5, Observaciones);
+                report.SetParameterValue(6, Matricula);
+                report.PrintOptions.PaperSize = PaperSize.PaperLetter;
+                report.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, false, "Referencia - " + Referencia);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+
+                CR_Reportes.ReportSource = report;
+                report.Close();
+                report.Dispose();
+                CR_Reportes.Dispose();
+                CR_Reportes = null;
+                GC.Collect();
+            }
+        }
+
+        //private void rptPDFFichaRef(String Reporte, String Nombre, String Referencia, Double Importe, String Vigencia, String Concepto, String Observaciones, String Matricula)
+        //{
+        //    System.Web.UI.Page p = new System.Web.UI.Page();
+        //    CrystalDecisions.CrystalReports.Engine.ReportDocument report = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+        //    try
+        //    {
+
+        //        // ConnectionInfo connectionInfo = new ConnectionInfo();
+        //        //string J = System.AppDomain.CurrentDomain.BaseDirectory + Reporte;
+        //        report.Load(p.Server.MapPath("~") + Reporte);
+        //        //report.Load(System.AppDomain.CurrentDomain.BaseDirectory + Reporte);
+        //        Nombre = Nombre.Replace("Í", "I");
+        //        Nombre = Nombre.Replace("Á", "A");
+        //        Observaciones = Observaciones.Replace("\r", "%20");
+        //        report.SetParameterValue(0, Nombre);
+        //        report.SetParameterValue(1, Referencia);
+        //        report.SetParameterValue(2, Importe);
+        //        report.SetParameterValue(3, Vigencia);
+        //        report.SetParameterValue(4, Concepto);
+        //        report.SetParameterValue(5, Observaciones);
+        //        report.SetParameterValue(6, Matricula);
+        //        report.PrintOptions.PaperSize = PaperSize.PaperLetter;
+        //        report.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, false, "Referencia - " + Referencia);
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        throw new Exception(ex.Message);
+        //    }
+        //    finally
+        //    {
+
+        //        CR_Reportes.ReportSource = report;
+        //        report.Close();
+        //        report.Dispose();
+        //        CR_Reportes.Dispose();
+        //        CR_Reportes = null;
+        //        GC.Collect();
+        //    }
+        //}
+
         private void rptPDFAdjunto(String Reporte, String Nombre, String Referencia, Double Importe, String Vigencia, String Concepto, String Observaciones)
         {
             System.Web.UI.Page p = new System.Web.UI.Page();
@@ -251,6 +382,7 @@ namespace EmisionPagoReferenciado
                 report.PrintOptions.PaperSize = PaperSize.PaperLetter;
                 //connectionInfo.ServerName = "ucad";
                 //connectionInfo.UserID = "ingresos";
+
                 //connectionInfo.Password = "unach09";
                 //SetDBLogonForReport(connectionInfo, report);
                 string archivo = p.Server.MapPath("~") + "/ArchivoReferencia/Referencia - " + Referencia + ".PDF";

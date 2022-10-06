@@ -15,7 +15,7 @@
                 Para realizar el pago presentar en el banco la referencia y el importe.            
             </div>
         </div>
-        <<div class="row">
+        <div class="row">
             <div class="col text-center">
                 <img src="../Images/bancos.png" class="img-responsive" alt="Responsive image" />
             </div>
@@ -28,22 +28,28 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-1">
                 <asp:Label ID="lblNombre" runat="server" Text="Nombre"></asp:Label>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-7">
                 <asp:Label ID="lblNombre_l" runat="server" CssClass="form-control" ForeColor="#5d5d62"></asp:Label>
+            </div>
+            <div class="col-md-1">
+                Matricula
+            </div>
+            <div class="col-md-3">
+                <asp:Label ID="lblMatricula" runat="server" Text="" CssClass="form-control"></asp:Label>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-1">
                 <asp:Label ID="lblReferencia" runat="server" Text="Referencia"></asp:Label>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-3">
                 <asp:Label ID="lblReferencia_l" runat="server" CssClass="form-control text-dark font-weight-bold"></asp:Label>
             </div>
 
-            <div class="col-md-2">
+            <div class="col-md-1">
                 <asp:Label ID="lblImporte" runat="server" Text="Importe"></asp:Label>
             </div>
             <div class="col-md-3">
@@ -54,35 +60,38 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                <asp:Label ID="lblConcepto" runat="server" Text="Concepto"></asp:Label>
+            <div class="col-md-1">
+                Vigencia
             </div>
-            <div class="col-md-10">
-                <asp:Label ID="lblConcepto_l" runat="server" CssClass="form-control text-dark" Height="100%" Width="100%"></asp:Label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                <asp:Label ID="lblVigencia" runat="server" Text="Vigencia"></asp:Label>
-            </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <asp:Label ID="lblVigencia_l" runat="server" CssClass="form-control text-dark font-weight-bold"></asp:Label>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
-                <asp:Label ID="lblForma_Pago" runat="server" Text="Forma de Pago"></asp:Label>
+            <div class="col-md-1">
+                <asp:Label ID="lblConcepto" runat="server" Text="Concepto"></asp:Label>
             </div>
-
-            <div class="col-md-10">
+            <div class="col-md-11">
+                <%--<asp:Label ID="lblConcepto_l" runat="server" CssClass="form-control text-dark" Height="100%" Width="100%"></asp:Label>--%>
+                <asp:TextBox ID="lblConcepto_l" runat="server" CssClass="form-control text-dark" TextMode="MultiLine" Enabled="False"></asp:TextBox>
+            </div>
+        </div>
+        <asp:HiddenField ID="hddnObservaciones" runat="server" />
+        <%--<div class="row">
+            <div class="col-md-1">
+                <asp:Label ID="lblVigencia" runat="server" Text="Vigencia"></asp:Label>
+            </div>
+            <div class="col-md-3">
+                <asp:Label ID="lblVigencia_l" runat="server" CssClass="form-control text-dark font-weight-bold"></asp:Label>
+            </div>
+        </div>--%>
+        <div class="row">
+            <div class="col-md-1">
+                </div>
+            <div class="col-md-11">
                 <div class=" alert alert-warning">
-
                     <asp:Label ID="lblTextformpago" runat="server" Text="Todas las transacciones son seguras y encriptadas. La información de tu tarjeta de crédito o débito nunca es almacenada."></asp:Label>
                 </div>
-
-
             </div>
         </div>
         <div class="row alert alert-danger" id="divExpiroFecha" runat="server" visible="false">
@@ -93,12 +102,11 @@
         <div class="row text-center" id="divPagoTDC" runat="server">
             <div class="col-md-3">
             </div>
-            <%-- <div class="col-md-3">
+            <div class="col-md-3">
                 <asp:ImageButton ID="imgBttnPagoEfec" runat="server" ImageUrl="https://sysweb.unach.mx/resources/imagenes/formaPago_Efectivo.png" OnClick="imgBttnPagoEfec_Click" />
                 <h5>PAGO EN EFECTIVO</h5>
-
-            </div>--%>
-            <div class="col-md-6 text-center">
+            </div>
+            <div class="col-md-3 text-center">
                 <asp:ImageButton ID="imgBttnPagoTDC" runat="server" ImageUrl="https://sysweb.unach.mx/resources/imagenes/formaPago_TDC.png" OnClick="imgBttnPagoTDC_Click" />
                 <h5>PAGO CON TARJETA</h5>
             </div>
@@ -118,16 +126,7 @@
                 <br />
                 <br />
                 <br />
-                <h1>
-                    <p class="font-weight-bold blue-grey-text">ACCESO</p>
-                    <h1></h1>
-                    <h1>
-                        <p class="font-weight-bold blue-grey-text">
-                            DENEGADO
-                        </p>
-                        <h1></h1>
-                    </h1>
-                </h1>
+                <h1 class="font-weight-bold blue-grey-text">ACCESO DENEGADO</h1>
             </div>
         </div>
     </div>

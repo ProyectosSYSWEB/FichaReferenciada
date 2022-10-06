@@ -266,31 +266,48 @@ namespace EmisionPagoReferenciado.Form
         }
         protected void btnForma_Pago_Click(object sender, EventArgs e)
         {
-            if (rbtFormaPago.SelectedValue == "1")
+            Verificador = string.Empty;
+            try
             {
-                btnAnterior.Visible = false;
-                btnForma_Pago.Visible = false;
-                divRep.Visible = true;
-                //imgBancos.Visible = false; //pnDatos
-                //Iframe1.Visible = true;
-                divDatosPago.Visible = false;
-                divRep.Visible = true;
-                if (lblReferencia_l.Text == string.Empty)
-                    lblMsj.Text = "Debe Generar la Referencia Bancaria";
-                else
+                ObjFichaReferenciada.IdFichaBancaria = SesionUsu.FichaRefID;
+                ObjFichaReferenciada.Nombre = lblNombre_l.Text;
+                ObjFichaReferenciada.Referencia = lblReferencia_l.Text;
+                ObjFichaReferenciada.Importetotal = SesionUsu.ImpDetalleConcep; // Convert.ToDouble(lblImporte_l.Text);
+                ObjFichaReferenciada.FechaVigencia = lblVigencia_l.Text;
+                ObjFichaReferenciada.ConceptoRef = hddnConceptos.Value;
+                ObjFichaReferenciada.Observaciones = hddnObservaciones.Value;
+                ObjFichaReferenciada.Evento = SesionUsu.UsuEvento;
+                ObjFichaReferenciada.Matricula = SesionUsu.UsuMatricula;
+                ObjFichaReferenciada.Dependencia = SesionUsu.UsuDependencia;
+                CNFichaReferenciada.InsertarHistFichaReferenciada(ObjFichaReferenciada, ref Verificador);
+                if (Verificador != "0")
                 {
-                    hddnObservaciones.Value = hddnObservaciones.Value.Replace("\r", "%20%20%20%20%20");
-                    hddnObservaciones.Value = hddnObservaciones.Value.Replace("\n", "%20%20%20%20%20");                    
-                    string ruta = "../Reportes/VisualizadorCrystal.aspx?cverep=1&Nombre=" + lblNombre_l.Text + "&Referencia=" + lblReferencia_l.Text + "&Importe=" + lblImporte_l.Text.TrimStart('$') + "&Vigencia=" + lblVigencia_l.Text + "&Concepto=" + hddnConceptos.Value + "&Observaciones=" + hddnObservaciones.Value;
-                    //string ruta = "../Reportes/VisualizadorCrystal.aspx?cverep=5&idFicha=" + SesionUsu.FichaRefID + "&Observaciones=" + hddnObservaciones.Value;
-                    string _open = "window.open('" + ruta + "', 'miniContenedor', 'toolbar=yes', 'location=no', 'menubar=yes', 'resizable=yes');";
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), _open, true);
-                    chkCorreo.Visible = true;
-                   
+
+                    lblMsj.Text = Verificador;
                 }
-            }
-            else if (rbtFormaPago.SelectedValue == "2" || rbtFormaPago.SelectedValue == "3" || rbtFormaPago.SelectedValue == "4" || rbtFormaPago.SelectedValue == "5")
-            {               
+                if (rbtFormaPago.SelectedValue == "1")
+                {
+                    btnAnterior.Visible = false;
+                    btnForma_Pago.Visible = false;
+                    divRep.Visible = true;
+
+                    divDatosPago.Visible = false;
+                    divRep.Visible = true;
+                    if (lblReferencia_l.Text == string.Empty)
+                        lblMsj.Text = "Debe Generar la Referencia Bancaria";
+                    else
+                    {
+                        hddnObservaciones.Value = hddnObservaciones.Value.Replace("\r", "%20%20%20%20%20");
+                        hddnObservaciones.Value = hddnObservaciones.Value.Replace("\n", "%20%20%20%20%20");
+                        string ruta = "../Reportes/VisualizadorCrystal.aspx?cverep=REP_FICHA&Nombre=" + lblNombre_l.Text + "&Referencia=" + lblReferencia_l.Text + "&Importe=" + lblImporte_l.Text.TrimStart('$') + "&Vigencia=" + lblVigencia_l.Text + "&Concepto=" + hddnConceptos.Value + "&Observaciones=" + hddnObservaciones.Value + "&Matricula=" + SesionUsu.UsuMatricula;
+                        string _open = "window.open('" + ruta + "', 'miniContenedor', 'toolbar=yes', 'location=no', 'menubar=yes', 'resizable=yes');";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), _open, true);
+                        chkCorreo.Visible = true;
+
+                    }
+                }
+                else if (rbtFormaPago.SelectedValue == "2" || rbtFormaPago.SelectedValue == "3" || rbtFormaPago.SelectedValue == "4" || rbtFormaPago.SelectedValue == "5")
+                {
                     mp_account.Value = "952";
                     mp_product.Value = "1";
                     mp_order.Value = Convert.ToString(SesionUsu.FichaRefID);
@@ -303,30 +320,31 @@ namespace EmisionPagoReferenciado.Form
                     mp_signature.Value = CNComun.GetSHA256(Convert.ToString(mp_order.Value + mp_reference.Value + mp_amount.Value));
                     mp_urlsuccess.Value = "https://sysweb.unach.mx/FichaReferenciada/Form/Registro_Participantes_P6.aspx"; //"Registro_Participantes_P7.aspx";
                     mp_urlfailure.Value = "https://sysweb.unach.mx/FichaReferenciada/Form/Registro_Participantes_P6.aspx"; // "Registro_Participantes_P7.aspx";
-                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "PagBancomer();", true);                
-            }
-            else if (rbtFormaPago.SelectedValue == "5")
-            {
-                //Response.Redirect("Registro_Participantes_P8.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXI=" + SesionUsu.UsuWXI);
-                if (SesionUsu.UsuEvento != string.Empty)
-                {
-                    if (SesionUsu.UsuWXI != "X")
-                        Response.Redirect("Registro_Participantes_P8.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXI=" + SesionUsu.UsuWXI);
-                    else if (SesionUsu.UsuWXIAdmon != "X")
-                        Response.Redirect("Registro_Participantes_P8.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXIEvento=" + SesionUsu.UsuWXIAdmon);
-                    else
-                        Response.Redirect("Registro_Participantes_P8.aspx" + "?Evento=" + SesionUsu.UsuEvento);
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "PagBancomer();", true);
                 }
-                else
-                    Response.Redirect("Registro_Participantes_P8.aspx");
+                else if (rbtFormaPago.SelectedValue == "6")
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "scriptCoDi", "PagCoDi('"+ SesionUsu.FichaReferencia + "'," + SesionUsu.ImpDetalleConcep + ");", true);
+                }
+                //else if (rbtFormaPago.SelectedValue == "5")
+                //{
+                //    if (SesionUsu.UsuEvento != string.Empty)
+                //    {
+                //        if (SesionUsu.UsuWXI != "X")
+                //            Response.Redirect("Registro_Participantes_P8.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXI=" + SesionUsu.UsuWXI);
+                //        else if (SesionUsu.UsuWXIAdmon != "X")
+                //            Response.Redirect("Registro_Participantes_P8.aspx" + "?Evento=" + SesionUsu.UsuEvento + "&WXIEvento=" + SesionUsu.UsuWXIAdmon);
+                //        else
+                //            Response.Redirect("Registro_Participantes_P8.aspx" + "?Evento=" + SesionUsu.UsuEvento);
+                //    }
+                //    else
+                //        Response.Redirect("Registro_Participantes_P8.aspx");
+                //}
             }
-            //SesionUsu.FichaRefIDPagoTC = SesionUsu.FichaRefID;
-            //if (SesionUsu != null)
-            //{
-            //    SesionUsu.FichaReferencia = string.Empty;
-            //    SesionUsu.FichaRefID = 0;
-            //}
-
+            catch(Exception ex)
+            {
+                lblMsj.Text = ex.Message;
+            }
         }
         protected void ddlForma_Pago_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -336,13 +354,11 @@ namespace EmisionPagoReferenciado.Form
 
         protected void chkCorreo_CheckedChanged(object sender, EventArgs e)
         {
-            //string ruta = "../Reportes/VisualizadorCrystal.aspx?cverep=1&Nombre=" + lblNombre_l.Text + "&Referencia=" + lblReferencia_l.Text + "&Importe=" + lblImporte_l.Text.TrimStart('$') + "&Vigencia=" + lblVigencia_l.Text + "&Concepto=" + hddnConceptos.Value + "&Observaciones=" + hddnObservaciones.Value;
-            //string _open = "window.open('" + ruta + "', 'miniContenedor', 'toolbar=yes', 'location=no', 'menubar=yes', 'resizable=yes');";
-            //ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), _open, true);
             if (SesionUsu != null)           
                 txtCorreo.Text = SesionUsu.UsuCorreo;
 
-            modalCorreo.Show();
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "showModalCorreo", "$('#modalCorreo').modal('show')", true);
+
         }
 
         protected void bttnCorreo_Click(object sender, EventArgs e)
@@ -353,7 +369,6 @@ namespace EmisionPagoReferenciado.Form
             string contenido = string.Empty;
             string OrigenArchivo = string.Empty;
             lblMensajeCorreo.Text = string.Empty;
-            modalCorreo.Show();
             try
             {
                 //ruta = "../ReportesFicha/VisualizadorCrystal.aspx?cverep=4&Nombre=" + lblNombre_l.Text + "&Referencia=" + lblReferencia_l.Text + "&Importe=" + lblImporte_l.Text.TrimStart('$') + "&Vigencia=" + lblVigencia_l.Text + "&Concepto=" + hddnConceptos.Value + "&Observaciones=" + hddnObservaciones.Value;
@@ -395,11 +410,7 @@ namespace EmisionPagoReferenciado.Form
 
         }
 
-        protected void bttnCancelarCorreo_Click(object sender, EventArgs e)
-        {
-            chkCorreo.Checked = false;
-            modalCorreo.Hide();
-        }
+       
 
         protected void rbtFormaPago_SelectedIndexChanged(object sender, EventArgs e)
         {

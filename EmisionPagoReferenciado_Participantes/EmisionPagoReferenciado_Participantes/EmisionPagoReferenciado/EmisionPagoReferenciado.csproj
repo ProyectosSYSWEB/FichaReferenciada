@@ -351,6 +351,7 @@
     <Content Include="Prueba.aspx" />
     <Content Include="Reportes\VisualizadorCrystal.aspx" />
     <Content Include="Scripts\jCodigoPostal.js" />
+    <Content Include="Scripts\jFormasPago.js" />
     <Content Include="Scripts\jMenu.js" />
     <Content Include="Scripts\jquery.alerts.js" />
     <Content Include="Scripts\Reportes.js" />
@@ -563,17 +564,17 @@
     <Compile Include="Prueba.aspx.designer.cs">
       <DependentUpon>Prueba.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\Ficha_Referenciada_New.cs">
+      <DependentUpon>Ficha_Referenciada_New.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reportes\Ficha_Referenciada_SYSWEB.cs">
       <DependentUpon>Ficha_Referenciada_SYSWEB.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Reportes\Ficha_Referenciada - Copia.cs">
-      <DependentUpon>Ficha_Referenciada - Copia.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\Ficha_Referenciada.cs">
       <AutoGen>True</AutoGen>
@@ -585,6 +586,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Ficha_Referenciada3.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\Ficha_Referenciada_V1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ficha_Referenciada_V1.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\rptFicha_Referenciada.cs">
@@ -664,13 +671,13 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reportes\Ficha_Referenciada_New.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Ficha_Referenciada_New.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Ficha_Referenciada_SYSWEB.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Ficha_Referenciada_SYSWEB.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\Ficha_Referenciada - Copia.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>Ficha_Referenciada - Copia.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Ficha_Referenciada.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -679,6 +686,10 @@
     <EmbeddedResource Include="Reportes\Ficha_Referenciada3.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Ficha_Referenciada3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Ficha_Referenciada_V1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Ficha_Referenciada_V1.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\rptFicha_Referenciada.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

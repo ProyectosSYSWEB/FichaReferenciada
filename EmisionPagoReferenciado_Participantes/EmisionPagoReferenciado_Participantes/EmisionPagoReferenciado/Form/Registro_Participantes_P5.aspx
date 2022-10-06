@@ -2,28 +2,58 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    <script language="javascript" type="text/javascript">
-        function PagBancomer() {
-            $('#<%= mp_account.ClientID %>').attr("name", "mp_account");
-            $('#<%= mp_product.ClientID %>').attr("name", "mp_product");
-            $('#<%= mp_order.ClientID %>').attr("name", "mp_order");
-            $('#<%= mp_reference.ClientID %>').attr("name", "mp_reference");
-            $('#<%= mp_node.ClientID %>').attr("name", "mp_node");
-            $('#<%= mp_concept.ClientID %>').attr("name", "mp_concept");
-            $('#<%= mp_order.ClientID %>').attr("name", "mp_order");
-            $('#<%= mp_amount.ClientID %>').attr("name", "mp_amount");
-            $('#<%= mp_customername.ClientID %>').attr("name", "mp_customername");
-            $('#<%= mp_currency.ClientID %>').attr("name", "mp_currency");
-            $('#<%= mp_signature.ClientID %>').attr("name", "mp_signature");
-            $('#<%= mp_urlsuccess.ClientID%>').attr("name", "mp_urlsuccess");
-            $('#<%= mp_urlfailure.ClientID %>').attr("name", "mp_urlfailure");
-            //document.getElementById("form1").action = "//mgg.unach.mx/pruebas_bancomer.php"; //Setting form action to "success.php" page        
-            //document.getElementById("form1").action = "ttps://prepro.adquiracloud.mx/clb/endpoint/unach/";
-            document.getElementById('<%= Master.Page.Controls[0].FindControl("form1").ClientID %>').action = "https://www.adquiramexico.com.mx/clb/endpoint/unach/";
-            document.getElementById('<%= Master.Page.Controls[0].FindControl("form1").ClientID %>').method = "POST";
-            document.getElementById('<%= Master.Page.Controls[0].FindControl("form1").ClientID %>').submit();
-        }
-    </script>
+    <script src="../Scripts/jFormasPago.js"></script>
+    <%--<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&components=YOUR_COMPONENTS"></script>--%>
+    <%--<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&components=buttons"></script>--%>
+    <script src="https://www.paypal.com/sdk/js?client-id=ARgJJuLKlXHNLuWWOc3zDlC4cFSWpN5pj50oJuOV0sQ-mKnCL8vwfcma9GFtH-Ny7LbaclyqVKIUWazV"></script>
+
+    <%--<div id="smart-button-container">
+      <div style="text-align: center;">
+        <div id="paypal-button-container"></div>
+      </div>
+    </div>--%>
+  <%--<script src="https://www.paypal.com/sdk/js?client-id=sb&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
+  <script>
+      function initPayPalButton() {
+          paypal.Buttons({
+              style: {
+                  shape: 'rect',
+                  color: 'gold',
+                  layout: 'vertical',
+                  label: 'paypal',
+
+              },
+
+              createOrder: function (data, actions) {
+                  return actions.order.create({
+                      purchase_units: [{ "amount": { "currency_code": "USD", "value": 1 } }]
+                  });
+              },
+
+              onApprove: function (data, actions) {
+                  return actions.order.capture().then(function (orderData) {
+
+                      // Full available details
+                      console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+
+                      // Show a success message within this page, e.g.
+                      const element = document.getElementById('paypal-button-container');
+                      element.innerHTML = '';
+                      element.innerHTML = '<h3>Thank you for your payment!</h3>';
+
+                      // Or go to another URL:  actions.redirect('thank_you.html');
+
+                  });
+              },
+
+              onError: function (err) {
+                  console.log(err);
+              }
+          }).render('#paypal-button-container');
+      }
+      initPayPalButton();
+  </script>--%>
+
     <style type="text/css">
         .overlay {
             position: fixed;
@@ -83,7 +113,7 @@
                     </li>
 
                     <!-- Third Step -->
-                   <%-- <li class="disabled">
+                    <%-- <li class="disabled">
                         <a href="#!">
                             <span class="circle">3</span>
                             <span class="label">Comprobante Fiscal</span>
@@ -106,17 +136,10 @@
                     <small>Usuario</small></a></li>
                 <li class="nav-item disabled"><a href="" class="nav-link">Paso 2<br>
                     <small>Servicios</small></a></li>
-<%--                <li class="nav-item disabled"><a href="" class="nav-link">Paso 3<br>
-                    <small>Comprobante Fiscal</small></a></li>--%>
                 <li class="nav-item active font-weight-bold" style="background-color: #d2d2d2"><a href="" class="nav-link">Paso 3<br>
                     <small>Método de Pago</small></a></li>
             </ul>
         </div>
-        <%-- <div class="row">
-            <div class="col text-center">
-                <img src="https://sysweb.unach.mx/resources/imagenes/paso1.PNG" class="img-responsive" alt="Responsive image" />
-            </div>
-        </div>--%>
     </div>
     <div class="container-fluid d-block d-sm-block d-md-none">
         <div class="row">
@@ -138,12 +161,6 @@
         </div>
     </div>
     <div class="container-fluid" id="divDatosPago" runat="server">
-        <%--<div class="row">
-            <div class="col text-center">
-                <asp:Button ID="btnPago" runat="server" CssClass="btn btn-blue-grey" Text="Nueva Referencia" OnClick="btnPago_Click" />
-            </div>
-        </div>--%>
-
         <div class="row">
             <div class="col text-center">
                 <asp:Label ID="lblMsj" runat="server" Style="text-align: center" Font-Bold="True" ForeColor="#3166A2"></asp:Label>
@@ -245,7 +262,7 @@
                 <asp:UpdatePanel ID="updPnlFormaPago" runat="server">
                     <ContentTemplate>
                         <%--<asp:DropDownList ID="rbtFormaPago" runat="server" CssClass="form-control" Width="100%"></asp:DropDownList>--%>
-                        <asp:RadioButtonList ID="rbtFormaPago" runat="server" RepeatDirection="Horizontal" Width="100%" Height="105px" CssClass="form-control" Font-Bold="True" OnSelectedIndexChanged="rbtFormaPago_SelectedIndexChanged" AutoPostBack="True">
+                        <asp:RadioButtonList ID="rbtFormaPago" runat="server" Width="100%" Height="105px" CssClass="form-control" Font-Bold="True" OnSelectedIndexChanged="rbtFormaPago_SelectedIndexChanged" AutoPostBack="True" RepeatDirection="Horizontal">
                             <asp:ListItem Value="1" Selected="True">Efectivo   <img src="../Images/efectivo.png"  /></asp:ListItem>
                             <asp:ListItem Value="2">Pago con tarjeta de Crédito  <img src="https://sysweb.unach.mx/resources/imagenes/visa-master.png"  /></asp:ListItem>
                             <asp:ListItem Value="3">Pago con tarjeta de Débito  <img src="https://sysweb.unach.mx/resources/imagenes/visa-master.png"  /></asp:ListItem>
@@ -304,14 +321,11 @@
                 &nbsp;<asp:Button ID="btnPagoBancomer" runat="server"
                     CssClass="btn btn-secondary" OnClick="btnPagoBancomer_Click"
                     Text="2" Visible="False" />
-
                 &nbsp;<asp:Button ID="btnForma_Pago" runat="server" CssClass="btn" Style="background-color: #d2af47; color: #fff" Text="Siguiente"
                     OnClick="btnForma_Pago_Click" />
             </div>
         </div>
     </div>
-    <ajaxToolkit:ModalPopupExtender ID="modalCorreo" runat="server" BackgroundCssClass="modalBackground_Proy" TargetControlID="hddnModal" PopupControlID="pnlCorreo">
-    </ajaxToolkit:ModalPopupExtender>
     <asp:HiddenField ID="hddnModal" runat="server" />
     <asp:HiddenField ID="mp_account" runat="server" Value="MPACCO" />
     <asp:HiddenField ID="mp_product" runat="server" Value="mpproduct" />
@@ -376,65 +390,95 @@
             </div>
         </div>
     </div>
-    <asp:Panel ID="pnlCorreo" runat="server" CssClass="card text-white bg-dark mb-3" Width="45%">
-        <table width="100%">
-            <tr>
-                <td class="auto-style1" colspan="3">
-                    <div class="titulo_pop">
-                        Enviar Ficha Referenciada
-                    </div>
-                    <div>
-                        <asp:UpdatePanel ID="UpdatePanel35" runat="server">
-                            <ContentTemplate>
-                                <asp:Label ID="lblMensajeCorreo" runat="server" Font-Bold="True" Font-Size="16px"></asp:Label>
-                            </ContentTemplate>
-                        </asp:UpdatePanel>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td align="right" valign="top" width="33%">
-                    <asp:UpdatePanel ID="UpdatePanel36" runat="server">
-                        <ContentTemplate>
-                            <asp:Label ID="lblCorreo" runat="server" Text="Correo:"></asp:Label>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                </td>
-                <td align="left" valign="top" width="67%">
-                    <asp:UpdatePanel ID="UpdatePanel34" runat="server">
-                        <ContentTemplate>
-                            <asp:TextBox ID="txtCorreo" runat="server" Width="90%"></asp:TextBox>
-                            <br />
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtCorreo" CssClass="MsjError" ErrorMessage="*Requerido" ValidationGroup="correo"></asp:RequiredFieldValidator>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                </td>
-                <td align="left" valign="top" width="67%"></td>
-            </tr>
-            <tr>
-                <td align="center" class="auto-style1" colspan="3">
-                    <asp:UpdateProgress ID="UpdateProgress12" runat="server" AssociatedUpdatePanelID="UpdatePanel37">
-                        <ProgressTemplate>
-                            <div class="overlay">
-                                <div class="overlayContent">
-                                    <asp:Image ID="Image13" runat="server" Height="100px" ImageUrl="~/Images/loader2.gif" Width="100px" />
-                                </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalCorreo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCorreoLabel">Enviar Ficha Referenciada</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <asp:UpdatePanel ID="UpdatePanel5" runat="server">
+                                    <ContentTemplate>
+                                        <asp:Label ID="lblMensajeCorreo" runat="server" Text=""></asp:Label>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
                             </div>
-                        </ProgressTemplate>
-                    </asp:UpdateProgress>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                Correo
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <asp:UpdatePanel ID="UpdatePanel34" runat="server">
+                                    <ContentTemplate>
+                                        <asp:TextBox ID="txtCorreo" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <br />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtCorreo" CssClass="MsjError" ErrorMessage="*Requerido" ValidationGroup="correo"></asp:RequiredFieldValidator>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <asp:UpdateProgress ID="UpdateProgress12" runat="server" AssociatedUpdatePanelID="UpdatePanel37">
+                                    <ProgressTemplate>
+                                        <div class="overlay">
+                                            <div class="overlayContent">
+                                                <asp:Image ID="Image13" runat="server" Height="100px" ImageUrl="~/Images/loader2.gif" Width="100px" />
+                                            </div>
+                                        </div>
+                                    </ProgressTemplate>
+                                </asp:UpdateProgress>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
                     <asp:UpdatePanel ID="UpdatePanel37" runat="server">
                         <ContentTemplate>
                             <asp:Button ID="bttnCorreo" runat="server" CssClass="btn btn-info" OnClick="bttnCorreo_Click" Text="Enviar" ValidationGroup="correo" />
-                            &nbsp;<asp:Button ID="bttnCancelarCorreo" runat="server" CssClass="btn btn-blue-grey" OnClick="bttnCancelarCorreo_Click" Text="Salir" />
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                         </ContentTemplate>
                     </asp:UpdatePanel>
-                </td>
-            </tr>
-            <tr>
-                <td width="33%">&nbsp;</td>
-                <td width="67%">&nbsp;</td>
-                <td width="67%">&nbsp;</td>
-            </tr>
-        </table>
-    </asp:Panel>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script language="javascript" type="text/javascript">
+        function PagBancomer() {
+            $('#<%= mp_account.ClientID %>').attr("name", "mp_account");
+            $('#<%= mp_product.ClientID %>').attr("name", "mp_product");
+            $('#<%= mp_order.ClientID %>').attr("name", "mp_order");
+            $('#<%= mp_reference.ClientID %>').attr("name", "mp_reference");
+            $('#<%= mp_node.ClientID %>').attr("name", "mp_node");
+            $('#<%= mp_concept.ClientID %>').attr("name", "mp_concept");
+            $('#<%= mp_order.ClientID %>').attr("name", "mp_order");
+            $('#<%= mp_amount.ClientID %>').attr("name", "mp_amount");
+            $('#<%= mp_customername.ClientID %>').attr("name", "mp_customername");
+            $('#<%= mp_currency.ClientID %>').attr("name", "mp_currency");
+            $('#<%= mp_signature.ClientID %>').attr("name", "mp_signature");
+            $('#<%= mp_urlsuccess.ClientID%>').attr("name", "mp_urlsuccess");
+            $('#<%= mp_urlfailure.ClientID %>').attr("name", "mp_urlfailure");
+            //document.getElementById("form1").action = "//mgg.unach.mx/pruebas_bancomer.php"; //Setting form action to "success.php" page        
+            //document.getElementById("form1").action = "ttps://prepro.adquiracloud.mx/clb/endpoint/unach/";
+            document.getElementById('<%= Master.Page.Controls[0].FindControl("form1").ClientID %>').action = "https://www.adquiramexico.com.mx/clb/endpoint/unach/";
+            document.getElementById('<%= Master.Page.Controls[0].FindControl("form1").ClientID %>').method = "POST";
+            document.getElementById('<%= Master.Page.Controls[0].FindControl("form1").ClientID %>').submit();
+        };t>
+
+
+    </script>
 </asp:Content>
+
+

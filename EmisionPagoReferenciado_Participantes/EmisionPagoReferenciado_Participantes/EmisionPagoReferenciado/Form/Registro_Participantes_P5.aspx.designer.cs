@@ -303,15 +303,6 @@ namespace EmisionPagoReferenciado.Form
         protected global::System.Web.UI.WebControls.Button btnForma_Pago;
 
         /// <summary>
-        /// Control modalCorreo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender modalCorreo;
-
-        /// <summary>
         /// Control hddnModal.
         /// </summary>
         /// <remarks>
@@ -447,22 +438,13 @@ namespace EmisionPagoReferenciado.Form
         protected global::System.Web.UI.WebControls.Label lblInformacion;
 
         /// <summary>
-        /// Control pnlCorreo.
+        /// Control UpdatePanel5.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlCorreo;
-
-        /// <summary>
-        /// Control UpdatePanel35.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel35;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel5;
 
         /// <summary>
         /// Control lblMensajeCorreo.
@@ -472,24 +454,6 @@ namespace EmisionPagoReferenciado.Form
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMensajeCorreo;
-
-        /// <summary>
-        /// Control UpdatePanel36.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel36;
-
-        /// <summary>
-        /// Control lblCorreo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCorreo;
 
         /// <summary>
         /// Control UpdatePanel34.
@@ -544,14 +508,5 @@ namespace EmisionPagoReferenciado.Form
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bttnCorreo;
-
-        /// <summary>
-        /// Control bttnCancelarCorreo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bttnCancelarCorreo;
     }
 }

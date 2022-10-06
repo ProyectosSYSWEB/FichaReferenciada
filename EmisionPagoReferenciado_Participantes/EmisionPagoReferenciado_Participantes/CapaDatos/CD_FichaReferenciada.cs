@@ -32,10 +32,13 @@ namespace CapaDatos
                                         "p_Vigencia",
                                         "p_Concepto",
                                         "P_DIAS_VIGENCIA",
+                                        "P_OBSERVACIONES",
+                                        "P_EVENTO",
+                                        "P_MATRICULA",
                                         "p_Bandera"
                                         };
 
-                Cmd = CDDatos.GenerarOracleCommand("OBT_REFERENCIA_SYSWEB", ref Verificador, ParametrosIn, Valores, ParametrosOut);
+                Cmd = CDDatos.GenerarOracleCommand("OBT_REFERENCIA_SYSWEB2", ref Verificador, ParametrosIn, Valores, ParametrosOut);
                 if (Verificador == "0")
                 {
                     int idRef = objReferencia.IdFichaBancaria;
@@ -47,6 +50,9 @@ namespace CapaDatos
                     objReferencia.Referencia = Convert.ToString(Cmd.Parameters["P_REFERENCIA"].Value);
                     objReferencia.Dias_Vigencia = Convert.ToInt32(Cmd.Parameters["P_DIAS_VIGENCIA"].Value);
                     objReferencia.IdFichaBancaria = idRef;
+                    objReferencia.Observaciones = Convert.ToString(Cmd.Parameters["P_OBSERVACIONES"].Value);
+                    objReferencia.Evento = Convert.ToString(Cmd.Parameters["P_EVENTO"].Value);
+                    objReferencia.Matricula = Convert.ToString(Cmd.Parameters["P_MATRICULA"].Value);
                 }
 
             }
@@ -159,6 +165,56 @@ namespace CapaDatos
                 CDDatos.LimpiarOracleCommand(ref Cmd);
             }
         }
+        public void InsertarHistFichaReferenciada(FichaReferenciada ObjFichaReferenciada, ref string Verificador)
+        {
+            CD_Datos CDDatos = new CD_Datos();
+            OracleCommand Cmd = null;
+            try
+            {
+
+
+                string[] ParametrosIn = { "P_ID_FICHA",
+                                          "P_NOMBRE",
+                                          "P_REFERENCIA",
+                                          "P_TOTAL",
+                                          "P_VIGENCIA",
+                                          "P_CONCEPTOS",
+                                          "P_OBSERVACIONES",
+                                          "P_EVENTO",
+                                          "P_DEPENDENCIA",
+                                          "P_MATRICULA"
+                };
+                object[] Valores = {
+                                        ObjFichaReferenciada.IdFichaBancaria,
+                                        ObjFichaReferenciada.Nombre,
+                                        ObjFichaReferenciada.Referencia,
+                                        ObjFichaReferenciada.Importetotal,
+                                        ObjFichaReferenciada.FechaVigencia,
+                                        ObjFichaReferenciada.ConceptoRef,
+                                        ObjFichaReferenciada.Observaciones,
+                                        ObjFichaReferenciada.Evento,
+                                        ObjFichaReferenciada.Dependencia,
+                                        ObjFichaReferenciada.Matricula
+            };
+                string[] ParametrosOut ={
+                                          "P_BANDERA"
+                };
+                Cmd = CDDatos.GenerarOracleCommand("INS_FICHA_REF_GENERADA", ref Verificador, ParametrosIn, Valores, ParametrosOut);
+                //Cmd = CDDatos.GenerarOracleCommand("INS_INF_FICHA_BANCARIA", ref Verificador, ParametrosIn, Valores, ParametrosOut);
+                //Cmd = CDDatos.GenerarOracleCommand("INS_FICHA_BANCARIA", ref Verificador, ParametrosIn, Valores, ParametrosOut);
+
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                CDDatos.LimpiarOracleCommand(ref Cmd);
+            }
+        }
+
         public void ActualizarFichaReferenciada(ref FichaReferenciada ObjFichaReferenciada, ref string Verificador)
         {
             CD_Datos CDDatos = new CD_Datos();
@@ -320,6 +376,59 @@ namespace CapaDatos
                 CDDatos.LimpiarOracleCommand(ref Cmd);
             }
         }
+        public void GenerarReferencia27(ref FichaReferenciada ObjFichaReferenciada)
+        {
+            CD_Datos CDDatos = new CD_Datos();
+            OracleCommand Cmd = null;
+            try
+            {
+
+                string[] ParametrosIn = { "p_matricula", "p_id_ficha" };
+                object[] Valores = { ObjFichaReferenciada.NoControl, ObjFichaReferenciada.IdFichaBancaria };
+                string[] ParametrosOut = { "p_matricula_ajustada", "p_id_ficha_ajustada" };
+
+                Cmd = CDDatos.GenerarOracleCommand("gnr_matricula_ajustada_9dig", ParametrosIn, Valores, ParametrosOut);
+                ObjFichaReferenciada.NoControl = Cmd.Parameters["p_matricula_ajustada"].Value.ToString();
+                ObjFichaReferenciada.XMLCadena = Convert.ToString(Cmd.Parameters["p_id_ficha_ajustada"].Value);
+                CDDatos.LimpiarOracleCommand(ref Cmd);
+
+
+
+                //-----------OBTIENE LA DEPENDENCIA SEGUN EL NIVEL, EJ: 41101 A 41102 PARA POSGRADO-----------//
+
+                CDDatos = new CD_Datos();
+                string[] ParametrosIn2 = { "p_depedencia", "p_nivel", "p_evento" };
+                object[] Valores2 = { ObjFichaReferenciada.Dependencia, ObjFichaReferenciada.Nivel, ObjFichaReferenciada.Evento };
+                string[] ParametrosOut2 = { "p_dependencia_ajustada", "p_bandera" };
+
+                Cmd = CDDatos.GenerarOracleCommand("GNR_DEPENDENCIA_AJUSTADA_2016", ParametrosIn2, Valores2, ParametrosOut2);
+                ObjFichaReferenciada.Dependencia = Cmd.Parameters["p_dependencia_ajustada"].Value.ToString();
+
+                CDDatos.LimpiarOracleCommand(ref Cmd);
+
+                //-----------OBTIENE LA REFERENCIA-----------//
+
+
+                CDDatos = new CD_Datos();
+                string[] Parametro = { "p_Ref_Inicial", "p_DIAS_VIGENCIA", "p_Importe" };
+                object[] Valor = {ObjFichaReferenciada.Dependencia + ObjFichaReferenciada.NoControl + ObjFichaReferenciada.XMLCadena,
+                                  ObjFichaReferenciada.Vigencia,
+                                  ObjFichaReferenciada.Importetotal};
+
+                string[] ParametroOut = { "p_Referencia" };
+                Cmd = CDDatos.GenerarOracleCommand("GNR_REFERENCIA_27DIG", Parametro, Valor, ParametroOut);
+                ObjFichaReferenciada.Referencia = Cmd.Parameters["p_Referencia"].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                CDDatos.LimpiarOracleCommand(ref Cmd);
+            }
+        }
+
 
     }
 }

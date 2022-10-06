@@ -823,10 +823,8 @@ namespace EmisionPagoReferenciado.Form
         #region <Funciones y Sub>
         private void Inicializar()
         {
-            //SesionUsu = (Sesion)Session["Sesion"];
             lblMsj.Text = string.Empty;
             rowError.Visible = false;
-            //lblEspecificaciones.Visible = false;
             rowEspecificaciones.Visible = false;
             try
             {
@@ -840,9 +838,10 @@ namespace EmisionPagoReferenciado.Form
                 }
 
                 SesionUsu.NuevoReg = "N";
-                //SesionUsu.UsuEvento_Exclusivo = "N";
                 if (Request.QueryString["Evento"] != null)
                 {
+
+
                     if (Request.QueryString["WXIEvento"] != null)
                         SesionUsu.UsuWXIAdmon = Request.QueryString["WXIEvento"];
 
@@ -929,55 +928,11 @@ namespace EmisionPagoReferenciado.Form
                     //lblEspecificacionesLey.Visible = false;  02/07
                     rowEspecificaciones.Visible = false;
                     lblEspecificaciones.Text = string.Empty;
-                    //SesionUsu.TipoParticipante = "S";
                     CargarCombos();
                     InicializarTipoParticipante();
                     txtMatricula.Focus();
                 }
 
-                //CargarCombos();
-                //if (SesionUsu.FichaRefID != 0)
-                //{
-
-                //    ddlTipo_Participante.SelectedValue = SesionUsu.TipoPersona.ToString();
-                //    ddlTipo_Participante_SelectedIndexChanged(null, null);
-                //    if (SesionUsu.TipoParticipante == "S")
-                //    {
-                //        txtMatricula.Text = SesionUsu.UsuMatricula;
-                //        ddlNivel_SelectedIndexChanged(null, null);
-                //    }
-                //    else if (SesionUsu.TipoParticipante == "E")
-                //    {
-                //        txtNombre_Gral.Text = SesionUsu.UsuNombre;
-                //        txtPaterno_Gral.Text = SesionUsu.UsuApaterno;
-                //        txtMaterno_Gral.Text = SesionUsu.UsuAMaterno;
-                //        txtMaterno_Gral_TextChanged(null, null);
-                //    }
-                //    else if (SesionUsu.TipoParticipante == "SX") //Estudiante Externo
-                //    {
-                //        txtNombreEst_Ext.Text = SesionUsu.UsuNombre;
-                //        txtMaternoEst_Ext.Text = SesionUsu.UsuAMaterno;
-                //        txtPaternoEst_Ext.Text = SesionUsu.UsuApaterno;
-                //        txtMaternoEst_Ext_TextChanged(null, null);
-                //    }
-                //    else //Público General
-                //    {
-                //        txtNombre_Gral.Text = SesionUsu.UsuNombre;
-                //        txtPaterno_Gral.Text = SesionUsu.UsuApaterno;
-                //        txtMaterno_Gral.Text = SesionUsu.UsuAMaterno;
-                //        txtMaterno_Gral_TextChanged(null, null);
-                //    }
-
-                //}
-                //else
-                //{
-                //    ddlTipo_Participante_SelectedIndexChanged(null, null);
-                //    SesionUsu.TipoPersona = Convert.ToInt32(ddlTipo_Participante.SelectedValue);
-                //    Session["SesionFicha"] = SesionUsu;
-                //    Session.Timeout = 20;
-                //}
-
-                //txtMatricula.Focus();
             }
             catch (Exception ex)
             {
