@@ -97,6 +97,9 @@
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="JWT, Version=9.0.0.0, Culture=neutral, PublicKeyToken=6f98bca0f40f2ecf, processorArchitecture=MSIL">
+      <HintPath>..\packages\JWT.9.0.3\lib\net40\JWT.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=6.12.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.6.12.0\lib\net45\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
@@ -106,6 +109,12 @@
     </Reference>
     <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.12.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.Tokens.6.12.0\lib\net45\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -309,6 +318,7 @@
     <Content Include="Form\PagoenLinea.aspx" />
     <Content Include="Form\PagoExclusivoSIAE.aspx" />
     <Content Include="Form\PagoExclusivoSYSWEB.aspx" />
+    <Content Include="Form\PagoPayPal.aspx" />
     <Content Include="Form\Pagos_DDA.aspx" />
     <Content Include="Form\pruebas.aspx" />
     <Content Include="Form\Registro_Participantes.aspx" />
@@ -320,6 +330,7 @@
     <Content Include="Form\Registro_Participantes_P7.aspx" />
     <Content Include="Form\Registro_Participantes_P8.aspx" />
     <Content Include="Form\RespuestaPagoenLinea.aspx" />
+    <Content Include="Form\RespuestaPagoPayPal.aspx" />
     <Content Include="FrmPagoReferenciado.aspx" />
     <Content Include="FrmReferenciaBancaria.aspx" />
     <Content Include="Images\ajax-loader.gif" />
@@ -352,8 +363,18 @@
     <Content Include="Reportes\VisualizadorCrystal.aspx" />
     <Content Include="Scripts\jCodigoPostal.js" />
     <Content Include="Scripts\jFormasPago.js" />
+    <Content Include="Scripts\jFormasPagoController.js" />
+    <Content Include="Scripts\jFormasPagoModel.js" />
     <Content Include="Scripts\jMenu.js" />
     <Content Include="Scripts\jquery.alerts.js" />
+    <Content Include="Scripts\react\react-dom-server.js" />
+    <Content Include="Scripts\react\react-dom-server.min.js" />
+    <Content Include="Scripts\react\react-dom.js" />
+    <Content Include="Scripts\react\react-dom.min.js" />
+    <Content Include="Scripts\react\react-with-addons.js" />
+    <Content Include="Scripts\react\react-with-addons.min.js" />
+    <Content Include="Scripts\react\react.js" />
+    <Content Include="Scripts\react\react.min.js" />
     <Content Include="Scripts\Reportes.js" />
     <Content Include="Styles\grid.css" />
     <Content Include="Styles\mdb.css" />
@@ -441,6 +462,13 @@
     <Compile Include="Form\PagoExclusivoSYSWEB.aspx.designer.cs">
       <DependentUpon>PagoExclusivoSYSWEB.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Form\PagoPayPal.aspx.cs">
+      <DependentUpon>PagoPayPal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form\PagoPayPal.aspx.designer.cs">
+      <DependentUpon>PagoPayPal.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Form\Pagos_DDA.aspx.cs">
       <DependentUpon>Pagos_DDA.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -517,6 +545,13 @@
     </Compile>
     <Compile Include="Form\RespuestaPagoenLinea.aspx.designer.cs">
       <DependentUpon>RespuestaPagoenLinea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form\RespuestaPagoPayPal.aspx.cs">
+      <DependentUpon>RespuestaPagoPayPal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form\RespuestaPagoPayPal.aspx.designer.cs">
+      <DependentUpon>RespuestaPagoPayPal.aspx</DependentUpon>
     </Compile>
     <Compile Include="FrmPagoReferenciado.aspx.cs">
       <DependentUpon>FrmPagoReferenciado.aspx</DependentUpon>

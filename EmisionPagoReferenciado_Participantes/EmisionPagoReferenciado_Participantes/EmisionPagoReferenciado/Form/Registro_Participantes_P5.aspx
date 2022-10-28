@@ -2,96 +2,82 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    <script src="../Scripts/jFormasPago.js"></script>
-    <%--<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&components=YOUR_COMPONENTS"></script>--%>
-    <%--<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&components=buttons"></script>--%>
-    <script src="https://www.paypal.com/sdk/js?client-id=ARgJJuLKlXHNLuWWOc3zDlC4cFSWpN5pj50oJuOV0sQ-mKnCL8vwfcma9GFtH-Ny7LbaclyqVKIUWazV"></script>
-
-    <%--<div id="smart-button-container">
-      <div style="text-align: center;">
-        <div id="paypal-button-container"></div>
-      </div>
-    </div>--%>
-  <%--<script src="https://www.paypal.com/sdk/js?client-id=sb&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
-  <script>
-      function initPayPalButton() {
-          paypal.Buttons({
-              style: {
-                  shape: 'rect',
-                  color: 'gold',
-                  layout: 'vertical',
-                  label: 'paypal',
-
-              },
-
-              createOrder: function (data, actions) {
-                  return actions.order.create({
-                      purchase_units: [{ "amount": { "currency_code": "USD", "value": 1 } }]
-                  });
-              },
-
-              onApprove: function (data, actions) {
-                  return actions.order.capture().then(function (orderData) {
-
-                      // Full available details
-                      console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-
-                      // Show a success message within this page, e.g.
-                      const element = document.getElementById('paypal-button-container');
-                      element.innerHTML = '';
-                      element.innerHTML = '<h3>Thank you for your payment!</h3>';
-
-                      // Or go to another URL:  actions.redirect('thank_you.html');
-
-                  });
-              },
-
-              onError: function (err) {
-                  console.log(err);
-              }
-          }).render('#paypal-button-container');
-      }
-      initPayPalButton();
-  </script>--%>
-
     <style type="text/css">
-        .overlay {
-            position: fixed;
-            z-index: 98;
-            top: 0px;
-            left: 0px;
-            right: 0px;
-            bottom: 0px;
-            background-color: #aaa;
-            filter: alpha(opacity=80);
-            opacity: 0.8;
+        .btn {
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
         }
 
-        .overlayContent {
-            z-index: 99;
-            margin: 250px auto;
-            width: 80px;
-            height: 80px;
+
+        .btn-app {
+            color: white;
+            box-shadow: none;
+            border-radius: 3px;
+            position: relative;
+            padding: 10px 15px;
+            margin: 0;
+            min-width: 40px;
+            /*max-width: 60px;*/
+            text-align: center;
+            border: 1px solid #ddd;
+            background-color: #f4f4f4;
+            font-size: 10px;
+            transition: all .2s;
+            background-color: steelblue !important;
         }
 
-            .overlayContent h2 {
-                font-size: 18px;
-                font-weight: bold;
-                color: #000;
+            .btn-app > .fa, .btn-app > .glyphicon, .btn-app > .ion {
+                font-size: 20px;
+                display: block;
             }
 
-            .overlayContent img {
-                width: 30px;
-                height: 30px;
+            .btn-app:hover {
+                border-color: #aaa;
+                transform: scale(1.1);
             }
 
-        .auto-style1 {
-            width: 110px;
-            height: 45px;
+        .pdf {
+            background-color: #5e5e5e !important;
+            /*background-color: #dc2f2f !important;*/
+        }
+
+        .excel {
+            background-color: #3ca23c !important;
+        }
+
+        .csv {
+            background-color: #ffc107 !important;
+        }
+
+        .imprimir {
+            background-color: #8766b1 !important;
         }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:HiddenField ID="hddnModal" runat="server" />
+    <asp:HiddenField ID="mp_account" runat="server" Value="MPACCO" />
+    <asp:HiddenField ID="mp_product" runat="server" Value="mpproduct" />
+    <asp:HiddenField ID="mp_order" runat="server" Value="mporder" />
+    <asp:HiddenField ID="mp_reference" runat="server" Value="mpreference" />
+    <asp:HiddenField ID="mp_node" runat="server" Value="mpnode" />
+    <asp:HiddenField ID="mp_concept" runat="server" Value="mpconcept" />
+    <asp:HiddenField ID="mp_amount" runat="server" Value="mpamount" />
+    <asp:HiddenField ID="mp_customername" runat="server" Value="mpcustomername" />
+    <asp:HiddenField ID="mp_currency" runat="server" />
+    <asp:HiddenField ID="mp_signature" runat="server" />
+    <asp:HiddenField ID="mp_urlsuccess" runat="server" />
+    <asp:HiddenField ID="mp_urlfailure" runat="server" />
     <div class="container-fluid">
         <div class="row d-none d-sm-none d-md-block">
             <div class="col">
@@ -153,19 +139,19 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col text-center">
-                <asp:Button ID="btnPago" runat="server" CssClass="btn btn-blue-grey" Text="Nueva Referencia" OnClick="btnPago_Click" />
-            </div>
-        </div>
-    </div>
     <div class="container-fluid" id="divDatosPago" runat="server">
         <div class="row">
             <div class="col text-center">
                 <asp:Label ID="lblMsj" runat="server" Style="text-align: center" Font-Bold="True" ForeColor="#3166A2"></asp:Label>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-10 font-weight-bold">Datos de la Referencia</div>
+            <div class="col-md-2">
+                <asp:Button ID="btnPago" runat="server" CssClass="btn btn-blue-grey" Text="Nueva Referencia" OnClick="btnPago_Click" />
+            </div>
+        </div>
+        <hr />
         <div class="row">
             <div class="col-md-1">
                 <asp:Label ID="lblNombre" runat="server" Text="Nombre"></asp:Label>
@@ -248,52 +234,57 @@
                 <asp:UpdateProgress ID="updPgrFormaPago" runat="server"
                     AssociatedUpdatePanelID="updPnlFormaPago">
                     <ProgressTemplate>
-                        <asp:Image ID="Image2q" runat="server"
-                            AlternateText="Espere un momento, por favor.." Height="30px"
-                            ImageUrl="~/images/ajax_loader_gray_512.gif"
-                            ToolTip="Espere un momento, por favor.." Width="30px" />
+                        <div class="overlay">
+                            <div class="overlayContent">
+                                <asp:Image ID="Image2q" runat="server"
+                                    AlternateText="Espere un momento, por favor.." Height="30px"
+                                    ImageUrl="https://sysweb.unach.mx/resources/imagenes/ajax_loader_gray_512.gif"
+                                    ToolTip="Espere un momento, por favor.." Width="30px" />
+                            </div>
+                        </div>
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-1">Formas de Pago</div>
-            <div class="col-md-11">
+            <div class="col font-weight-bold">Formas de Pago</div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <asp:UpdateProgress ID="updPgrFormasPago" runat="server" AssociatedUpdatePanelID="updPnlFormaPago">
+                    <ProgressTemplate>
+                        <div class="overlay">
+                            <div class="overlayContent">
+                                <asp:Image ID="imgFormasPago" runat="server" ImageUrl="~/images/loader2.gif" Height="100px" Width="100px" />
+                            </div>
+                        </div>
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col">
                 <asp:UpdatePanel ID="updPnlFormaPago" runat="server">
                     <ContentTemplate>
-                        <%--<asp:DropDownList ID="rbtFormaPago" runat="server" CssClass="form-control" Width="100%"></asp:DropDownList>--%>
-                        <asp:RadioButtonList ID="rbtFormaPago" runat="server" Width="100%" Height="105px" CssClass="form-control" Font-Bold="True" OnSelectedIndexChanged="rbtFormaPago_SelectedIndexChanged" AutoPostBack="True" RepeatDirection="Horizontal">
-                            <asp:ListItem Value="1" Selected="True">Efectivo   <img src="../Images/efectivo.png"  /></asp:ListItem>
-                            <asp:ListItem Value="2">Pago con tarjeta de Crédito  <img src="https://sysweb.unach.mx/resources/imagenes/visa-master.png"  /></asp:ListItem>
-                            <asp:ListItem Value="3">Pago con tarjeta de Débito  <img src="https://sysweb.unach.mx/resources/imagenes/visa-master.png"  /></asp:ListItem>
-                            <asp:ListItem Value="4">Cargo a Cuenta Bancaria (48 hrs)</asp:ListItem>
-                            <asp:ListItem Value="5">CIE Interbancario</asp:ListItem>
-                        </asp:RadioButtonList>
+                        <div class="text-center">
+                            <asp:RadioButtonList ID="rbtFormaPago" runat="server" OnSelectedIndexChanged="rbtFormaPago_SelectedIndexChanged" RepeatDirection="Horizontal">
+                                <asp:ListItem Selected="True" Value="1"><img src="~/Images/p_efectivo.png"  /></asp:ListItem>
+                                <asp:ListItem Value="2">Pago con tarjeta de Crédito  <img src="https://sysweb.unach.mx/resources/imagenes/visa-master.png"  /></asp:ListItem>
+                                <asp:ListItem Value="3">Pago con tarjeta de Débito  <img src="https://sysweb.unach.mx/resources/imagenes/visa-master.png"  /></asp:ListItem>
+                                <asp:ListItem Value="4">Cargo a Cuenta Bancaria (48 hrs)</asp:ListItem>
+                                <asp:ListItem Value="5">CIE Interbancario</asp:ListItem>
+                            </asp:RadioButtonList>
+                        </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
                 <asp:HiddenField ID="hddnObservaciones" runat="server" />
                 <asp:HiddenField ID="hddnConceptos" runat="server" />
             </div>
-            <%--<div class="col-md-1">
-                <button type="button" class="btn-floating btn-primary" style="border-color: #4285f4; border-style: solid;" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
-                    <i class="fa fa-question-circle" aria-hidden="true"></i>
-                    </button>
+        </div>
+        <hr />
 
-            </div>--%>
-        </div>
-        <div class="row">
-            <div class="col" id="divMensajeEventos" runat="server" visible="false">
-                <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
-                    <div class="card-header">Comprobante Oficial</div>
-                    <div class="card-body">
-                        <p class="card-text text-white">
-                            Ingresar a https://sysweb.unach.mx/ingresos/, en
-                                <div class="font-weight-bold">REFERENCIA BANCARIA</div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
+
     <div class="container-fluid" id="divRep" runat="server">
         <div class="row">
             <div class="col">
@@ -307,7 +298,7 @@
         <div class="row">
             <div class="col">
                 <iframe id="Iframe1" runat="server" frameborder="0" marginheight="0" marginwidth="0"
-                    name="miniContenedor" style="height: 500px" width="100%"></iframe>
+                    name="miniContenedor" style="height: 500px; width: 100%"></iframe>
             </div>
         </div>
     </div>
@@ -326,19 +317,6 @@
             </div>
         </div>
     </div>
-    <asp:HiddenField ID="hddnModal" runat="server" />
-    <asp:HiddenField ID="mp_account" runat="server" Value="MPACCO" />
-    <asp:HiddenField ID="mp_product" runat="server" Value="mpproduct" />
-    <asp:HiddenField ID="mp_order" runat="server" Value="mporder" />
-    <asp:HiddenField ID="mp_reference" runat="server" Value="mpreference" />
-    <asp:HiddenField ID="mp_node" runat="server" Value="mpnode" />
-    <asp:HiddenField ID="mp_concept" runat="server" Value="mpconcept" />
-    <asp:HiddenField ID="mp_amount" runat="server" Value="mpamount" />
-    <asp:HiddenField ID="mp_customername" runat="server" Value="mpcustomername" />
-    <asp:HiddenField ID="mp_currency" runat="server" />
-    <asp:HiddenField ID="mp_signature" runat="server" />
-    <asp:HiddenField ID="mp_urlsuccess" runat="server" />
-    <asp:HiddenField ID="mp_urlfailure" runat="server" />
 
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -350,19 +328,17 @@
                     </button>
                 </div>
                 <div class="modal-body text-center">
-                    <form>
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Cargo a cuenta bancaria</label>
-                            <br />
-                            <a href="https://sysweb.unach.mx/resources/Ayuda/MANUAL_PAGO_CLABE_INTERBANCARIA.pdf" target="_blank">Ver Manual</a>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Cargo a cuenta bancaria</label>
+                        <br />
+                        <a href="https://sysweb.unach.mx/resources/Ayuda/MANUAL_PAGO_CLABE_INTERBANCARIA.pdf" target="_blank">Ver Manual</a>
 
-                        </div>
-                        <div class="form-group">
-                            <label for="message-text" class="col-form-label">CIE</label>
-                            <br />
-                            <a href="https://sysweb.unach.mx/resources/Ayuda/MANUAL_PAGO_CIE.pdf" target="_blank">Manual</a>
-                        </div>
-                    </form>
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">CIE</label>
+                        <br />
+                        <a href="https://sysweb.unach.mx/resources/Ayuda/MANUAL_PAGO_CIE.pdf" target="_blank">Manual</a>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
@@ -390,8 +366,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Modal -->
     <div class="modal fade" id="modalCorreo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -454,31 +428,61 @@
             </div>
         </div>
     </div>
+    <div class="modal" tabindex="-1" role="dialog" id="modalError">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Error</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <asp:UpdatePanel ID="UpdatePanel6" runat="server">
+                        <ContentTemplate>
+                            <asp:Label ID="lblError" runat="server" Text="--"></asp:Label>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" id="modalFormaPago">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Aviso</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <asp:UpdatePanel ID="UpdatePanel7" runat="server">
+              <ContentTemplate>
+                  <asp:Label ID="lblMsjFP" runat="server" Text="--"></asp:Label>
+              </ContentTemplate>
+          </asp:UpdatePanel>
+      </div>
+      <div class="modal-footer">
+          <asp:UpdatePanel ID="UpdatePanel8" runat="server">
+              <ContentTemplate>
+                  <asp:LinkButton ID="linkBttnPagar" CssClass="btn btn-primary" runat="server" OnClick="linkBttnPagar_Click">Pagar</asp:LinkButton>
+              </ContentTemplate>
+          </asp:UpdatePanel>
+        <button type="button" class="btn btn-grey" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <script src="../Scripts/jFormasPago.js"></script>
+    <%--<script language="javascript" type="text/javascript">
 
-    <script language="javascript" type="text/javascript">
-        function PagBancomer() {
-            $('#<%= mp_account.ClientID %>').attr("name", "mp_account");
-            $('#<%= mp_product.ClientID %>').attr("name", "mp_product");
-            $('#<%= mp_order.ClientID %>').attr("name", "mp_order");
-            $('#<%= mp_reference.ClientID %>').attr("name", "mp_reference");
-            $('#<%= mp_node.ClientID %>').attr("name", "mp_node");
-            $('#<%= mp_concept.ClientID %>').attr("name", "mp_concept");
-            $('#<%= mp_order.ClientID %>').attr("name", "mp_order");
-            $('#<%= mp_amount.ClientID %>').attr("name", "mp_amount");
-            $('#<%= mp_customername.ClientID %>').attr("name", "mp_customername");
-            $('#<%= mp_currency.ClientID %>').attr("name", "mp_currency");
-            $('#<%= mp_signature.ClientID %>').attr("name", "mp_signature");
-            $('#<%= mp_urlsuccess.ClientID%>').attr("name", "mp_urlsuccess");
-            $('#<%= mp_urlfailure.ClientID %>').attr("name", "mp_urlfailure");
-            //document.getElementById("form1").action = "//mgg.unach.mx/pruebas_bancomer.php"; //Setting form action to "success.php" page        
-            //document.getElementById("form1").action = "ttps://prepro.adquiracloud.mx/clb/endpoint/unach/";
-            document.getElementById('<%= Master.Page.Controls[0].FindControl("form1").ClientID %>').action = "https://www.adquiramexico.com.mx/clb/endpoint/unach/";
-            document.getElementById('<%= Master.Page.Controls[0].FindControl("form1").ClientID %>').method = "POST";
-            document.getElementById('<%= Master.Page.Controls[0].FindControl("form1").ClientID %>').submit();
-        };t>
 
-
-    </script>
+    </script>--%>
 </asp:Content>
 
 

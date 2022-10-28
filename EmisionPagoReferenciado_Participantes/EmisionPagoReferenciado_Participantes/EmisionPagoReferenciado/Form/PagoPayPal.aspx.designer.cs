@@ -11,7 +11,7 @@ namespace EmisionPagoReferenciado.Form
 {
 
 
-    public partial class pruebas
+    public partial class PagoPayPal
     {
     }
 }

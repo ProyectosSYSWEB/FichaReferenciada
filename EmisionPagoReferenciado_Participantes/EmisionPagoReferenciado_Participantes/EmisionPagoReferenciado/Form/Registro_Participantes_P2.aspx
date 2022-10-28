@@ -114,7 +114,7 @@
                         <div class="row">
                             <div class="col">
                                 <%--<asp:Button ID="btnAgregar_Materia" runat="server" Text="Agregar" CssClass="btn btn-grey" OnClick="btnAgregar_Materia_Click" ValidationGroup="MateriaDis" ToolTip="AGREGAR" />--%>
-                                <asp:LinkButton ID="linkBttnAgregar" runat="server"  CssClass="btn btn-grey" ValidationGroup="MateriaDis" ToolTip="AGREGAR" OnClick="linkBttnAgregar_Click"><i class="fa fa-plus"></i> Agregar</asp:LinkButton>
+                                <asp:LinkButton ID="linkBttnAgregar" runat="server" CssClass="btn btn-grey" ValidationGroup="MateriaDis" ToolTip="AGREGAR" OnClick="linkBttnAgregar_Click"><i class="fa fa-plus"></i> Agregar</asp:LinkButton>
                             </div>
                         </div>
                         <div class="row">
@@ -144,7 +144,7 @@
                     <div class="col-md-3">
                         <%--<asp:Button ID="btnEliminar_Materia" runat="server" Text="Eliminar" CssClass="btn btn-danger"
                             OnClick="btnEliminar_Materia_Click" ValidationGroup="MateriaAsig" ToolTip="ELIMINAR" />--%>
-                        <asp:LinkButton ID="linkBttnEliminar_Materia" runat="server"  CssClass="btn btn-danger" ValidationGroup="MateriaAsig" OnClick="linkBttnEliminar_Materia_Click"><i class="fa fa-trash"></i> Eliminar</asp:LinkButton>
+                        <asp:LinkButton ID="linkBttnEliminar_Materia" runat="server" CssClass="btn btn-danger" ValidationGroup="MateriaAsig" OnClick="linkBttnEliminar_Materia_Click"><i class="fa fa-trash"></i> Eliminar</asp:LinkButton>
                     </div>
                 </div>
                 <div class="row">
@@ -171,7 +171,11 @@
             <div class="col text-center">
                 <asp:UpdateProgress ID="UpdateProgress3" AssociatedUpdatePanelID="UpdatePanel1" runat="server">
                     <ProgressTemplate>
-                        <asp:Image ID="Image13" runat="server" Height="50px" ImageUrl="https://sysweb.unach.mx/resources/imagenes/ajax_loader_gray_512.gif" ToolTip="Espere un momento, por favor.." />
+                        <div class="overlay">
+                            <div class="overlayContent">
+                                <asp:Image ID="Image13" runat="server" ImageUrl="https://sysweb.unach.mx/resources/imagenes/ajax_loader_gray_512.gif" ToolTip="Espere un momento, por favor.." />
+                            </div>
+                        </div>
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>

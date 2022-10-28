@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RespuestaPagoenLinea.aspx.cs" Inherits="EmisionPagoReferenciado.Form.RespuestaPagoenLinea" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site4.Master" AutoEventWireup="true" CodeBehind="RespuestaPagoenLinea.aspx.cs" Inherits="EmisionPagoReferenciado.Form.RespuestaPagoenLinea" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
        <script language="javascript" type="text/javascript">

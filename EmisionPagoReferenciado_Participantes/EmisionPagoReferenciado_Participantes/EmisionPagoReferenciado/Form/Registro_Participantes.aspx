@@ -165,16 +165,7 @@
                 <asp:RequiredFieldValidator ID="reqInternoSM" runat="server" ErrorMessage="*Tipo de Participante" ForeColor="Red" ControlToValidate="ddlTipo_Participante" InitialValue="0" ValidationGroup="gpoInternoSM">*Requerido</asp:RequiredFieldValidator>
                 <asp:RequiredFieldValidator ID="reqInterno" runat="server" ErrorMessage="*Tipo de Participante" ForeColor="Red" ControlToValidate="ddlTipo_Participante" InitialValue="0" ValidationGroup="gpoInterno">*Requerido</asp:RequiredFieldValidator>
             </div>
-        </div>
-        <div class="row">
-            <div class="col text-center">
-                <asp:UpdateProgress ID="updPgrEspTipoPart" AssociatedUpdatePanelID="UpdatePanel1" runat="server">
-                    <ProgressTemplate>
-                        <asp:Image ID="imgEspTipoPart" runat="server" Height="50px" ImageUrl="https://sysweb.unach.mx/resources/imagenes/ajax_loader_gray_512.gif" ToolTip="Espere un momento, por favor.." AlternateText="Espere un momento, por favor.." />
-                    </ProgressTemplate>
-                </asp:UpdateProgress>
-            </div>
-        </div>
+        </div>        
         <asp:UpdatePanel ID="updPnlEspTipoPart" runat="server">
             <ContentTemplate>
                 <div class="row" runat="server" id="rowEspecificacionesTipoPart">
@@ -227,13 +218,19 @@
             <div class="col text-center">
                 <asp:UpdateProgress ID="updProgEmpUNACH" AssociatedUpdatePanelID="updPnlEmpUNACH" runat="server">
                     <ProgressTemplate>
-                        <asp:Image ID="Image88" runat="server" Height="50px" ImageUrl="https://sysweb.unach.mx/resources/imagenes/ajax_loader_gray_512.gif" ToolTip="Espere un momento, por favor.." AlternateText="Espere un momento, por favor.." />
+                        <div class="overlay">
+                            <div class="overlayContent">
+                                <asp:Image ID="Image88" runat="server" ImageUrl="https://sysweb.unach.mx/resources/imagenes/ajax_loader_gray_512.gif" ToolTip="Espere un momento, por favor.." AlternateText="Espere un momento, por favor.." />
+                            </div>
+                        </div>
                     </ProgressTemplate>
                 </asp:UpdateProgress>
                 <asp:UpdateProgress ID="UpdateProgress1" AssociatedUpdatePanelID="UpdatePanel2" runat="server">
                     <ProgressTemplate>
-                        <div class="centro">
-                            <asp:Image ID="Image23" runat="server" alt="Responsive image" class="img-responsive" Height="50px" ImageUrl="https://sysweb.unach.mx/resources/imagenes/ajax_loader_gray_512.gif" ToolTip="Espere un momento, por favor.." />
+                        <div class="overlay">
+                            <div class="overlayContent">
+                                <asp:Image ID="Image23" runat="server" alt="Responsive image" class="img-responsive" ImageUrl="https://sysweb.unach.mx/resources/imagenes/ajax_loader_gray_512.gif" ToolTip="Espere un momento, por favor.." />
+                            </div>
                         </div>
                     </ProgressTemplate>
                 </asp:UpdateProgress>
@@ -440,8 +437,12 @@
                         <div class="col text-center">
                             <asp:UpdateProgress ID="UpdProMatricula" AssociatedUpdatePanelID="UpdMatricula" runat="server">
                                 <ProgressTemplate>
-                                    <asp:Image ID="imgMatricula" runat="server" Height="50px" ImageUrl="https://sysweb.unach.mx/resources/imagenes/ajax_loader_gray_512.gif"
-                                        class="img-responsive" alt="Responsive image" ToolTip="Espere un momento, por favor.." />
+                                    <div class="overlay">
+                                        <div class="overlayContent">
+                                            <asp:Image ID="imgMatricula" runat="server" ImageUrl="https://sysweb.unach.mx/resources/imagenes/ajax_loader_gray_512.gif"
+                                                class="img-responsive" alt="Responsive image" ToolTip="Espere un momento, por favor.." />
+                                        </div>
+                                    </div>
                                 </ProgressTemplate>
                             </asp:UpdateProgress>
                         </div>
@@ -485,8 +486,12 @@
                             </asp:UpdatePanel>
                             <asp:UpdateProgress ID="updProgNivel" AssociatedUpdatePanelID="updPnlNivel" runat="server">
                                 <ProgressTemplate>
-                                    <asp:Image ID="imgNivel" runat="server" Height="50px" ImageUrl="https://sysweb.unach.mx/resources/imagenes/ajax_loader_gray_512.gif"
-                                        class="img-responsive" alt="Responsive image" ToolTip="Espere un momento, por favor.." />
+                                    <div class="overlay">
+                                        <div class="overlayContent">
+                                            <asp:Image ID="imgNivel" runat="server" ImageUrl="https://sysweb.unach.mx/resources/imagenes/ajax_loader_gray_512.gif"
+                                                class="img-responsive" alt="Responsive image" ToolTip="Espere un momento, por favor.." />
+                                        </div>
+                                    </div>
                                 </ProgressTemplate>
                             </asp:UpdateProgress>
                             <br />
@@ -793,7 +798,11 @@
             <div class="col text-center">
                 <asp:UpdateProgress ID="UpdateProgress3" AssociatedUpdatePanelID="UpdatePanel6" runat="server">
                     <ProgressTemplate>
-                        <asp:Image ID="Image13" runat="server" Height="50px" ImageUrl="https://sysweb.unach.mx/resources/imagenes/ajax_loader_gray_512.gif" ToolTip="Espere un momento, por favor.." />
+                        <div class="overlay">
+                            <div class="overlayContent">
+                                <asp:Image ID="Image13" runat="server" ImageUrl="https://sysweb.unach.mx/resources/imagenes/ajax_loader_gray_512.gif" ToolTip="Espere un momento, por favor.." />
+                            </div>
+                        </div>
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>

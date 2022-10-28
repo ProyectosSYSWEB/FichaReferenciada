@@ -98,6 +98,7 @@
     <Compile Include="CD_Menus.cs" />
     <Compile Include="CD_Multipago.cs" />
     <Compile Include="CD_Participante.cs" />
+    <Compile Include="CD_PayPal.cs" />
     <Compile Include="CD_Terminal.cs" />
     <Compile Include="CD_Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
